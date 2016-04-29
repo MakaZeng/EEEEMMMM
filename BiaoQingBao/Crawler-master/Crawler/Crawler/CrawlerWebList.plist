@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>data</key>
+	<array>
+		<dict>
+			<key>startPage</key>
+			<integer>1</integer>
+			<key>website</key>
+			<string>qiushibaike</string>
+			<key>startString</key>
+			<string>http://www.qiushibaike.com/pic/page/</string>
+			<key>endString</key>
+			<string>?s=4827538</string>
+			<key>xPath</key>
+			<string>//div[@class=&apos;thumb&apos;]//img</string>
+		</dict>
+	</array>
+</dict>
+</plist>

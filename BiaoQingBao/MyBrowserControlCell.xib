@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="78" id="KGk-i7-Jjw" customClass="MyBrowserControlCell">
+            <rect key="frame" x="0.0" y="0.0" width="369" height="78"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="369" height="77"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oKE-11-m8d">
+                        <rect key="frame" x="18" y="24" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="SZH-UH-EwF"/>
+                            <constraint firstAttribute="height" constant="30" id="y51-Jy-WME"/>
+                        </constraints>
+                        <state key="normal" image="back_icon.png"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Dz-eg-uYb">
+                        <rect key="frame" x="56" y="24" width="30" height="30"/>
+                        <state key="normal" image="unlike_icon.png"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="js6-GS-BNN">
+                        <rect key="frame" x="329" y="24" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="kcs-P3-ghJ"/>
+                            <constraint firstAttribute="height" constant="30" id="n03-os-OIm"/>
+                        </constraints>
+                        <state key="normal" image="close_icon.png"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0Dz-eg-uYb" firstAttribute="leading" secondItem="oKE-11-m8d" secondAttribute="trailing" constant="8" id="BjV-zg-oJL"/>
+                    <constraint firstAttribute="trailing" secondItem="js6-GS-BNN" secondAttribute="trailing" constant="10" id="Vhh-Dt-jiP"/>
+                    <constraint firstItem="0Dz-eg-uYb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="chp-Im-cfb"/>
+                    <constraint firstItem="oKE-11-m8d" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="ji0-dO-Swv"/>
+                    <constraint firstItem="js6-GS-BNN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="lSX-g9-VAq"/>
+                    <constraint firstItem="oKE-11-m8d" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ur1-Mo-UPR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="backButton" destination="oKE-11-m8d" id="SfO-yg-YCK"/>
+                <outlet property="closeButton" destination="js6-GS-BNN" id="tx5-XR-PEK"/>
+                <outlet property="likeButton" destination="0Dz-eg-uYb" id="N6Q-63-heR"/>
+            </connections>
+            <point key="canvasLocation" x="337.5" y="144"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="back_icon.png" width="40" height="20"/>
+        <image name="close_icon.png" width="17" height="17"/>
+        <image name="unlike_icon.png" width="30" height="30"/>
+    </resources>
+</document>
