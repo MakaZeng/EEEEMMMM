@@ -49,11 +49,11 @@
 #define NSMutableArray_replaceObjectAtIndex(x,y,z) (MAKA_isMutableArray(x)?(MAKA_isObject(z)&&(y&&y<x.count)?[x replaceObjectAtIndex:y withObject:z]:MAKA_EMPTY_STRING):MAKA_EMPTY_STRING)
 
 
-#define BASE_BACK_COLOR [UIColor brownColor]
+#define BASE_BACK_COLOR [UIColor orangeColor]
 
 #define BASE_Tint_COLOR [UIColor whiteColor]
 
-#define LightDarkColor [UIColor colorWithRed:230/255. green:230/255. blue:230/255. alpha:1]
+#define LightDarkColor [UIColor colorWithRed:240/255. green:240/255. blue:240/255. alpha:1]
 
 #define MODEL_VIEW_BACK_COLOR [UIColor colorWithRed:0 green:0 blue:0 alpha:.5]
 

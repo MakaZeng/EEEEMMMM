@@ -44,6 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.collectionView.backgroundColor = self.view.backgroundColor;
     self.title = @"Rss";
     [self firstLoadData];
 }
@@ -85,7 +86,6 @@
 
 -(void)firstLoadUserInterface
 {
-    self.collectionView.backgroundColor = self.view.backgroundColor;
     width = 60;
     height = 25;
     padding = 5;

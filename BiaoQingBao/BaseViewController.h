@@ -22,7 +22,19 @@
 
 static NSMutableArray* BannberADIdenList;
 
+typedef enum : NSUInteger {
+    BaseViewControllerSateNotLoadData,
+    BaseViewControllerSateNotLoading,
+    BaseViewControllerSateNotLoadComplete,
+    BaseViewControllerSateNotLoadFail,
+    BaseViewControllerSateNotLoadEmpty,
+} BaseViewControllerSate;
+
 @interface BaseViewController : UIViewController<BaseViewControllerProtocol>
+
+@property (nonatomic,strong) UIView* emptyView;
+
+@property (nonatomic,assign) BaseViewControllerSate state;
 
 -(void)firstLoadData;
 

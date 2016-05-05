@@ -18,6 +18,7 @@
 #import "RssViewController.h"
 
 @interface IndexViewController ()<UIScrollViewDelegate>
+
 @property (nonatomic,strong) HMSegmentedControl* segmentedControl;
 
 @property (nonatomic,strong) NSMutableArray* viewControllers;
@@ -64,7 +65,7 @@
 {
     self.title = @"Emotions";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshList) name:RssViewControllerWillDisAppear object:nil];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"index_search") style:UIBarButtonItemStyleBordered target:self action:@selector(rightItemAction)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"index_search") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemAction)];
     self.viewControllers = [NSMutableArray arrayWithCapacity:5];
     
     @weakify(self);

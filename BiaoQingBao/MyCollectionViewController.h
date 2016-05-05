@@ -8,7 +8,19 @@
 
 #import "BaseViewController.h"
 
+typedef enum : NSUInteger {
+    MyCollectionViewControllerTypeEmotion,
+    MyCollectionViewControllerTypeEmotionZip,
+    MyCollectionViewControllerTypeCollection,
+    MyCollectionViewControllerTypeMoban,
+} MyCollectionViewControllerType;
+
 @interface MyCollectionViewController : BaseViewController
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+-(instancetype)initWithType:(MyCollectionViewControllerType)type;
+
+@property (nonatomic,assign) MyCollectionViewControllerType type;
+
+@property (strong, nonatomic) UICollectionView *collectionView;
 
 @end

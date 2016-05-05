@@ -61,6 +61,10 @@
     [self.view endEditing:YES];
 }
 
+- (IBAction)saeMuban:(id)sender {
+    UIImage* image = [self drawImage];
+    [ShareInstance saveToMubanFolder:UIImageJPEGRepresentation(image, 1)];
+}
 
 - (IBAction)colorAction:(id)sender {
     self.colorButton = sender;

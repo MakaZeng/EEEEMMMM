@@ -48,11 +48,11 @@
 -(void)EditAction
 {
     self.tableView.editing = !self.tableView.isEditing;
-    if (self.tableView.isEditing) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"停止" style:UIBarButtonItemStyleBordered target:self action:@selector(EditAction)];
-    }else {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:self action:@selector(EditAction)];
-    }
+//    if (self.tableView.isEditing) {
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"停止" style:UIBarButtonItemStyleBordered target:self action:@selector(EditAction)];
+//    }else {
+//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:self action:@selector(EditAction)];
+//    }
 }
 
 -(void)addAction

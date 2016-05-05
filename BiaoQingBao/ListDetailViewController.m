@@ -684,6 +684,8 @@ static dispatch_once_t onceToken;
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    return;
     id o = [self.dataSource objectAtIndex:indexPath.row];
     
     if ([o isKindOfClass:[FLAnimatedImage class]]) {

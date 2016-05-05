@@ -41,6 +41,12 @@
 
 +(void)saveToCollectionFolder:(id)image;
 
++(void)saveToMubanFolder:(id)image;
+
++(void)removeFile:(NSString*)path;
+
++(NSArray*)getAllMubanFromCollectionFolder;
+
 +(NSArray*)getAllImageFromCollectionFolder;
 
 +(NSString*)showRateView;

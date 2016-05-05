@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		19408E486495AC3205DAFC6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C260A894172C25BFD633A2A9 /* libPods.a */; };
+		24AC567B1CDA454B00A204AB /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AC567A1CDA454B00A204AB /* CollectionViewController.m */; };
+		24AC567D1CDB8FC800A204AB /* radio_button_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 24AC567C1CDB8FC800A204AB /* radio_button_on.png */; };
 		6021B2541CB80558003D2353 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6021B2531CB80558003D2353 /* main.m */; };
 		6021B2571CB80558003D2353 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6021B2561CB80558003D2353 /* AppDelegate.m */; };
 		6021B2601CB80558003D2353 /* BiaoQingBao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6021B25E1CB80558003D2353 /* BiaoQingBao.xcdatamodeld */; };
@@ -124,7 +126,6 @@
 		886E1A3B1CBCBAF5002FB168 /* ColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 886E1A3A1CBCBAF5002FB168 /* ColorPicker.m */; };
 		886E1A3D1CBCBB0B002FB168 /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 886E1A3C1CBCBB0B002FB168 /* ColorPicker.xib */; };
 		8875C5881CD3450D00699E2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8875C5861CD3450D00699E2E /* Main.storyboard */; };
-		88D18E201CC4A10C005E204E /* SearchIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D18E1F1CC4A10C005E204E /* SearchIndexViewController.m */; };
 		88D18E221CC4C1C5005E204E /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D18E211CC4C1C5005E204E /* ImageCollectionViewCell.xib */; };
 		88D18E2B1CC4D350005E204E /* SearchHisCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D18E291CC4D350005E204E /* SearchHisCollectionViewCell.m */; };
 		88D18E2C1CC4D350005E204E /* SearchHisCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D18E2A1CC4D350005E204E /* SearchHisCollectionViewCell.xib */; };
@@ -157,6 +158,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24AC56791CDA454B00A204AB /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		24AC567A1CDA454B00A204AB /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		24AC567C1CDB8FC800A204AB /* radio_button_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio_button_on.png; sourceTree = "<group>"; };
 		6021B24F1CB80558003D2353 /* BiaoQingBao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiaoQingBao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6021B2531CB80558003D2353 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6021B2551CB80558003D2353 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -333,8 +337,6 @@
 		886E1A3A1CBCBAF5002FB168 /* ColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPicker.m; sourceTree = "<group>"; };
 		886E1A3C1CBCBB0B002FB168 /* ColorPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
 		8875C5861CD3450D00699E2E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		88D18E1E1CC4A10C005E204E /* SearchIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchIndexViewController.h; sourceTree = "<group>"; };
-		88D18E1F1CC4A10C005E204E /* SearchIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchIndexViewController.m; sourceTree = "<group>"; };
 		88D18E211CC4C1C5005E204E /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		88D18E281CC4D350005E204E /* SearchHisCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHisCollectionViewCell.h; sourceTree = "<group>"; };
 		88D18E291CC4D350005E204E /* SearchHisCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHisCollectionViewCell.m; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 		6021B2511CB80558003D2353 /* BiaoQingBao */ = {
 			isa = PBXGroup;
 			children = (
+				6021B25E1CB80558003D2353 /* BiaoQingBao.xcdatamodeld */,
 				607CC50A1CBE9D420002ABD8 /* ADWebviewController */,
 				6021B2551CB80558003D2353 /* AppDelegate.h */,
 				6021B2561CB80558003D2353 /* AppDelegate.m */,
@@ -439,7 +442,6 @@
 				607CC5181CBE9D420002ABD8 /* AVDeviceQR */,
 				6021B26C1CB8072C003D2353 /* BaseViewController.h */,
 				6021B26D1CB8072C003D2353 /* BaseViewController.m */,
-				6021B25E1CB80558003D2353 /* BiaoQingBao.xcdatamodeld */,
 				883977AD1CC6063E00272882 /* Cache */,
 				886E1A391CBCBAF5002FB168 /* ColorPicker.h */,
 				886E1A3A1CBCBAF5002FB168 /* ColorPicker.m */,
@@ -512,8 +514,6 @@
 				88D18E281CC4D350005E204E /* SearchHisCollectionViewCell.h */,
 				88D18E291CC4D350005E204E /* SearchHisCollectionViewCell.m */,
 				88D18E2A1CC4D350005E204E /* SearchHisCollectionViewCell.xib */,
-				88D18E1E1CC4A10C005E204E /* SearchIndexViewController.h */,
-				88D18E1F1CC4A10C005E204E /* SearchIndexViewController.m */,
 				8816F3221CC8916C0010DBFB /* SearchViewController.h */,
 				8816F3231CC8916C0010DBFB /* SearchViewController.m */,
 				88F1B0421CC9E8CD007EF356 /* SearchEmotionController.h */,
@@ -533,6 +533,8 @@
 				8816F32F1CC8B07D0010DBFB /* SettingViewController.m */,
 				607E858E1CCBDAF1007B75B2 /* MyCollectionViewController.h */,
 				607E858F1CCBDAF1007B75B2 /* MyCollectionViewController.m */,
+				24AC56791CDA454B00A204AB /* CollectionViewController.h */,
+				24AC567A1CDA454B00A204AB /* CollectionViewController.m */,
 				882D05B71CC8CB3B007187BC /* ReferenceTableViewCell.h */,
 				882D05B81CC8CB3B007187BC /* ReferenceTableViewCell.m */,
 				882D05B91CC8CB3B007187BC /* ReferenceTableViewCell.xib */,
@@ -734,6 +736,7 @@
 		886E1A3E1CBD17FF002FB168 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				24AC567C1CDB8FC800A204AB /* radio_button_on.png */,
 				8875C5861CD3450D00699E2E /* Main.storyboard */,
 				88FB2DB01CD0F55200661689 /* my_collection@2x.png */,
 				60DEC56B1CCD256C005A8F49 /* back_icon@2x.png */,
@@ -833,6 +836,9 @@
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 6021B2461CB80557003D2353;
 			productRefGroup = 6021B2501CB80558003D2353 /* Products */;
 			projectDirPath = "";
@@ -872,6 +878,7 @@
 				8836464A1CC7966400DCF206 /* Rating@2x.png in Resources */,
 				607CC54B1CBE9D420002ABD8 /* QRCodeBottomLeft@2x.png in Resources */,
 				883646481CC7965600DCF206 /* Ninja@2x.png in Resources */,
+				24AC567D1CDB8FC800A204AB /* radio_button_on.png in Resources */,
 				8816F3211CC890460010DBFB /* tabbar_setting@2x.png in Resources */,
 				60DEC56C1CCD256C005A8F49 /* back_icon@2x.png in Resources */,
 				882D05B61CC8C597007187BC /* RateTableViewCell.xib in Resources */,
@@ -993,10 +1000,10 @@
 				60756D3A1CC2C74000CE8EC1 /* ServiceManager.m in Sources */,
 				607CC5441CBE9D420002ABD8 /* QRCameraSwitchButton.m in Sources */,
 				60DEC5511CCBF965005A8F49 /* RssCollectionViewCell.m in Sources */,
+				24AC567B1CDA454B00A204AB /* CollectionViewController.m in Sources */,
 				6021B2571CB80558003D2353 /* AppDelegate.m in Sources */,
 				607CC5461CBE9D420002ABD8 /* QRCodeReaderAanimationLineView.m in Sources */,
 				607CC5451CBE9D420002ABD8 /* QRCodeReader.m in Sources */,
-				88D18E201CC4A10C005E204E /* SearchIndexViewController.m in Sources */,
 				88E7E1911CBE447400650890 /* RxWebViewController.m in Sources */,
 				60DEC55A1CCCBDA1005A8F49 /* BrowserTableViewCell.m in Sources */,
 				609A13AC1CC0023D002501CC /* FullImageViewController.m in Sources */,

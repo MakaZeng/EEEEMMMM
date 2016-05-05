@@ -104,11 +104,42 @@
     return size;
 }
 
++(NSString*)mubanFilePath
+{
+    NSString *Document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];//获取根目录
+    return [NSString stringWithFormat:@"%@/muban/",Document];
+}
+
+
 +(NSString*)myCollectionFilePath
 {
     NSString *Document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];//获取根目录
     return [NSString stringWithFormat:@"%@/myCollections/",Document];
 }
+
++(void)saveToMubanFolder:(NSData*)image
+{
+    if ([image isKindOfClass:[NSData class]]) {
+        NSFileManager* folder = [NSFileManager defaultManager];
+        BOOL isExist = YES;
+        isExist = [folder fileExistsAtPath:[self mubanFilePath] isDirectory:(&isExist)];
+        if (!isExist) {
+            [folder createDirectoryAtPath:[self mubanFilePath] withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        NSDate* date = [NSDate date];
+        NSString* fileName = [NSString stringWithFormat:@"Image%f",date.timeIntervalSince1970];
+        NSString* filePath = [NSString stringWithFormat:@"%@%@",[self mubanFilePath],fileName];
+        NSLog(@"%@",filePath);
+        [image writeToFile:filePath atomically:YES];
+    }
+}
+
++(void)removeFile:(NSString *)path
+{
+    NSFileManager* m = [NSFileManager defaultManager];
+    [m removeItemAtPath:path error:nil];
+}
+
 
 +(void)saveToCollectionFolder:(NSData*)image
 {
@@ -125,6 +156,23 @@
         NSLog(@"%@",filePath);
         [image writeToFile:filePath atomically:YES];
     }
+}
+
++(NSArray*)getAllMubanFromCollectionFolder
+{
+    NSFileManager *manager;
+    manager = [NSFileManager defaultManager];
+    NSString *home;
+    home = [self mubanFilePath];//获得主目录路径
+    NSDirectoryEnumerator *direnum;
+    direnum = [manager enumeratorAtPath: home];//枚举home下的目录
+    NSMutableArray *files;
+    files = [NSMutableArray arrayWithCapacity:5];
+    NSString *filename;
+    while (filename = [direnum nextObject]) {
+        [files addObject: [NSString stringWithFormat:@"%@%@",[self mubanFilePath],filename]];
+    }
+    return files;
 }
 
 +(NSArray*)getAllImageFromCollectionFolder
