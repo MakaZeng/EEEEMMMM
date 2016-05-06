@@ -28,7 +28,7 @@
 
 @property (nonatomic,strong) CMPopTipView *navBarLeftButtonPopTipView;
 
-@property (nonatomic,assign) UIButton* colorButton;
+@property (nonatomic,assign) UISegmentedControl* colorButton;
 
 @end
 
@@ -73,20 +73,20 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MyCollectionViewController" object:nil];
 }
 
-//- (IBAction)colorAction:(id)sender {
-//    self.colorButton = sender;
-//    if (!self.navBarLeftButtonPopTipView) {
-//        ColorPicker* picker = [ColorPicker instanceFromNib];
-//        picker.delegate = self;
-//        [picker setBounds:CGRectMake(0, 0, 80, 80)];
-//        self.navBarLeftButtonPopTipView = [[CMPopTipView alloc] initWithCustomView:picker];
-//        self.navBarLeftButtonPopTipView.backgroundColor = [UIColor colorWithWhite:.9 alpha:1];
-//        self.navBarLeftButtonPopTipView.borderColor = [UIColor lightGrayColor];
-//        self.navBarLeftButtonPopTipView.delegate = self;
-//    }
-//    
-//    [self.navBarLeftButtonPopTipView presentPointingAtView:sender inView:self.view animated:YES];
-//}
+- (void)colorAction:(id)sender {
+    self.colorButton = sender;
+    if (!self.navBarLeftButtonPopTipView) {
+        ColorPicker* picker = [ColorPicker instanceFromNib];
+        picker.delegate = self;
+        [picker setBounds:CGRectMake(0, 0, 80, 80)];
+        self.navBarLeftButtonPopTipView = [[CMPopTipView alloc] initWithCustomView:picker];
+        self.navBarLeftButtonPopTipView.backgroundColor = [UIColor colorWithWhite:.9 alpha:1];
+        self.navBarLeftButtonPopTipView.borderColor = [UIColor lightGrayColor];
+        self.navBarLeftButtonPopTipView.delegate = self;
+    }
+    
+    [self.navBarLeftButtonPopTipView presentPointingAtView:sender inView:self.view animated:YES];
+}
 static dispatch_once_t onceToken;
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -177,6 +177,7 @@ static dispatch_once_t onceToken;
 - (IBAction)valueChange:(UISegmentedControl*)sender {
     
     NSInteger index = sender.selectedSegmentIndex;
+    [self colorAction:sender];
     if (index == 1) {
         [self switchToTextMode];
     }else if ( index == 0)
@@ -188,7 +189,7 @@ static dispatch_once_t onceToken;
 -(void)buttonAction:(UIButton *)btn
 {
     [self.navBarLeftButtonPopTipView dismissAnimated:YES];
-    [self.colorButton setTitleColor:btn.backgroundColor forState:UIControlStateNormal];
+    [self.colorButton setTintColor:btn.backgroundColor];
     [self.jotViewController setDrawingColor:btn.backgroundColor];
     [self.jotViewController setTextColor:btn.backgroundColor];
 }
