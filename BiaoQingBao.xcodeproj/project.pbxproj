@@ -150,6 +150,8 @@
 		88F8B9B21CDC781C003CCF19 /* fullscreen_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F8B9B11CDC781C003CCF19 /* fullscreen_icon@2x.png */; };
 		88F8B9B41CDC7D42003CCF19 /* close_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F8B9B31CDC7D42003CCF19 /* close_icon@2x.png */; };
 		88F8B9B61CDCA044003CCF19 /* ShareUtilTypeWhatsApp.png in Resources */ = {isa = PBXBuildFile; fileRef = 88F8B9B51CDCA044003CCF19 /* ShareUtilTypeWhatsApp.png */; };
+		88F8B9BA1CDCB5EF003CCF19 /* AddFromAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F8B9B81CDCB5EF003CCF19 /* AddFromAlbumCell.m */; };
+		88F8B9BB1CDCB5EF003CCF19 /* AddFromAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F8B9B91CDCB5EF003CCF19 /* AddFromAlbumCell.xib */; };
 		88FB2D951CD0AAEA00661689 /* ADRuntimeClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FB2D8C1CD0AAEA00661689 /* ADRuntimeClass.m */; };
 		88FB2D961CD0AAEA00661689 /* ADWebviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FB2D8E1CD0AAEA00661689 /* ADWebviewController.m */; };
 		88FB2D971CD0AAEA00661689 /* NSString+Sha1.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FB2D901CD0AAEA00661689 /* NSString+Sha1.m */; };
@@ -370,6 +372,9 @@
 		88F8B9B11CDC781C003CCF19 /* fullscreen_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fullscreen_icon@2x.png"; sourceTree = "<group>"; };
 		88F8B9B31CDC7D42003CCF19 /* close_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_icon@2x.png"; sourceTree = "<group>"; };
 		88F8B9B51CDCA044003CCF19 /* ShareUtilTypeWhatsApp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShareUtilTypeWhatsApp.png; sourceTree = "<group>"; };
+		88F8B9B71CDCB5EF003CCF19 /* AddFromAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFromAlbumCell.h; sourceTree = "<group>"; };
+		88F8B9B81CDCB5EF003CCF19 /* AddFromAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFromAlbumCell.m; sourceTree = "<group>"; };
+		88F8B9B91CDCB5EF003CCF19 /* AddFromAlbumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFromAlbumCell.xib; sourceTree = "<group>"; };
 		88FB2D8B1CD0AAEA00661689 /* ADRuntimeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADRuntimeClass.h; sourceTree = "<group>"; };
 		88FB2D8C1CD0AAEA00661689 /* ADRuntimeClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADRuntimeClass.m; sourceTree = "<group>"; };
 		88FB2D8D1CD0AAEA00661689 /* ADWebviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADWebviewController.h; sourceTree = "<group>"; };
@@ -467,6 +472,9 @@
 				88499F251CBB6F84008E8487 /* FactoryIndexViewController.m */,
 				88499F2D1CBBB3AB008E8487 /* FactoryJotViewController.h */,
 				88499F2E1CBBB3AB008E8487 /* FactoryJotViewController.m */,
+				88F8B9B71CDCB5EF003CCF19 /* AddFromAlbumCell.h */,
+				88F8B9B81CDCB5EF003CCF19 /* AddFromAlbumCell.m */,
+				88F8B9B91CDCB5EF003CCF19 /* AddFromAlbumCell.xib */,
 				88ED46271CD3239700762893 /* DrawPointView.h */,
 				88ED46281CD3239700762893 /* DrawPointView.m */,
 				609A13AA1CC0023D002501CC /* FullImageViewController.h */,
@@ -892,6 +900,7 @@
 				60DEC5701CCD2685005A8F49 /* unlike_icon@2x.png in Resources */,
 				8816F32B1CC89A4A0010DBFB /* icon_back@2x.png in Resources */,
 				60BB928B1CBA742A00872C3A /* tabbar_emotions@2x.png in Resources */,
+				88F8B9BB1CDCB5EF003CCF19 /* AddFromAlbumCell.xib in Resources */,
 				882D05BB1CC8CB3B007187BC /* ReferenceTableViewCell.xib in Resources */,
 				88F1B03D1CC9E4F4007EF356 /* ShareUtilTypeWechat.png in Resources */,
 				60BB92931CBA772600872C3A /* tabbar_browser@2x.png in Resources */,
@@ -1043,6 +1052,7 @@
 				8816F3271CC8949C0010DBFB /* SearchCollectionViewCell.m in Sources */,
 				882D05BE1CC8E5FF007187BC /* MakaShareUtil.m in Sources */,
 				607CC54A1CBE9D420002ABD8 /* QRScanView.m in Sources */,
+				88F8B9BA1CDCB5EF003CCF19 /* AddFromAlbumCell.m in Sources */,
 				60BB91301CBA04DB00872C3A /* SubListViewController.m in Sources */,
 				60BB91331CBA06BA00872C3A /* SubListCollectionViewCell.m in Sources */,
 				60BB91361CBA0C1400872C3A /* ListDetailViewController.m in Sources */,

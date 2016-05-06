@@ -45,15 +45,16 @@
     self.jotViewController.delegate = self;
     self.jotViewController.font = [UIFont systemFontOfSize:17];
     self.jotViewController.fontSize = 17;
-    self.jotViewController.drawingStrokeWidth = 40.f;
+    self.jotViewController.drawingStrokeWidth = 20.f;
     self.jotViewController.textEditingInsets = UIEdgeInsetsMake(30, 10, 10, 30);
+    self.jotViewController.drawingColor = [UIColor whiteColor];
     [self addChildViewController:self.jotViewController];
     self.jotViewController.view.autoresizesSubviews = NO;
     [self.innerView addSubview:self.jotViewController.view];
     self.jotViewController.view.backgroundColor = [UIColor clearColor];
     self.innerView.backgroundColor = [UIColor clearColor];
     [self.jotViewController didMoveToParentViewController:self];
-    [self switchToTextMode];
+    [self switchToDrawMode];
 }
 
 -(void)tapAction
@@ -61,26 +62,31 @@
     [self.view endEditing:YES];
 }
 
-- (IBAction)saeMuban:(id)sender {
+- (IBAction)saeMuban:(UIButton*)sender {
+    sender.enabled = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        sender.enabled = YES;
+    });
+    [ShareInstance statusBarToastWithMessage:@"保存模板成功"];
     UIImage* image = [self drawImage];
     [ShareInstance saveToMubanFolder:UIImageJPEGRepresentation(image, 1)];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MyCollectionViewController" object:nil];
 }
 
-- (IBAction)colorAction:(id)sender {
-    self.colorButton = sender;
-    if (!self.navBarLeftButtonPopTipView) {
-        ColorPicker* picker = [ColorPicker instanceFromNib];
-        picker.delegate = self;
-        [picker setBounds:CGRectMake(0, 0, 80, 80)];
-        self.navBarLeftButtonPopTipView = [[CMPopTipView alloc] initWithCustomView:picker];
-        self.navBarLeftButtonPopTipView.backgroundColor = [UIColor colorWithWhite:.9 alpha:1];
-        self.navBarLeftButtonPopTipView.borderColor = [UIColor lightGrayColor];
-        self.navBarLeftButtonPopTipView.delegate = self;
-    }
-    
-    [self.navBarLeftButtonPopTipView presentPointingAtView:sender inView:self.view animated:YES];
-}
+//- (IBAction)colorAction:(id)sender {
+//    self.colorButton = sender;
+//    if (!self.navBarLeftButtonPopTipView) {
+//        ColorPicker* picker = [ColorPicker instanceFromNib];
+//        picker.delegate = self;
+//        [picker setBounds:CGRectMake(0, 0, 80, 80)];
+//        self.navBarLeftButtonPopTipView = [[CMPopTipView alloc] initWithCustomView:picker];
+//        self.navBarLeftButtonPopTipView.backgroundColor = [UIColor colorWithWhite:.9 alpha:1];
+//        self.navBarLeftButtonPopTipView.borderColor = [UIColor lightGrayColor];
+//        self.navBarLeftButtonPopTipView.delegate = self;
+//    }
+//    
+//    [self.navBarLeftButtonPopTipView presentPointingAtView:sender inView:self.view animated:YES];
+//}
 static dispatch_once_t onceToken;
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -126,8 +132,17 @@ static dispatch_once_t onceToken;
         sender.selectedSegmentIndex = -1;
     });
 }
-- (IBAction)printAction:(id)sender {
-    [self.view endEditing:YES];
+- (IBAction)printAction:(UIButton*)sender {
+    
+    [self switchToDrawMode];
+    
+    sender.enabled = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        sender.enabled = YES;
+    });
+    
+    [ShareInstance statusBarToastWithMessage:@"保存当前状态成功"];
+    
     UIImage* image = [self drawImage];
     self.bottomImageView.image = image;
     
@@ -162,9 +177,9 @@ static dispatch_once_t onceToken;
 - (IBAction)valueChange:(UISegmentedControl*)sender {
     
     NSInteger index = sender.selectedSegmentIndex;
-    if (index == 0) {
+    if (index == 1) {
         [self switchToTextMode];
-    }else if ( index == 1 )
+    }else if ( index == 0)
     {
         [self switchToDrawMode];
     }

@@ -149,22 +149,22 @@
     NSString* l = CurrentLanguage;
     UIView* shareView = nil;
     
-    if ([l isEqualToString:@"zh-Hans"]) {
+    if ([l hasPrefix:@"zh-Han"]) {
         shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeQQ],
                                               [NSNumber numberWithInteger:ShareUtilTypeWechat],
                                               [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
                                               [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
-    }else if ([l isEqualToString:@"ja"]) {
+    }else if ([l hasPrefix:@"ja"]) {
         shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeWhatsApp],
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechat],
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
-    }else if ([l isEqualToString:@"ko"]) {
+    }else if ([l hasPrefix:@"ko"]) {
         shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeWhatsApp],
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechat],
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
-    }else if ([l isEqualToString:@"id"]) {
+    }else if ([l hasPrefix:@"id"]) {
         shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeWhatsApp],
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechat],
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
@@ -180,7 +180,7 @@
     [shareView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView);
         make.top.equalTo(self.collectionView.mas_bottom).offset(5);
-        make.width.mas_equalTo(60*4);
+        make.width.equalTo(self.contentView);
         make.height.mas_equalTo(60);
     }];
     

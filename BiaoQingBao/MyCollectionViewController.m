@@ -17,6 +17,7 @@
 #import <FLAnimatedImage.h>
 #import <objc/runtime.h>
 #import "SubListViewController.h"
+#import "AddFromAlbumCell.h"
 
 @interface UICollectionView(MZEdit)
 
@@ -39,7 +40,7 @@
 
 @end
 
-@interface MyCollectionViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SubListCollectionViewCellDelegate>
+@interface MyCollectionViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SubListCollectionViewCellDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     CGFloat padding,width,height;
 }
@@ -80,6 +81,7 @@
     }];
     
     [self.collectionView registerClass:[SearchEmotionCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SearchEmotionCollectionReusableView"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"AddFromAlbumCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"AddFromAlbumCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"SubListCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"SubListCollectionViewCell"];
     self.dataSource = [NSMutableArray array];
@@ -197,8 +199,34 @@
     [self presentViewController:detailViewController animated:YES completion:nil];
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo NS_DEPRECATED_IOS(2_0, 3_0)
+{
+    [ShareInstance saveToMubanFolder:UIImageJPEGRepresentation(image, 1)];
+     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    UIImage *image= [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    [ShareInstance saveToMubanFolder:UIImageJPEGRepresentation(image, 1)];
+     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)mubanEmotionTapIndexPath:(NSIndexPath*)indexPath
 {
+    if (indexPath.row >= self.myMobanDataSource.count) {
+        UIImagePickerController* picker = [[UIImagePickerController alloc]init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:picker animated:YES completion:nil];
+        return;
+    }
+    
     ListDetailViewController *detailViewController = [[ListDetailViewController alloc]initWithImageArray:self.myMobanDataSource index:indexPath.row];
     //    detailViewController.task = sender;
     // create animator object with instance of modal view controller
@@ -260,6 +288,7 @@
         case MyCollectionViewControllerTypeMoban:
         {
             i = self.myMobanDataSource.count;
+            i+=1;
             break;
         }
         case MyCollectionViewControllerTypeCollection:
@@ -312,22 +341,30 @@
         }
         case MyCollectionViewControllerTypeMoban:
         {
-            string = self.myMobanDataSource[indexPath.row];
-            
-            SubListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[SubListCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
-            
-            NSData* data = [[NSData alloc]initWithContentsOfFile:string];
-            
-            FLAnimatedImage* animatedImage = [FLAnimatedImage animatedImageWithGIFData:data];
-            if (animatedImage) {
-                cell.imageView.animatedImage = animatedImage;
+            if (indexPath.row < self.myMobanDataSource.count) {
+                string = self.myMobanDataSource[indexPath.row];
+                SubListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[SubListCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+                
+                NSData* data = [[NSData alloc]initWithContentsOfFile:string];
+                
+                FLAnimatedImage* animatedImage = [FLAnimatedImage animatedImageWithGIFData:data];
+                if (animatedImage) {
+                    cell.imageView.animatedImage = animatedImage;
+                }else {
+                    cell.imageView.image  =[[UIImage alloc]initWithData:data];
+                }
+                cell.selected = self.collectionView.edit;
+                cell.indexPath = indexPath;
+                cell.delegate = self;
+                return cell;
             }else {
-                cell.imageView.image  =[[UIImage alloc]initWithData:data];
+                string = @"AddFromAlbumCell";
+                AddFromAlbumCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:string forIndexPath:indexPath];
+                return (id)cell;
             }
-            cell.selected = self.collectionView.edit;
-            cell.indexPath = indexPath;
-            cell.delegate = self;
-            return cell;
+            
+            
+            
             break;
         }
         case MyCollectionViewControllerTypeCollection:
@@ -357,8 +394,6 @@
     
     return nil;
 }
-
-
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {

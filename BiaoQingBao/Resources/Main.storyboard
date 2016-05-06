@@ -541,10 +541,10 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="a8c-s3-MkK">
-                                        <rect key="frame" x="497" y="8" width="95" height="29"/>
+                                        <rect key="frame" x="499" y="8" width="93" height="29"/>
                                         <segments>
-                                            <segment title="Text  "/>
                                             <segment title="Draw"/>
+                                            <segment title="Text "/>
                                         </segments>
                                         <connections>
                                             <action selector="valueChange:" destination="hB1-9K-C48" eventType="valueChanged" id="TLQ-U2-230"/>
@@ -557,16 +557,9 @@
                                             <action selector="dismiss:" destination="hB1-9K-C48" eventType="touchUpInside" id="4uM-Id-jmR"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXd-w2-xrF">
-                                        <rect key="frame" x="440" y="7" width="37" height="30"/>
-                                        <state key="normal" title="Color"/>
-                                        <connections>
-                                            <action selector="colorAction:" destination="hB1-9K-C48" eventType="touchUpInside" id="FN5-RV-6sE"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DfE-py-U44">
-                                        <rect key="frame" x="327" y="7" width="105" height="30"/>
-                                        <state key="normal" title="保存为制图模版"/>
+                                        <rect key="frame" x="388" y="7" width="101" height="30"/>
+                                        <state key="normal" title="Save As Model"/>
                                         <connections>
                                             <action selector="saeMuban:" destination="hB1-9K-C48" eventType="touchUpInside" id="e8P-sL-XRn"/>
                                         </connections>
@@ -576,12 +569,10 @@
                                 <constraints>
                                     <constraint firstItem="a8c-s3-MkK" firstAttribute="centerY" secondItem="HaM-9E-NNy" secondAttribute="centerY" id="5sM-hh-Iol"/>
                                     <constraint firstItem="HaM-9E-NNy" firstAttribute="leading" secondItem="KVN-m4-Pn0" secondAttribute="leading" constant="20" id="5yg-IB-m3n"/>
-                                    <constraint firstItem="SXd-w2-xrF" firstAttribute="leading" secondItem="DfE-py-U44" secondAttribute="trailing" constant="8" id="BHs-jd-si8"/>
-                                    <constraint firstItem="a8c-s3-MkK" firstAttribute="leading" secondItem="SXd-w2-xrF" secondAttribute="trailing" constant="20" id="I0M-rX-C5g"/>
+                                    <constraint firstItem="a8c-s3-MkK" firstAttribute="leading" secondItem="DfE-py-U44" secondAttribute="trailing" constant="10" id="UQf-Om-grC"/>
                                     <constraint firstAttribute="height" constant="44" id="VC5-m0-jCz"/>
                                     <constraint firstAttribute="trailing" secondItem="a8c-s3-MkK" secondAttribute="trailing" constant="8" id="ch2-c5-atk"/>
-                                    <constraint firstItem="SXd-w2-xrF" firstAttribute="centerY" secondItem="DfE-py-U44" secondAttribute="centerY" id="eia-cH-w3n"/>
-                                    <constraint firstItem="a8c-s3-MkK" firstAttribute="centerY" secondItem="SXd-w2-xrF" secondAttribute="centerY" id="k67-Na-E34"/>
+                                    <constraint firstItem="a8c-s3-MkK" firstAttribute="centerY" secondItem="DfE-py-U44" secondAttribute="centerY" id="ego-Dq-dgG"/>
                                     <constraint firstItem="a8c-s3-MkK" firstAttribute="centerY" secondItem="KVN-m4-Pn0" secondAttribute="centerY" id="u1c-2X-IA8"/>
                                 </constraints>
                             </view>
@@ -646,7 +637,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I64-f1-aHL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185" y="-1624"/>
+            <point key="canvasLocation" x="268" y="-1657"/>
         </scene>
         <!--Browser-->
         <scene sceneID="T2r-jM-RM7">
