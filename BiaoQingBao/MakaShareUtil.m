@@ -144,6 +144,12 @@
             imageName=@"ShareUtilTypeWechatSession";
             break;
         }
+        case ShareUtilTypeWhatsApp:
+        {
+            title = @"WhatsApp";
+            imageName=@"ShareUtilTypeWhatsApp";
+            break;
+        }
         default:
             break;
     }

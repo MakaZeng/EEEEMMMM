@@ -51,6 +51,7 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>whatsapp</string>
 		<string>mqqOpensdkSSoLogin</string>
 		<string>mqzone</string>
 		<string>sinaweibo</string>

@@ -62,6 +62,7 @@ static NSInteger instanceCount;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.isActive = YES;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if ([[ShareInstance shareInstance] shouldShowAds]) {
@@ -77,6 +78,13 @@ static NSInteger instanceCount;
         }
     });
 }
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.isActive = NO;
+}
+
 -(void)firstLoadData
 {
     
@@ -112,6 +120,7 @@ static NSInteger instanceCount;
     if (_state == BaseViewControllerSateNotLoadEmpty) {
         if (!_emptyView) {
             [self.view addSubview:self.emptyView];
+            self.emptyView.userInteractionEnabled = NO;
             [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(UIEdgeInsetsZero);
             }];

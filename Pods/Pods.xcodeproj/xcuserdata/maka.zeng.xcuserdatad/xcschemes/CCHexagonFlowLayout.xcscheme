@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '63725B2F9293DF56FB8F09A0'
+               BlueprintIdentifier = 'E134FEFCB557D38B17B65659'
                BlueprintName = 'CCHexagonFlowLayout'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libCCHexagonFlowLayout.a'>

@@ -191,14 +191,14 @@ static const void* TOWebViewControllerAnimator = &TOWebViewControllerAnimator;
         }
         
         // create animator object with instance of modal view controller
-        // we need to keep it in property with strong reference so it will not get release
-        self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailViewController];
-        self.animator.dragable = NO;
-        self.animator.direction = ZFModalTransitonDirectionBottom;
-        [self.animator setContentScrollView:detailViewController.collectionView];
-        
-        // set transition delegate of modal view controller to our object
-        detailViewController.transitioningDelegate = self.animator;
+//        // we need to keep it in property with strong reference so it will not get release
+//        self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailViewController];
+//        self.animator.dragable = NO;
+//        self.animator.direction = ZFModalTransitonDirectionBottom;
+//        [self.animator setContentScrollView:detailViewController.collectionView];
+//        
+//        // set transition delegate of modal view controller to our object
+//        detailViewController.transitioningDelegate = self.animator;
         
         // if you modal cover all behind view controller, use UIModalPresentationFullScreen
         detailViewController.modalPresentationStyle = UIModalPresentationCustom;

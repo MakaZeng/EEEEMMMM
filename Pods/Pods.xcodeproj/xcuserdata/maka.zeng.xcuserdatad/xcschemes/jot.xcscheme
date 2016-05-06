@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F6B692F1035D763B976AB011'
+               BlueprintIdentifier = '92D3CAF9588DEF7534B78E65'
                BlueprintName = 'jot'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libjot.a'>

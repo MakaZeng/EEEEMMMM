@@ -51,7 +51,7 @@
         
         UIScrollView* s = [[UIScrollView alloc]init];
         s.maximumZoomScale = 10;
-        s.minimumZoomScale = 0.1;
+        s.minimumZoomScale = 1;
         s.delegate = self;
         [self addSubview:s];
         [s mas_makeConstraints:^(MASConstraintMaker *make) {

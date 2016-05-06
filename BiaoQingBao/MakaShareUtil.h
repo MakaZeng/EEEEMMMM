@@ -16,6 +16,9 @@ typedef enum : NSUInteger {
     ShareUtilTypeWechat,
     ShareUtilTypeWechatSession,
     ShareUtilTypeWechatCollection,
+    ShareUtilTypeSkype,
+    ShareUtilTypeWhatsApp,
+    ShareUtilTypeInstagram,
 } ShareUtilType;
 
 @class MakaShareUtil;

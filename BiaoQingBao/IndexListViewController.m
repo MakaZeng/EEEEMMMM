@@ -69,6 +69,7 @@
             @strongify(self);
             [self.dataSource removeAllObjects];
             [self.dataSource addObjectsFromArray:result];
+            self.isLoaded = YES;
             [self firstLoadUserInterface];
             [self.collectionView reloadData];
         }
@@ -91,6 +92,7 @@
     NSArray* arr = [NSJSONSerialization JSONObjectWithData:[arrStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
     [self.dataSource addObjectsFromArray:arr];
     [ShareInstance randomBreakArray:self.dataSource];
+    self.isLoaded = YES;
     [self firstLoadUserInterface];
 }
 
@@ -128,7 +130,13 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    NSInteger i = self.dataSource.count;
+    if (i == 0 && self.isLoaded) {
+        self.state = BaseViewControllerSateNotLoadEmpty;
+    }else {
+        self.state = BaseViewControllerSateNotLoadComplete;
+    }
+    return i;
 }
 
 - (ImageCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

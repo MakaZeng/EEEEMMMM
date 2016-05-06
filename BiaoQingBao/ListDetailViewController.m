@@ -26,7 +26,10 @@
 
 #define FirstShowGifSendToTimeLine @"FirstShowGifSendToTimeLine"
 
-@interface ListDetailViewController ()<ShareUtilDelegate>
+@interface ListDetailViewController ()<ShareUtilDelegate,UIDocumentInteractionControllerDelegate>
+{
+    UIDocumentInteractionController* _documentInteractionController;
+}
 
 @property (nonatomic,strong) NSMutableArray* dataSource;
 
@@ -55,6 +58,8 @@
     vc.index = index;
     vc.imageArray = array;
     return vc;
+}
+- (IBAction)nothing:(id)sender {
 }
 
 - (IBAction)tapAction:(id)sender {
@@ -109,12 +114,20 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = MODEL_VIEW_BACK_COLOR;
-    self.contentView.backgroundColor = BASE_BACK_COLOR;
-    Layer_View(self.contentView);
+    CGFloat r = 0;
+    CGFloat g = 0;
+    CGFloat b = 0;
+    CGFloat a = 0;
+    [BASE_BACK_COLOR getRed:&r green:&g blue:&b alpha:&a];
+    a = .7;
+    self.contentView.backgroundColor = [UIColor colorWithRed:r green:g blue:b alpha:a];
+    self.contentView.backgroundColor = [UIColor clearColor];
+
+    Layer_Border_View(self.contentView);
     Layer_View(self.collectionView);
-    Layer_View(self.editButton);
-    Layer_View(self.saveButton);
+    Layer_Border_View(self.editButton);
+    Layer_Border_View(self.saveButton);
+    [self.fullscreen addTarget:self action:@selector(fullscreenAction) forControlEvents:UIControlEventTouchUpInside];
     [self firstLoadData];
 }
 
@@ -133,10 +146,36 @@
 
 -(void)firstLoadUserInterface
 {
-    UIView* shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeQQ],
+    NSString* l = CurrentLanguage;
+    UIView* shareView = nil;
+    
+    if ([l isEqualToString:@"zh-Hans"]) {
+        shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeQQ],
+                                              [NSNumber numberWithInteger:ShareUtilTypeWechat],
+                                              [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
+                                              [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
+    }else if ([l isEqualToString:@"ja"]) {
+        shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeWhatsApp],
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechat],
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
+    }else if ([l isEqualToString:@"ko"]) {
+        shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeWhatsApp],
+                                                          [NSNumber numberWithInteger:ShareUtilTypeWechat],
+                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
+                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
+    }else if ([l isEqualToString:@"id"]) {
+        shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeWhatsApp],
+                                                          [NSNumber numberWithInteger:ShareUtilTypeWechat],
+                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
+                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
+    }else{
+        shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeWhatsApp],
+                                                          [NSNumber numberWithInteger:ShareUtilTypeWechat],
+                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
+                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
+    }
+    
     [self.contentView addSubview:shareView];
     [shareView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView);
@@ -163,113 +202,35 @@
 {
     id o = [self.dataSource objectAtIndex:self.currentIndex];
     
-    if ([o isKindOfClass:[FLAnimatedImage class]]) {
-        switch (type) {
-            case ShareUtilTypeQQ:
-            {
-                [self sendToQQ:o];
-                return;
-            }
-            case ShareUtilTypeWechat:
-            {
-                [self sendGifImageDirection:o scence:WXSceneSession];
-                return;
-            }
-            case ShareUtilTypeWechatSession:
-            {
-                [self sendGifImageDirection:o scence:WXSceneTimeline];
-                return;
-            }
-            case ShareUtilTypeWechatCollection:
-            {
-                
-                [self sendGifImageDirection:o scence:WXSceneFavorite];
-                return;
-            }
-            default:
-                break;
+    switch (type) {
+        case ShareUtilTypeQQ:
+        {
+            [self sendToQQ:o];
+            return;
         }
-    }else if ([o isKindOfClass:[NSString class]]){
-        switch (type) {
-            case ShareUtilTypeQQ:
-            {
-                [self sendToQQ:o];
-                return;
-            }
-            case ShareUtilTypeWechat:
-            {
-                [self sendToWechat:WXSceneSession obj:o];
-                return;
-            }
-            case ShareUtilTypeWechatSession:
-            {
-                [self sendToWechat:WXSceneTimeline obj:o];
-                return;
-            }
-            case ShareUtilTypeWechatCollection:
-            {
-                [self sendToWechat:WXSceneFavorite obj:o];
-                return;
-            }
-            default:
-                break;
+        case ShareUtilTypeWechat:
+        {
+            [self sendToWechat:WXSceneSession obj:o];
+            return;
         }
-    }else if ([o isKindOfClass:[UIImage class]]) {
-        
-        switch (type) {
-            case ShareUtilTypeQQ:
-            {
-                [self sendToQQ:o];
-                return;
-            }
-            case ShareUtilTypeWechat:
-            {
-                [self sendImageDirection:o scence:WXSceneSession];
-                return;
-            }
-            case ShareUtilTypeWechatSession:
-            {
-                [self sendImageDirection:o scence:WXSceneTimeline];
-                return;
-            }
-            case ShareUtilTypeWechatCollection:
-            {
-                
-                [self sendImageDirection:o scence:WXSceneFavorite];
-                return;
-            }
-            default:
-                break;
+        case ShareUtilTypeWechatSession:
+        {
+            [self sendToWechat:WXSceneTimeline obj:o];
+            return;
         }
-        
-    }else if (MAKA_isDicionary(o)) {
-        o = NSDictionary_String_ForKey(o, @"url");
-        switch (type) {
-            case ShareUtilTypeQQ:
-            {
-                [self sendToQQ:o];
-                return;
-            }
-            case ShareUtilTypeWechat:
-            {
-                [self sendToWechat:WXSceneSession obj:o];
-                return;
-            }
-            case ShareUtilTypeWechatSession:
-            {
-                [self sendToWechat:WXSceneTimeline obj:o];
-                return;
-            }
-            case ShareUtilTypeWechatCollection:
-            {
-                [self sendToWechat:WXSceneFavorite obj:o];
-                return;
-            }
-            default:
-                break;
+        case ShareUtilTypeWechatCollection:
+        {
+            [self sendToWechat:WXSceneFavorite obj:o];
+            return;
         }
+        case ShareUtilTypeWhatsApp:
+        {
+            [self sendToWhatsApp:o];
+            return;
+        }
+        default:
+            break;
     }
-    
 }
 
 - (IBAction)selectAction:(id)sender {
@@ -332,21 +293,67 @@
 
 }
 
--(void)sendToWechat:(int)scene obj:(id)o
+-(void)sendToWhatsApp:(id)obj
 {
-    NSData* data = nil;
-    //link
-    if ([o hasPrefix:@"http://"]) {
-        NSString* path = [[SDImageCache sharedImageCache] defaultCachePathForKey:o];
-        data = [[NSData alloc]initWithContentsOfFile:path];
+    UIImage* image = nil;
+    if ([obj isKindOfClass:[UIImage class]]) {
+        image = obj;
+    }else if([obj isKindOfClass:[NSString class]]) {
+        NSData* data = nil;
+        if ([obj hasPrefix:@"http://"]) {
+            NSString* path = [[SDImageCache sharedImageCache] defaultCachePathForKey:obj];
+            data = [[NSData alloc]initWithContentsOfFile:path];
+        }else {
+            data = [[NSData alloc]initWithContentsOfFile:obj];
+        }
+        image = [[UIImage alloc]initWithData:data];
+    }else if ([obj isKindOfClass:[FLAnimatedImage class]]){
+        image = [[UIImage alloc]initWithData:[obj data]];
+    }else if ([obj isKindOfClass:[NSData class]]) {
+        image = [[UIImage alloc]initWithData:obj];
     }else {
-        data = [[NSData alloc]initWithContentsOfFile:o];
-    }
-    
-    if (!data) {
         return;
     }
-    
+    if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]]){
+        
+        UIImage     * iconImage = image;
+        NSString    * savePath  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/whatsAppTmp.wai"];
+        
+        [UIImageJPEGRepresentation(iconImage, 1.0) writeToFile:savePath atomically:YES];
+        
+        _documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:savePath]];
+        _documentInteractionController.UTI = @"net.whatsapp.image";
+        _documentInteractionController.delegate = self;
+        
+        [_documentInteractionController presentOpenInMenuFromRect:CGRectMake(0, 0, 0, 0) inView:self.view animated: YES];
+    } else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"WhatsApp not installed." message:@"Your device has no WhatsApp installed." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+-(void)sendToWechat:(int)scene obj:(id)obj
+{
+    UIImage* image = nil;
+    NSData* data = nil;
+    if ([obj isKindOfClass:[UIImage class]]) {
+        image = obj;
+        data = UIImageJPEGRepresentation(obj, 1);
+    }else if([obj isKindOfClass:[NSString class]]) {
+        if ([obj hasPrefix:@"http://"]) {
+            NSString* path = [[SDImageCache sharedImageCache] defaultCachePathForKey:obj];
+            data = [[NSData alloc]initWithContentsOfFile:path];
+        }else {
+            data = [[NSData alloc]initWithContentsOfFile:obj];
+        }
+    }else if ([obj isKindOfClass:[FLAnimatedImage class]]){
+        data = [obj data];
+    }else if ([obj isKindOfClass:[NSData class]]) {
+        data = obj;
+    }else {
+        return;
+    }
+
     UIImage* sourceImage = [[UIImage alloc] initWithData:data];
     NSData* thumbData = UIImageJPEGRepresentation([MakaShareUtil thumbnailWithImageWithoutScale:sourceImage size:CGSizeMake(80, (80/(sourceImage.size.width/sourceImage.size.height)))], 1) ;
     
@@ -413,67 +420,6 @@
     showBuilder.show(builder.alertView, self);
     
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:FirstShowGifSendToTimeLine];
-}
-
--(void)sendImageDirection:(UIImage*)image scence:(int)scene
-{
-    UIImage* sourceImage = image;
-    NSData* thumbData = UIImageJPEGRepresentation([MakaShareUtil thumbnailWithImageWithoutScale:sourceImage size:CGSizeMake(80, (80/(sourceImage.size.width/sourceImage.size.height)))], 1) ;
-    
-    WXMediaMessage* message = [WXMediaMessage message];
-    [message setThumbData:thumbData];
-    
-    if (scene != WXSceneSession) {
-        WXImageObject* obj = [WXImageObject object];
-        obj.imageData = UIImageJPEGRepresentation(sourceImage, 1);
-        message.mediaObject = obj;
-    }else {
-        WXEmoticonObject* obj = [WXEmoticonObject object];
-        obj.emoticonData = UIImageJPEGRepresentation(sourceImage, 1);
-        message.mediaObject = obj;
-    }
-    
-    SendMessageToWXReq* req = [[SendMessageToWXReq alloc]init];
-    req.bText = NO;
-    req.message = message;
-    req.scene = scene;
-    [WXApi sendReq:req];
-}
-
--(void)sendGifImageDirection:(FLAnimatedImage*)image scence:(int)scene
-{
-    FLAnimatedImage* sourceImage = image;
-    NSData* thumbData = UIImageJPEGRepresentation([MakaShareUtil thumbnailWithImageWithoutScale:[UIImage imageWithData:sourceImage.data] size:CGSizeMake(80, (80/(sourceImage.size.width/sourceImage.size.height)))], 1) ;
-    
-    WXMediaMessage* message = [WXMediaMessage message];
-    [message setThumbData:thumbData];
-    
-    if (scene != WXSceneSession) {
-        WXImageObject* obj = [WXImageObject object];
-        obj.imageData = image.data;
-        message.mediaObject = obj;
-        [self showSendTimeLineWarnning:^(BOOL shouldSend) {
-            if (shouldSend) {
-                SendMessageToWXReq* req = [[SendMessageToWXReq alloc]init];
-                req.bText = NO;
-                req.message = message;
-                req.scene = scene;
-                [WXApi sendReq:req];
-            }
-        }];
-        return;
-        return;
-    }else {
-        WXEmoticonObject* obj = [WXEmoticonObject object];
-        obj.emoticonData = image.data;
-        message.mediaObject = obj;
-    }
-    
-    SendMessageToWXReq* req = [[SendMessageToWXReq alloc]init];
-    req.bText = NO;
-    req.message = message;
-    req.scene = scene;
-    [WXApi sendReq:req];
 }
 
 
@@ -686,7 +632,11 @@ static dispatch_once_t onceToken;
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     return;
-    id o = [self.dataSource objectAtIndex:indexPath.row];
+}
+
+-(void)fullscreenAction
+{
+    id o = [self.dataSource objectAtIndex:self.currentIndex];
     
     if ([o isKindOfClass:[FLAnimatedImage class]]) {
         [FullScreenImageView showWithData:[o data]];
@@ -697,7 +647,6 @@ static dispatch_once_t onceToken;
     }else if (MAKA_isDicionary(o)) {
         [FullScreenImageView showWithImageURL:NSDictionary_String_ForKey(o, @"url")];
     }
-    
 }
 
 - (void)handleSendResult:(QQApiSendResultCode)sendResult

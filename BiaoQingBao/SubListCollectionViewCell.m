@@ -33,7 +33,7 @@
 -(void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
-    if (1) {
+    if (self.delegate && self.indexPath) {
         if (!self.chooseImageView) {
             self.chooseImageView = [UIButton buttonWithType:UIButtonTypeCustom];
             self.chooseImageView.contentMode = UIViewContentModeScaleAspectFit;

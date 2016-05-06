@@ -53,13 +53,17 @@
 
 #define BASE_Tint_COLOR [UIColor whiteColor]
 
-#define LightDarkColor [UIColor colorWithRed:240/255. green:240/255. blue:240/255. alpha:1]
+#define LightDarkColor [UIColor colorWithRed:230/255. green:230/255. blue:230/255. alpha:1]
 
 #define MODEL_VIEW_BACK_COLOR [UIColor colorWithRed:0 green:0 blue:0 alpha:.5]
+
+#define Layer_Border_View(x) {x.layer.cornerRadius = 5;x.layer.borderWidth = 1.0/[UIScreen mainScreen].scale;x.layer.borderColor = [LightDarkColor CGColor];}
 
 #define Layer_View(x)  ((x.layer.cornerRadius = 5),(x.layer.masksToBounds = YES));
 
 #define Color_Layer_View(x) {x.layer.cornerRadius = 5;x.layer.masksToBounds = YES;x.layer.borderColor = LightDarkColor.CGColor;x.layer.borderWidth = 1/[UIScreen mainScreen].scale;}
+
+#define CurrentLanguage [[NSLocale preferredLanguages] objectAtIndex:0]
 
 #define BottomLine_View(view,color) {UIView* v = [[UIView alloc]init];v.backgroundColor=color;[view addSubview:v];[v mas_makeConstraints:^(MASConstraintMaker *make) {make.left.right.bottom.mas_equalTo(0);make.height.mas_equalTo(1/[UIScreen mainScreen].scale);}];}
 

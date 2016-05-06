@@ -89,6 +89,21 @@
 }
 
 
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    NSMutableArray* titles = [NSMutableArray array];
+    for (NSDictionary* dic in self.result) {
+        if (MAKA_isDicionary(dic))
+        {
+            [titles addObject:NSDictionary_String_ForKey(dic, @"title")];
+        }
+    }
+    [titles addObjectsFromArray:[ShareInstance shareInstance].myRssArray];
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH*titles.count, 20);
+}
+
+
 -(void)firstLoadUserInterface
 {
     if (MAKA_isArray(self.result)) {
@@ -111,54 +126,7 @@
             make.width.height.mas_equalTo(30);
         }];
         [rssButton addTarget:self action:@selector(rssAction) forControlEvents:UIControlEventTouchUpInside];
-        
-        if (titles.count > 0) {
-            self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-30, 30)];
-            self.segmentedControl.sectionTitles = titles;
-            self.segmentedControl.selectedSegmentIndex = 0;
-            self.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleDynamic;
-            self.segmentedControl.backgroundColor = BASE_Tint_COLOR;
-            self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : BASE_BACK_COLOR,NSFontAttributeName:[UIFont systemFontOfSize:15]};
-            self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : BASE_BACK_COLOR};
-            self.segmentedControl.selectionIndicatorColor = BASE_BACK_COLOR;
-            self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
-            self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
-            self.segmentedControl.tag = 3;
-            BottomLine_View(self.segmentedControl,LightDarkColor);
-            __weak typeof(self) weakSelf = self;
-            [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
-                [weakSelf.scrollView scrollRectToVisible:CGRectMake(SCREEN_WIDTH * index, 0, SCREEN_WIDTH, 200) animated:YES];
-            }];
-            
-            [self.view addSubview:self.segmentedControl];
-            [self.segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(30);
-                make.right.mas_equalTo(0);
-                make.height.mas_equalTo(30);
-                make.top.mas_equalTo(0);
-            }];
-            
-            
-            IndexListViewController* vc;
-            IndexListViewController* lastVC;
-            
-            for (NSInteger i = 0 ; i< titles.count ; i ++ ) {
-                NSDictionary* dic = NSArray_ObjectAt_Index(((NSArray*)self.result), i);
-                vc = [IndexListViewController  instanceWithDictionary:dic];
-                [self.viewControllers addObject:vc];
-                [self addChildViewController:vc];
-                vc.view.frame = CGRectMake(i*SCREEN_WIDTH, 0, SCREEN_WIDTH, self.scrollView.bounds.size.height-self.segmentedControl.frame.size.height);
-                [self.scrollView addSubview:vc.view];
-                lastVC = vc;
-            }
-            self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH*titles.count, 20);
-            self.scrollView.contentInset = UIEdgeInsetsMake(self.segmentedControl.frame.size.height, 0, 0, 0);
-            self.scrollView.delegate = self;
-            self.scrollView.pagingEnabled = YES;
-            self.scrollView.showsHorizontalScrollIndicator= NO;
-            self.scrollView.showsVerticalScrollIndicator = NO;
-            self.scrollView.directionalLockEnabled = YES;
-        }
+        [self updateData];
     }
 }
 
@@ -247,6 +215,16 @@
                 [self addChildViewController:vc];
                 vc.view.frame = CGRectMake(i*SCREEN_WIDTH, 0, SCREEN_WIDTH, self.scrollView.bounds.size.height-self.segmentedControl.frame.size.height);
                 [self.scrollView addSubview:vc.view];
+                [vc.view mas_makeConstraints:^(MASConstraintMaker *make) {
+                    if (lastVC) {
+                        make.left.equalTo(lastVC.view.mas_right);
+                    }else {
+                        make.left.mas_equalTo(0);
+                    }
+                    make.top.mas_equalTo(0);
+                    make.width.equalTo(self.scrollView);
+                    make.height.equalTo(self.scrollView).offset(-self.segmentedControl.frame.size.height);
+                }];
                 lastVC = vc;
             }
             self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH*titles.count, 20);

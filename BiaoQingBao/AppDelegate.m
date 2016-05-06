@@ -11,6 +11,7 @@
 #import "WXApi.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <COSTouchVisualizerWindow.h>
+#import <UMSocialData.h>
 
 @interface AppDelegate ()<COSTouchVisualizerWindowDelegate>
 
@@ -37,7 +38,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-//    [UMSocialData setAppKey:UMENG_KEY];
+    [UMSocialData setAppKey:UMENG_KEY];
     [Bugly startWithAppId:BUGLY_ID];
     
     {

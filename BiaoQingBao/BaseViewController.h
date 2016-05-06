@@ -34,6 +34,10 @@ typedef enum : NSUInteger {
 
 @property (nonatomic,strong) UIView* emptyView;
 
+@property (nonatomic,assign) BOOL isActive;
+
+@property (nonatomic,assign) BOOL isLoaded;
+
 @property (nonatomic,assign) BaseViewControllerSate state;
 
 -(void)firstLoadData;
