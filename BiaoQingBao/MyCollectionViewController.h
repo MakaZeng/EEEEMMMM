@@ -9,10 +9,10 @@
 #import "BaseViewController.h"
 
 typedef enum : NSUInteger {
+    MyCollectionViewControllerTypeMoban,
     MyCollectionViewControllerTypeEmotion,
     MyCollectionViewControllerTypeEmotionZip,
     MyCollectionViewControllerTypeCollection,
-    MyCollectionViewControllerTypeMoban,
 } MyCollectionViewControllerType;
 
 @interface MyCollectionViewController : BaseViewController

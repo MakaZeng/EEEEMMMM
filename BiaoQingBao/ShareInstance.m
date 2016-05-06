@@ -170,7 +170,7 @@
     files = [NSMutableArray arrayWithCapacity:5];
     NSString *filename;
     while (filename = [direnum nextObject]) {
-        [files addObject: [NSString stringWithFormat:@"%@%@",[self mubanFilePath],filename]];
+        [files insertObject:[NSString stringWithFormat:@"%@%@",[self mubanFilePath],filename] atIndex:0];
     }
     return files;
 }
@@ -187,7 +187,7 @@
     files = [NSMutableArray arrayWithCapacity:5];
     NSString *filename;
     while (filename = [direnum nextObject]) {
-        [files addObject: [NSString stringWithFormat:@"%@%@",[self myCollectionFilePath],filename]];
+        [files insertObject: [NSString stringWithFormat:@"%@%@",[self myCollectionFilePath],filename] atIndex:0];
     }
     return files;
 }

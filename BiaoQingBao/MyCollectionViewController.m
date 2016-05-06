@@ -131,9 +131,9 @@
             NSMutableArray* array = [ShareInstance shareInstance].myLikeArray;
             for (NSString* str in array) {
                 if ([str containsString:@","]) {
-                    [self.zipDataSource addObject:str];
+                    [self.zipDataSource insertObject:str atIndex:0];
                 }else {
-                    [self.dataSource addObject:str];
+                    [self.dataSource insertObject:str atIndex:0];
                 }
             }
             break;
@@ -145,9 +145,9 @@
             NSMutableArray* array = [ShareInstance shareInstance].myLikeArray;
             for (NSString* str in array) {
                 if ([str containsString:@","]) {
-                    [self.zipDataSource addObject:str];
+                    [self.zipDataSource insertObject:str atIndex:0];
                 }else {
-                    [self.dataSource addObject:str];
+                    [self.dataSource insertObject:str atIndex:0];
                 }
             }
             break;
