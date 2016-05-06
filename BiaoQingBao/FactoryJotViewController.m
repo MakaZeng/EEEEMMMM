@@ -19,7 +19,11 @@
 #import "DrawPointView.h"
 
 @interface FactoryJotViewController ()<JotViewControllerDelegate,CMPopTipViewDelegate,ColorPickerDelegate>
+{
+    CGFloat lastScale;
+}
 
+@property (nonatomic,assign) BOOL lock;
 @property (nonatomic, strong) JotViewController *jotViewController;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UIView *innerView;
@@ -55,6 +59,20 @@
     self.innerView.backgroundColor = [UIColor clearColor];
     [self.jotViewController didMoveToParentViewController:self];
     [self switchToDrawMode];
+    
+    UIPinchGestureRecognizer* pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(pinchAction:)];
+    [self.view addGestureRecognizer:pinch];
+}
+
+-(void)pinchAction:(UIPinchGestureRecognizer*)recognizer
+{
+    if (self.bottomImageView.contentMode != UIViewContentModeCenter) {
+        return;
+    }
+    recognizer.scale=recognizer.scale-lastScale+1;
+    self.jotViewController.view.transform=CGAffineTransformScale(self.jotViewController.view.transform, recognizer.scale,recognizer.scale);
+    self.bottomImageView.transform=CGAffineTransformScale(self.bottomImageView.transform, recognizer.scale,recognizer.scale);
+    lastScale=recognizer.scale;
 }
 
 -(void)tapAction
@@ -87,15 +105,20 @@
     
     [self.navBarLeftButtonPopTipView presentPointingAtView:sender inView:self.view animated:YES];
 }
-static dispatch_once_t onceToken;
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    dispatch_once(&onceToken, ^{
+    if (!self.lock) {
         self.bottomImageView.image = self.image;
         if (self.bottomImageView.image) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 CGSize size = [ShareInstance suitSizeForMaxWidth:self.innerView.bounds.size.width MaxHeight:self.innerView.bounds.size.height WithImage:self.bottomImageView.image];
+                if (size.width < self.innerView.bounds.size.width-10 && size.height < self.innerView.bounds.size.height-10) {
+                    self.bottomImageView.contentMode = UIViewContentModeCenter;
+                }else {
+                    self.bottomImageView.contentMode = UIViewContentModeScaleAspectFit;
+                }
                 self.jotViewController.view.bounds = CGRectMake(0, 0, size.width, size.height);
                 self.jotViewController.view.center = CGPointMake(self.innerView.bounds.size.width/2, self.innerView.bounds.size.height/2);
                 [self.jotViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -105,13 +128,13 @@ static dispatch_once_t onceToken;
                 }];
             });
         }
-    });
+        self.lock = YES;
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    onceToken = 0;
 }
 
 - (void)didReceiveMemoryWarning {

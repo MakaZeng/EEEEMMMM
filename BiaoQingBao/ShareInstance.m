@@ -91,6 +91,10 @@
 {
     CGSize size = image.size;
     
+    if (size.width < maxWidth && size.height < maxHeight) {
+        return size;
+    }
+    
     CGFloat scale = size.width/size.height;
     
     if (maxWidth/maxHeight < size.width/size.height) {
