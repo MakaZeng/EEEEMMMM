@@ -149,7 +149,7 @@ static NSInteger instanceCount;
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor lightGrayColor];
     label.font = [UIFont systemFontOfSize:15];
-    label.text = @"当前列表为空";
+    label.text = NSLocalizedString(@"当前列表为空", @"当前列表为空");
     [view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);

@@ -19,15 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imgSrc]];
-    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithTitle:@"旋转" style:UIBarButtonItemStyleBordered target:self action:@selector(rotate)];
-    self.navigationItem.rightBarButtonItem = rightItem;
 }
-
--(void)rotate
-{
-    self.imageView.transform = CGAffineTransformMakeRotation(M_PI/2);
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

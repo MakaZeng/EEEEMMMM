@@ -40,9 +40,9 @@
         make.height.mas_equalTo(40);
     }];
     
-    UIBarButtonItem* backItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"back_icon") style:UIBarButtonItemStyleBordered target:self action:@selector(backAction)];
-    UIBarButtonItem* closeItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"close_icon") style:UIBarButtonItemStyleBordered target:self action:@selector(closeAction)];
-    UIBarButtonItem* storeItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"unlike_icon") style:UIBarButtonItemStyleBordered target:self action:@selector(rightAction)];
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"back_icon") style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
+    UIBarButtonItem* closeItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"tab_close_icon") style:UIBarButtonItemStylePlain target:self action:@selector(closeAction)];
+    UIBarButtonItem* storeItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"unlike_icon") style:UIBarButtonItemStylePlain target:self action:@selector(rightAction)];
     
     UIBarButtonItem* padding = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
@@ -79,6 +79,10 @@
     });
     
     textView = [builder.alertView addTextField:@"输入标题"];
+    
+    [builder.alertView addButton:@"取消" actionBlock:^{
+        
+    }];
     
     [showBuilder showAlertView:builder.alertView onViewController:self];
     // or even

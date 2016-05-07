@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '493986543DC8DBCF0D4A878B'
+               BlueprintIdentifier = '84FD6C8200B09097A5D563A5'
                BlueprintName = 'FaceAwareFill'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libFaceAwareFill.a'>

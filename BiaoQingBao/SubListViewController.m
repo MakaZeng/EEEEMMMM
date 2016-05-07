@@ -88,10 +88,10 @@
     [self.collectionView registerNib:[UINib nibWithNibName:@"SubListCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"SubListCollectionViewCell"];
     if ([[ShareInstance shareInstance].myLikeArray containsObject:NSDictionary_String_ForKey(self.dic, @"urls")]) {
         self.likeButton.selected = YES;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"like_selected") style:UIBarButtonItemStyleBordered target:self action:@selector(deselectLike)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"like_selected") style:UIBarButtonItemStylePlain target:self action:@selector(deselectLike)];
     }else {
         self.likeButton.selected = NO;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"like_normal") style:UIBarButtonItemStyleBordered target:self action:@selector(rightItemAction)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"like_normal") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemAction)];
     }
     [self.collectionView reloadData];
 }
@@ -99,12 +99,12 @@
 -(void)rightItemAction
 {
     [[ShareInstance shareInstance].myLikeArray addObject:NSDictionary_String_ForKey(self.dic, @"urls")];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"like_selected") style:UIBarButtonItemStyleBordered target:self action:@selector(deselectLike)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"like_selected") style:UIBarButtonItemStylePlain target:self action:@selector(deselectLike)];
 }
 -(void)deselectLike
 {
     [[ShareInstance shareInstance].myLikeArray removeObject:NSDictionary_String_ForKey(self.dic, @"urls")];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"like_normal") style:UIBarButtonItemStyleBordered target:self action:@selector(rightItemAction)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"like_normal") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemAction)];
 }
 
 -(void)updateData

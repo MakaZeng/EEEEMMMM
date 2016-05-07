@@ -6643,6 +6643,19 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
+		<key>29639EFFF9C17C0F1AB3731EA8E7D269</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>GoogleMobileAds.framework</string>
+			<key>path</key>
+			<string>GoogleMobileAdsSdkiOS-7.8.0/GoogleMobileAds.framework</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>29678E6348B7046E35CBE350BBFF6CA8</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -7107,19 +7120,6 @@
 			<string>ZBarSymbol.h</string>
 			<key>path</key>
 			<string>iphone/include/ZBarSDK/ZBarSymbol.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2C53E09A61FC07850F0FBD935ABAAB81</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>GoogleMobileAds.framework</string>
-			<key>path</key>
-			<string>GoogleMobileAdsSdkiOS-7.7.1/GoogleMobileAds.framework</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -21797,6 +21797,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>8A3ABCD9253623F1DB4A9734AE390639</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>29639EFFF9C17C0F1AB3731EA8E7D269</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>8A456E629FDB2C4B075046F37380B02D</key>
 		<dict>
 			<key>fileRef</key>
@@ -31236,7 +31249,7 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>E2F720E8698F0FABE8FD880C3AA7CE0B</string>
+				<string>8A3ABCD9253623F1DB4A9734AE390639</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -36196,19 +36209,6 @@
 			<string>75F85F31420F176AABEA591CF74CD2EC</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>E2F720E8698F0FABE8FD880C3AA7CE0B</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>2C53E09A61FC07850F0FBD935ABAAB81</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>E32ADE0D6DC091AA36740F3E6F5ED8B0</key>
 		<dict>

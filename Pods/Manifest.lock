@@ -15,21 +15,21 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - BIZGrid4plus1CollectionViewLayout (1.0.0)
-  - Bugly (2.1)
+  - Bugly (2.2)
   - CCHexagonFlowLayout (1.0.2)
   - CMPopTipView (2.3.0)
-  - CocoaLumberjack (2.2.0):
-    - CocoaLumberjack/Default (= 2.2.0)
-    - CocoaLumberjack/Extensions (= 2.2.0)
-  - CocoaLumberjack/Core (2.2.0)
-  - CocoaLumberjack/Default (2.2.0):
+  - CocoaLumberjack (2.3.0):
+    - CocoaLumberjack/Default (= 2.3.0)
+    - CocoaLumberjack/Extensions (= 2.3.0)
+  - CocoaLumberjack/Core (2.3.0)
+  - CocoaLumberjack/Default (2.3.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.2.0):
+  - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
   - COSTouchVisualizer (1.0.6)
   - FaceAwareFill (1.0)
   - FLAnimatedImage (1.0.12)
-  - Google-Mobile-Ads-SDK (7.7.1)
+  - Google-Mobile-Ads-SDK (7.8.0)
   - HMSegmentedControl (1.5.2)
   - iRate (1.11.4)
   - JDStatusBarNotification (1.5.3)
@@ -55,7 +55,7 @@ PODS:
     - ReactiveCocoa (~> 2.4)
   - REMenu (1.10)
   - RESideMenu (4.0.7)
-  - SCLAlertView-Objective-C (1.0.2)
+  - SCLAlertView-Objective-C (1.0.3)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -112,14 +112,14 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BIZGrid4plus1CollectionViewLayout: 310a4979460ab5800714bb4ab1ef4e947b82323f
-  Bugly: bea72755cea96604658cc480b4efe85576c8aa2c
+  Bugly: b24bdd3017bb05d4749d66e1b95bd1ba7207e7bd
   CCHexagonFlowLayout: b500d18bfb2381d6b02d2a69686831a3186b62e7
   CMPopTipView: 774e0230b5c73abb3c39051da6d8a383373c4f7f
-  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   COSTouchVisualizer: a398089327a6c02897823614d7447ccc97198997
   FaceAwareFill: 8a0faf0a0ca488793cd3a1e7fc90c7b6cc11efd3
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  Google-Mobile-Ads-SDK: e27569901b58881d9a94b42f2c642739cfe3970a
+  Google-Mobile-Ads-SDK: 36b88dd2373f0ee4583e65971cb07b6965c29eef
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   iRate: 599ed07c854e0695f3c605d1b2a64c67d912acb7
   JDStatusBarNotification: 29413865af11c862c17180610b0f46a21118b412
@@ -137,7 +137,7 @@ SPEC CHECKSUMS:
   ReactiveViewModel: 58918dcbcec2d3151195ab1ed9163c57a8163999
   REMenu: 30dad195930adf6c5eeb8041e3257aa60bf9fa49
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
-  SCLAlertView-Objective-C: 25f7ea3a3526dde177d8b8056a0b88fe4187651e
+  SCLAlertView-Objective-C: e83376218b431109dc5403adc63f8e9787db7b74
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SIAlertView: 20c794b55eaf44d888773ea51647cf8907723919
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4

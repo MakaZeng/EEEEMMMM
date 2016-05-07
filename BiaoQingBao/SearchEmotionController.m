@@ -132,9 +132,9 @@
         NSString *title = nil;
         
         if (self.hasZip&&indexPath.section == 0) {
-            title=@"下面这些是表情包:";
+            title=NSLocalizedString(@"下面这些是表情包:", @"下面这些是表情包:");
         }else {
-            title=@"这些是搜索到的表情:";
+            title=NSLocalizedString(@"这些是搜索到的表情:", @"这些是搜索到的表情:");
         }
         
         headerView.titleLabel.text = title;

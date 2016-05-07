@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '49B354D1B21B71290E5E660F'
+               BlueprintIdentifier = '2703E37C1170F418DCC388E5'
                BlueprintName = 'ReactiveViewModel'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libReactiveViewModel.a'>

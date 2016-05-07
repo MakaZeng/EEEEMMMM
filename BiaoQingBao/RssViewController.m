@@ -45,7 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.collectionView.backgroundColor = self.view.backgroundColor;
-    self.title = @"Rss";
+    self.title = NSLocalizedString(@"Rss", @"Rss");
     [self firstLoadData];
 }
 
@@ -118,11 +118,11 @@
         NSString *title = nil;
         
         if (indexPath.section == 0) {
-            title=@"我的订阅:";
+            title=NSLocalizedString(@"我的订阅:", @"我的订阅:");
             headerView.addButton.hidden = NO;
             [headerView.addButton addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
         }else {
-            title=@"推荐订阅:";
+            title=NSLocalizedString(@"推荐订阅:", @"推荐订阅:");
             headerView.addButton.hidden = YES;
         }
         
@@ -139,8 +139,8 @@
     
     SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
     .style(Edit)
-    .title(@"添加关键词")
-    .subTitle(@"注意:关键词为动物,是搜索不到猫的。")
+    .title(NSLocalizedString(@"添加关键词", @"添加关键词"))
+    .subTitle(NSLocalizedString(@"注意:关键词为动物,是搜索不到猫的。", @"注意:关键词为动物,是搜索不到猫的。"))
     .duration(0);
     
     __block SCLTextView* textView;
@@ -148,12 +148,16 @@
     @weakify(self);
     
     SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
-    .addButtonWithActionBlock(@"添加", ^{
+    .addButtonWithActionBlock(NSLocalizedString(@"添加", @"添加"), ^{
         @strongify(self);
         [self addKeyWithString:textView.text];
     });
     
-    textView = [builder.alertView addTextField:@"输入关键词"];
+    textView = [builder.alertView addTextField:NSLocalizedString(@"输入关键词", @"输入关键词")];
+    
+    [builder.alertView addButton:NSLocalizedString(@"取消", @"取消") actionBlock:^{
+        
+    }];
     
     [showBuilder showAlertView:builder.alertView onViewController:self];
     // or even

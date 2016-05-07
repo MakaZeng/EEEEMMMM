@@ -122,31 +122,31 @@
     switch (type) {
         case ShareUtilTypeQQ:
         {
-            title = @"QQ";
+            title = NSLocalizedString(@"QQ", @"QQ");
             imageName=@"ShareUtilTypeQQ";
             break;
         }
         case ShareUtilTypeWechat:
         {
-            title = @"Wechat";
+            title = NSLocalizedString(@"Wechat", @"Wechat");
             imageName=@"ShareUtilTypeWechat";
             break;
         }
         case ShareUtilTypeWechatCollection:
         {
-            title = @"WechatCollection";
+            title = NSLocalizedString(@"WechatCollection", @"WechatCollection");
             imageName=@"ShareUtilTypeWechatCollection";
             break;
         }
         case ShareUtilTypeWechatSession:
         {
-            title = @"WechatSession";
+            title = NSLocalizedString(@"WechatSession", @"WechatSession");
             imageName=@"ShareUtilTypeWechatSession";
             break;
         }
         case ShareUtilTypeWhatsApp:
         {
-            title = @"WhatsApp";
+            title = NSLocalizedString(@"WhatsApp", @"WhatsApp");
             imageName=@"ShareUtilTypeWhatsApp";
             break;
         }

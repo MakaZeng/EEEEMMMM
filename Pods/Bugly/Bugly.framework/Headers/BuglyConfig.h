@@ -36,7 +36,7 @@ BLY_START_NONNULL
  *
  *  @return 返回需上报记录，随异常上报一起上报
  */
-- ( NSString * BLY_NULLABLE)attachmentForException:(NSException * BLY_NULLABLE)exception;
+- (NSString * BLY_NULLABLE)attachmentForException:(NSException * BLY_NULLABLE)exception;
 
 @end
 

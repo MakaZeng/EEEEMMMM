@@ -105,9 +105,9 @@
 - (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
 {
     if (!error) {
-        [ShareInstance statusBarToastWithMessage:@"保存成功"];
+        [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"保存成功", @"保存成功")];
     }else {
-        [ShareInstance statusBarToastWithMessage:@"保存失败"];
+        [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"保存失败", @"保存失败")];
     }
 }
 
@@ -201,6 +201,10 @@
 -(void)ShareUtil:(MakaShareUtil *)util selectedType:(ShareUtilType)type
 {
     id o = [self.dataSource objectAtIndex:self.currentIndex];
+    
+    if ([o isKindOfClass:[NSDictionary class]]) {
+        o = [o objectForKey:@"url"];
+    }
     
     switch (type) {
         case ShareUtilTypeQQ:
@@ -402,16 +406,16 @@
     }
     
     SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
-    .addButtonWithActionBlock(@"继续发送", ^{
+    .addButtonWithActionBlock(NSLocalizedString(@"继续发送", @"继续发送"), ^{
         block(YES);
     });
     SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
     .style(Warning)
-    .title(@"注意(只会显示一次)")
-    .subTitle(@"由于微信限制,动态图发送到朋友圈和收藏时,会自动变成静态图,是否继续发送?")
+    .title(NSLocalizedString(@"注意(只会显示一次)", @"注意(只会显示一次)"))
+    .subTitle(NSLocalizedString(@"由于微信限制,动态图发送到朋友圈和收藏时,会自动变成静态图,是否继续发送?", @"由于微信限制,动态图发送到朋友圈和收藏时,会自动变成静态图,是否继续发送?"))
     .duration(0);
     
-    [builder.alertView addButton:@"取消发送" actionBlock:^{
+    [builder.alertView addButton:NSLocalizedString(@"取消发送", @"取消发送") actionBlock:^{
         block(NO);
     }];
     
@@ -651,50 +655,7 @@ static dispatch_once_t onceToken;
 
 - (void)handleSendResult:(QQApiSendResultCode)sendResult
 {
-    switch (sendResult)
-    {
-        case EQQAPIAPPNOTREGISTED:
-        {
-            UIAlertView *msgbox = [[UIAlertView alloc] initWithTitle:@"Error" message:@"App未注册" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-            [msgbox show];
-            
-            break;
-        }
-        case EQQAPIMESSAGECONTENTINVALID:
-        case EQQAPIMESSAGECONTENTNULL:
-        case EQQAPIMESSAGETYPEINVALID:
-        {
-            UIAlertView *msgbox = [[UIAlertView alloc] initWithTitle:@"Error" message:@"发送参数错误" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-            [msgbox show];
-            
-            break;
-        }
-        case EQQAPIQQNOTINSTALLED:
-        {
-            UIAlertView *msgbox = [[UIAlertView alloc] initWithTitle:@"Error" message:@"未安装手Q" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-            [msgbox show];
-            
-            break;
-        }
-        case EQQAPIQQNOTSUPPORTAPI:
-        {
-            UIAlertView *msgbox = [[UIAlertView alloc] initWithTitle:@"Error" message:@"API接口不支持" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-            [msgbox show];
-            
-            break;
-        }
-        case EQQAPISENDFAILD:
-        {
-            UIAlertView *msgbox = [[UIAlertView alloc] initWithTitle:@"Error" message:@"发送失败" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-            [msgbox show];
-            
-            break;
-        }
-        default:
-        {
-            break;
-        }
-    }
+
 }
 
 

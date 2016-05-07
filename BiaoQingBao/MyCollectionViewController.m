@@ -465,7 +465,7 @@
             
         case MyCollectionViewControllerTypeEmotionZip:
         {
-            NSDictionary* dic = @{@"urls":self.zipDataSource[indexPath.row],@"title":@"收藏的表情包"};
+            NSDictionary* dic = @{@"urls":self.zipDataSource[indexPath.row],@"title":NSLocalizedString(@"收藏的表情包", @"收藏的表情包")};
             SubListViewController* subList = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"SubListViewController"];
             subList.hidesBottomBarWhenPushed = YES;
             subList.dic = dic;

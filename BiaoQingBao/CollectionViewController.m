@@ -90,10 +90,10 @@
     }];
     
     NSMutableArray* titles = [NSMutableArray array];
-    [titles addObject:@"制图模版"];
-    [titles addObject:@"表情"];
-    [titles addObject:@"表情包"];
-    [titles addObject:@"网页抓图"];
+    [titles addObject:NSLocalizedString(@"制图模版", @"制图模版")];
+    [titles addObject:NSLocalizedString(@"表情", @"表情")];
+    [titles addObject:NSLocalizedString(@"表情包", @"表情包")];
+    [titles addObject:NSLocalizedString(@"网页抓图", @"网页抓图")];
     if (titles.count > 0) {
         self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-100, 30)];
         self.segmentedControl.sectionTitles = titles;

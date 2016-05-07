@@ -9,15 +9,18 @@
 #import "CommonHeader.h"
 #import "ServiceManager.h"
 #import "ShareInstance.h"
-#import "BrowserTableViewCell.h"
 #import "BrowserViewController.h"
 #import <ReactiveCocoa.h>
 #import "BrowserSuggestTableViewCell.h"
 #import "MyWebViewController.h"
+#import "RateManager.h"
+#import "UserInfoManager.h"
 
 @interface BrowserViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) NSMutableArray* serviceArray;
+
+@property (nonatomic,strong) NSDictionary* dic;
 
 @property (nonatomic,strong) NSMutableArray* webSiteArray;
 
@@ -28,12 +31,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = NSLocalizedString(@"Browser", @"Browser");
+    UIBarButtonItem* addItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
+    self.navigationItem.rightBarButtonItem = addItem;
     [self firstLoadData];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)refreshList
@@ -45,22 +46,12 @@
     [self.tableView reloadData];
 }
 
--(void)EditAction
-{
-    self.tableView.editing = !self.tableView.isEditing;
-//    if (self.tableView.isEditing) {
-//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"停止" style:UIBarButtonItemStyleBordered target:self action:@selector(EditAction)];
-//    }else {
-//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:self action:@selector(EditAction)];
-//    }
-}
-
 -(void)addAction
 {
     SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
     .style(Edit)
-    .title(@"添加收藏")
-    .subTitle(@"请不要收集或传播非法网站的动态图")
+    .title(NSLocalizedString(@"添加收藏", @"添加收藏"))
+    .subTitle(NSLocalizedString(@"请不要收集或传播非法网站的动态图", @"请不要收集或传播非法网站的动态图"))
     .duration(0);
     
     __block SCLTextView* textView;
@@ -70,14 +61,18 @@
     @weakify(self);
     
     SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
-    .addButtonWithActionBlock(@"添加", ^{
+    .addButtonWithActionBlock(NSLocalizedString(@"添加", @"添加"), ^{
         @strongify(self);
         [self addKeyWithString:textView.text title:titleTextView.text];
     });
     
-    titleTextView = [builder.alertView addTextField:@"标题"];
+    titleTextView = [builder.alertView addTextField:NSLocalizedString(@"标题", @"标题")];
     
-    textView = [builder.alertView addTextField:@"输入网址"];
+    textView = [builder.alertView addTextField:NSLocalizedString(@"输入网址", @"输入网址")];
+    
+    [builder.alertView addButton:NSLocalizedString(@"取消", @"取消") actionBlock:^{
+        
+    }];
     
     [showBuilder showAlertView:builder.alertView onViewController:self];
     // or even
@@ -98,30 +93,33 @@
 
 -(void)firstLoadData
 {
-    self.title = @"Browser";
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStyleBordered target:self action:@selector(EditAction)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"添加" style:UIBarButtonItemStyleBordered target:self action:@selector(addAction)];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshList) name:MyWebViewControllerRefreshNotification object:nil];
-    [self.tableView registerNib:[UINib nibWithNibName:@"BrowserTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"BrowserTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"BrowserSuggestTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"BrowserSuggestTableViewCell"];
     self.tableView.tableFooterView = [UIView new];
     self.webSiteArray = [ShareInstance shareInstance].webSiteArray;
     if (self.webSiteArray.count == 0) {
-        [self.webSiteArray addObject:@{@"title":@"百度",@"url":@"http://www.baidu.com"}];
+        [self.webSiteArray addObject:@{@"title":NSLocalizedString(@"百度", @"百度"),@"url":@"http://www.baidu.com"}];
     }
     @weakify(self);
-    [ServiceManager queryBrowserPageCongfigWithDic:nil callBack:^(id result) {
+    [ServiceManager querySettingWithDic:nil callBack:^(id result) {
         @strongify(self);
         if (MAKA_isArray(result)) {
             self.serviceArray = [result mutableCopy];
         }
         [self.tableView reloadData];
+        NSDictionary* dic = self.serviceArray.lastObject;
+        if (dic) {
+            NSInteger type = [[dic objectForKey:@"type"] integerValue];
+            if (type == 4) {
+                [[NSUserDefaults standardUserDefaults] setObject:dic forKey:MAKA_UserDefault_RatedDictionaryKey];
+            }
+        }
+        [RateManager showRateView];
     }];
+    [self firstLoadUserInterface];
 }
 
 -(void)firstLoadUserInterface
 {
-    
+    [self.tableView registerNib:[UINib nibWithNibName:@"BrowserSuggestTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"BrowserSuggestTableViewCell"];
 }
 
 -(void)updateData
@@ -147,9 +145,9 @@
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return @"今日推荐";
+        return NSLocalizedString(@"今日推荐", @"今日推荐");
     }else{
-        return @"我的收藏";
+        return NSLocalizedString(@"收藏的网址", @"收藏的网址");
     }
 }
 
@@ -171,31 +169,30 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell* cell = nil;
+    
+    NSDictionary* dic;
+    
     if (indexPath.section == 0) {
-        NSDictionary* dic = self.serviceArray[indexPath.row];
-        
-        BrowserSuggestTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"BrowserSuggestTableViewCell" forIndexPath:indexPath];
-        
-        cell.suggestLabel.text = NSDictionary_String_ForKey(dic, @"title");
-        
-        cell.htmlLbabel.text = NSDictionary_String_ForKey(dic, @"url");
-        
-        [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:NSDictionary_String_ForKey(dic, @"headImage")] placeholderImage:ImageNamed(@"img_default")];
-        
-        [cell.backImageView sd_setImageWithURL:[NSURL URLWithString:NSDictionary_String_ForKey(dic, @"backImage")] ];
-        
-        return cell;
+        dic = self.serviceArray[indexPath.row];
     }else {
-        NSDictionary* dic = self.webSiteArray[indexPath.row];
-        
-        BrowserTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"BrowserTableViewCell" forIndexPath:indexPath];
-        
-        cell.htmlLabel.text = NSDictionary_String_ForKey(dic, @"url");
-        
-        cell.contentLabel.text = NSDictionary_String_ForKey(dic, @"title");
-        
-        return cell;
+        dic = self.webSiteArray[indexPath.row];
     }
+    
+    {
+        BrowserSuggestTableViewCell* c = [tableView dequeueReusableCellWithIdentifier:@"BrowserSuggestTableViewCell" forIndexPath:indexPath];
+        c.headImageView.image = ImageNamed(NSDictionary_String_ForKey(dic, @"localImage"));
+        if (indexPath.section == 1) {
+            c.headImageView.image = ImageNamed(@"icon_cloud");
+        }
+        if (!c.headImageView.image) {
+            [c.headImageView sd_setImageWithURL:[NSURL URLWithString:NSDictionary_String_ForKey(dic, @"headImage")]];
+            [c.backImageView sd_setImageWithURL:[NSURL URLWithString:NSDictionary_String_ForKey(dic, @"backImage")]];
+        }
+        c.suggestLabel.text = NSDictionary_String_ForKey(dic, @"title");
+        cell = c;
+    }
+    return cell;
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -249,21 +246,31 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    NSDictionary* dic;
+    
     if (indexPath.section == 0) {
-        NSDictionary* dic = self.serviceArray[indexPath.row];
-        NSString* urlStr = NSDictionary_String_ForKey(dic, @"url");
-        MyWebViewController *qrweb = [[MyWebViewController alloc]initWithURLString:urlStr];
-        qrweb.navigationButtonsHidden = YES;
-        qrweb.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:qrweb animated:YES];
+        dic = self.serviceArray[indexPath.row];
     }else {
-        NSDictionary* dic = self.webSiteArray[indexPath.row];
-        NSString* urlStr = NSDictionary_String_ForKey(dic, @"url");
-        MyWebViewController *qrweb = [[MyWebViewController alloc]initWithURLString:urlStr];
-        qrweb.navigationButtonsHidden = YES;
-        qrweb.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:qrweb animated:YES];
-        
+        dic = self.webSiteArray[indexPath.row];
+    }
+    
+    if ( [NSDictionary_String_ForKey(dic, @"class") length] > 0) {
+        NSString* className = NSDictionary_String_ForKey(dic, @"class");
+        UIViewController* vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:className];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    NSString* url = NSDictionary_String_ForKey(dic, @"url");
+    if (url.length > 0) {
+        if ([url hasPrefix:@"http"] || [url hasPrefix:@"www"]) {
+            MyWebViewController *qrweb = [[MyWebViewController alloc]initWithURLString:url];
+            qrweb.navigationButtonsHidden = YES;
+            qrweb.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:qrweb animated:YES];
+        }else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        }
     }
 }
 

@@ -72,13 +72,12 @@
             break;
         }
         case AVAuthorizationStatusAuthorized:
-            NSLog(@"已授权");
             [self configDeviceQR];
             break;
         case AVAuthorizationStatusRestricted:
-            NSLog(@"受限，有可能开启了访问限制");
+            
         case AVAuthorizationStatusDenied:
-            NSLog(@"访问受限");
+            
             [self loadNoAuthCameraView];
             break;
         default:

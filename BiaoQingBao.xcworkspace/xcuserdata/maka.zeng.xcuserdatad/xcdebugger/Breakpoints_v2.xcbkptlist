@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BiaoQingBao/RxWebViewController/RxWebViewController.m"
-            timestampString = "483446364.015518"
+            filePath = "BiaoQingBao/ListDetailViewController.m"
+            timestampString = "484305745.925981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
-            landmarkName = "-closeItemClicked"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "-sendToWechat:obj:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

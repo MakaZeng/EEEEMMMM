@@ -16,8 +16,6 @@
 #import "ColorPicker.h"
 #import <CMPopTipView.h>
 
-#import "DrawPointView.h"
-
 @interface FactoryJotViewController ()<JotViewControllerDelegate,CMPopTipViewDelegate,ColorPickerDelegate>
 {
     CGFloat lastScale;
@@ -59,14 +57,15 @@
     self.innerView.backgroundColor = [UIColor clearColor];
     [self.jotViewController didMoveToParentViewController:self];
     [self switchToDrawMode];
+    lastScale = 1;
     
     UIPinchGestureRecognizer* pinch = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(pinchAction:)];
-    [self.view addGestureRecognizer:pinch];
+    [self.innerView addGestureRecognizer:pinch];
 }
 
 -(void)pinchAction:(UIPinchGestureRecognizer*)recognizer
 {
-    if (self.bottomImageView.contentMode != UIViewContentModeCenter) {
+    if (self.bottomImageView.contentMode != UIViewContentModeCenter || self.jotViewController.state != JotViewStateDrawing) {
         return;
     }
     recognizer.scale=recognizer.scale-lastScale+1;
@@ -85,7 +84,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         sender.enabled = YES;
     });
-    [ShareInstance statusBarToastWithMessage:@"保存模板成功"];
+    [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"保存模板成功", @"保存模板成功")];
     UIImage* image = [self drawImage];
     [ShareInstance saveToMubanFolder:UIImageJPEGRepresentation(image, 1)];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MyCollectionViewController" object:nil];
@@ -164,7 +163,7 @@
         sender.enabled = YES;
     });
     
-    [ShareInstance statusBarToastWithMessage:@"保存当前状态成功"];
+    [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"保存当前状态成功", @"保存当前状态成功")];
     
     UIImage* image = [self drawImage];
     self.bottomImageView.image = image;

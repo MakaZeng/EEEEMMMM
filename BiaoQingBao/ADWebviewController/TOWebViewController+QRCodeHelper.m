@@ -157,19 +157,6 @@ static const void* TOWebViewControllerAnimator = &TOWebViewControllerAnimator;
 }
 
 - (BOOL)isAvailableQRcodeIn:(UIImage *)img{
-    UIImage *image = img;
-    ZXCGImageLuminanceSource *source = [[ZXCGImageLuminanceSource alloc] initWithCGImage:image.CGImage];
-    ZXHybridBinarizer *binarizer = [[ZXHybridBinarizer alloc] initWithSource: source];
-    ZXBinaryBitmap *bitmap = [[ZXBinaryBitmap alloc] initWithBinarizer:binarizer];
-    ZXDecodeHints *hints = [ZXDecodeHints hints];
-    
-    NSError *error = nil;
-    ZXQRCodeMultiReader * reader2 = [[ZXQRCodeMultiReader alloc]init];
-//    NSArray *rs = [reader2 decodeMultiple:bitmap error:&error];
-    NSArray *rs =[reader2 decodeMultiple:bitmap hints:hints error:&error];
-    for (ZXResult *resul in rs) {
-        return YES;
-    }
     return NO;
 }
 

@@ -63,7 +63,7 @@
 
 -(void)firstLoadData
 {
-    self.title = @"Emotions";
+    self.title = NSLocalizedString(@"Emotions", @"Emotions");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshList) name:RssViewControllerWillDisAppear object:nil];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"index_search") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemAction)];
     self.viewControllers = [NSMutableArray arrayWithCapacity:5];
