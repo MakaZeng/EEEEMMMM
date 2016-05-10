@@ -106,17 +106,6 @@
 -(void)firstLoadUserInterface
 {
     if (MAKA_isArray(self.result)) {
-        
-        UIButton* rssButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [rssButton setImage:[UIImage imageNamed:@"rss_icon"] forState:UIControlStateNormal];
-        [self.view addSubview:rssButton];
-        [rssButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(0);
-            make.top.mas_equalTo(0);
-            make.width.height.mas_equalTo(30);
-        }];
-        [rssButton addTarget:self action:@selector(rssAction) forControlEvents:UIControlEventTouchUpInside];
-        
         self.scrollView = [[UIScrollView alloc]init];
         self.scrollView.delegate = self;
         [self.view addSubview:self.scrollView];
@@ -128,6 +117,8 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"index_search") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemAction)];
         self.viewControllers = [NSMutableArray arrayWithCapacity:5];
         
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"rss_icon") style:UIBarButtonItemStylePlain target:self action:@selector(rssAction)];
+
         [self updateData];
     }
 }
@@ -183,7 +174,7 @@
         }
         
         if (titles.count > 0) {
-            self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-30, 30)];
+            self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
             self.segmentedControl.sectionTitles = titles;
             self.segmentedControl.selectedSegmentIndex = 0;
             self.segmentedControl.backgroundColor = BASE_BACK_COLOR;
@@ -201,7 +192,7 @@
             
             [self.view addSubview:self.segmentedControl];
             [self.segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(30);
+                make.left.mas_equalTo(0);
                 make.right.mas_equalTo(0);
                 make.height.mas_equalTo(30);
                 make.top.mas_equalTo(0);

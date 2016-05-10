@@ -189,15 +189,28 @@
         make.width.height.mas_equalTo(40);
     }];
     
-    self.editButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.topView addSubview:self.editButton];
-    [self.editButton setImage:ImageNamed(@"icon_pencil") forState:UIControlStateNormal];
-    [self.editButton addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.editButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.fullscreen = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.topView addSubview:self.fullscreen];
+    [self.fullscreen setImage:ImageNamed(@"fullscreen_icon") forState:UIControlStateNormal];
+    [self.fullscreen addTarget:self action:@selector(fullscreenAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.fullscreen mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-65);
         make.centerY.equalTo(self.topView);
         make.width.height.mas_equalTo(40);
     }];
+    
+    self.editButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:self.editButton];
+    [self.editButton setImage:ImageNamed(@"img_fire") forState:UIControlStateNormal];
+    self.editButton.layer.cornerRadius = 25;
+    self.editButton.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:.5];
+    [self.editButton addTarget:self action:@selector(editImage:) forControlEvents:UIControlEventTouchUpInside];
+    [self.editButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-15);
+        make.bottom.equalTo(self.collectionView);
+        make.width.height.mas_equalTo(50);
+    }];
+    
     
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.backgroundColor = [UIColor clearColor];
@@ -605,7 +618,7 @@ static dispatch_once_t onceToken;
 {
     return YES;
 }
-- (IBAction)editImage:(id)sender {
+- (void)editImage:(id)sender {
     NSInteger index = self.collectionView.contentOffset.x / self.collectionView.frame.size.width;
     id o = [self.dataSource objectAtIndex:index];
     

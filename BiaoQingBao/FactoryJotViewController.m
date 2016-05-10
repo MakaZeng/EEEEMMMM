@@ -13,24 +13,19 @@
 #import "FactoryJotViewController.h"
 #import "ListDetailViewController.h"
 #import <ZFModalTransitionAnimator.h>
-#import "ColorPicker.h"
 #import <CMPopTipView.h>
 
-@interface FactoryJotViewController ()<JotViewControllerDelegate,CMPopTipViewDelegate,ColorPickerDelegate>
+@interface FactoryJotViewController ()<JotViewControllerDelegate,CMPopTipViewDelegate>
 {
     CGFloat lastScale;
 }
 
 @property (nonatomic,assign) BOOL lock;
 @property (nonatomic, strong) JotViewController *jotViewController;
-@property (weak, nonatomic) IBOutlet UIView *topView;
-@property (weak, nonatomic) IBOutlet UIView *innerView;
-@property (weak, nonatomic) IBOutlet FLAnimatedImageView *bottomImageView;
-@property (nonatomic,strong) ZFModalTransitionAnimator* animator;
-
-@property (nonatomic,strong) CMPopTipView *navBarLeftButtonPopTipView;
-
-@property (nonatomic,assign) UISegmentedControl* colorButton;
+@property (strong, nonatomic) UIView *topView;
+@property (strong, nonatomic) UIView *bottomView;
+@property (strong, nonatomic) UIView *innerView;
+@property (strong, nonatomic) FLAnimatedImageView *bottomImageView;
 
 @end
 
@@ -39,6 +34,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self firstLoadUserInterface];
+}
+
+-(void)firstLoadUserInterface
+{
+    [super firstLoadUserInterface];
+    self.topView = [[UIView alloc]init];
+    self.topView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
+    [self.view addSubview:self.topView];
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(20);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(50);
+    }];
+
+    self.bottomView = [[UIView alloc]init];
+    self.bottomView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
+    [self.view addSubview:self.bottomView];
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.right.mas_equalTo(0);
+        make.height.mas_equalTo(80);
+    }];
+    
     self.view.backgroundColor = [UIColor colorWithRed:240/255. green:240/255. blue:240/255. alpha:1];
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
     [self.view addGestureRecognizer:tap];
@@ -90,20 +108,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MyCollectionViewController" object:nil];
 }
 
-- (void)colorAction:(id)sender {
-    self.colorButton = sender;
-    if (!self.navBarLeftButtonPopTipView) {
-        ColorPicker* picker = [ColorPicker instanceFromNib];
-        picker.delegate = self;
-        [picker setBounds:CGRectMake(0, 0, 80, 80)];
-        self.navBarLeftButtonPopTipView = [[CMPopTipView alloc] initWithCustomView:picker];
-        self.navBarLeftButtonPopTipView.backgroundColor = [UIColor colorWithWhite:.9 alpha:1];
-        self.navBarLeftButtonPopTipView.borderColor = [UIColor lightGrayColor];
-        self.navBarLeftButtonPopTipView.delegate = self;
-    }
-    
-    [self.navBarLeftButtonPopTipView presentPointingAtView:sender inView:self.view animated:YES];
-}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -177,20 +181,6 @@
     UIImage* image = [self drawImage];
     
     ListDetailViewController *detailViewController = [[ListDetailViewController alloc]initWitImage:image];
-    //    detailViewController.task = sender;
-    // create animator object with instance of modal view controller
-    // we need to keep it in property with strong reference so it will not get release
-//    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailViewController];
-//    self.animator.dragable = NO;
-//    self.animator.direction = ZFModalTransitonDirectionBottom;
-//    [self.animator setContentScrollView:detailViewController.collectionView];
-    
-    // set transition delegate of modal view controller to our object
-//    detailViewController.transitioningDelegate = self.animator;
-    
-    // if you modal cover all behind view controller, use UIModalPresentationFullScreen
-//    detailViewController.modalPresentationStyle = UIModalPresentationCustom;
-    
     [self presentViewController:detailViewController animated:YES completion:nil];
 }
 
@@ -199,7 +189,6 @@
 - (IBAction)valueChange:(UISegmentedControl*)sender {
     
     NSInteger index = sender.selectedSegmentIndex;
-    [self colorAction:sender];
     if (index == 1) {
         [self switchToTextMode];
     }else if ( index == 0)
@@ -210,8 +199,6 @@
 
 -(void)buttonAction:(UIButton *)btn
 {
-    [self.navBarLeftButtonPopTipView dismissAnimated:YES];
-    [self.colorButton setTintColor:btn.backgroundColor];
     [self.jotViewController setDrawingColor:btn.backgroundColor];
     [self.jotViewController setTextColor:btn.backgroundColor];
 }

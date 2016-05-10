@@ -26,7 +26,6 @@
     CGFloat padding,width,height;
 }
 
-@property (nonatomic,strong) ZFModalTransitionAnimator* animator;
 
 @property (nonatomic,strong) NSMutableArray* myRssDataSource;
 
@@ -51,6 +50,7 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = self.view.backgroundColor;
+    [self.collectionView registerNib:[UINib nibWithNibName:@"RssCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"RssCollectionViewCell"];
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsZero);

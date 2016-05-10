@@ -58,7 +58,6 @@
 		88186D0B1CDDD717009DFC99 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88186D071CDDD717009DFC99 /* ServiceManager.m */; };
 		88186D0C1CDDD717009DFC99 /* ShareInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 88186D091CDDD717009DFC99 /* ShareInstance.m */; };
 		88499F2F1CBBB3AB008E8487 /* FactoryJotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88499F2E1CBBB3AB008E8487 /* FactoryJotViewController.m */; };
-		886E1A3B1CBCBAF5002FB168 /* ColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 886E1A3A1CBCBAF5002FB168 /* ColorPicker.m */; };
 		887D64CB1CE1E5DA00025CBD /* BrowserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887D64CA1CE1E5DA00025CBD /* BrowserTableViewCell.xib */; };
 		887D64CD1CE1EA6600025CBD /* MakaShareItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 887D64CC1CE1EA6600025CBD /* MakaShareItemView.xib */; };
 		88AC44861CDE032B00154298 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88AC44881CDE032B00154298 /* Localizable.strings */; };
@@ -178,8 +177,6 @@
 		88186D0A1CDDD717009DFC99 /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
 		88499F2D1CBBB3AB008E8487 /* FactoryJotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FactoryJotViewController.h; sourceTree = "<group>"; };
 		88499F2E1CBBB3AB008E8487 /* FactoryJotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FactoryJotViewController.m; sourceTree = "<group>"; };
-		886E1A391CBCBAF5002FB168 /* ColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPicker.h; sourceTree = "<group>"; };
-		886E1A3A1CBCBAF5002FB168 /* ColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPicker.m; sourceTree = "<group>"; };
 		887D64CA1CE1E5DA00025CBD /* BrowserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowserTableViewCell.xib; sourceTree = "<group>"; };
 		887D64CC1CE1EA6600025CBD /* MakaShareItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MakaShareItemView.xib; sourceTree = "<group>"; };
 		88AC44871CDE032B00154298 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -322,8 +319,6 @@
 				88D1D6481CE1A5800003A64C /* VC */,
 				88186D061CDDD70C009DFC99 /* Common */,
 				6021B2611CB80558003D2353 /* Assets.xcassets */,
-				886E1A391CBCBAF5002FB168 /* ColorPicker.h */,
-				886E1A3A1CBCBAF5002FB168 /* ColorPicker.m */,
 				88499F2D1CBBB3AB008E8487 /* FactoryJotViewController.h */,
 				88499F2E1CBBB3AB008E8487 /* FactoryJotViewController.m */,
 				88D1D69A1CE1B7520003A64C /* FactoryJotViewController.xib */,
@@ -840,7 +835,6 @@
 				88186D0B1CDDD717009DFC99 /* ServiceManager.m in Sources */,
 				88D1D6751CE1B21F0003A64C /* SearchEmotionCollectionReusableView.m in Sources */,
 				6021B2541CB80558003D2353 /* main.m in Sources */,
-				886E1A3B1CBCBAF5002FB168 /* ColorPicker.m in Sources */,
 				88FB2D981CD0AAEA00661689 /* Reachability.m in Sources */,
 				88D1D67E1CE1B24D0003A64C /* RssViewController.m in Sources */,
 				607CC54A1CBE9D420002ABD8 /* QRScanView.m in Sources */,
