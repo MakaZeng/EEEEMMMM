@@ -26,8 +26,7 @@
 -(void)awakeFromNib
 {
     [super awakeFromNib];
-    self.layer.borderWidth = 1/[UIScreen mainScreen].scale;
-    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    Layer_Border_View(self.contentView);
 }
 
 -(void)setSelected:(BOOL)selected

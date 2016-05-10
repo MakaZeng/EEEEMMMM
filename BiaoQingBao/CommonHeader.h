@@ -57,7 +57,7 @@
 
 #define MODEL_VIEW_BACK_COLOR [UIColor colorWithRed:0 green:0 blue:0 alpha:.5]
 
-#define Layer_Border_View(x) {x.layer.cornerRadius = 5;x.layer.borderWidth = 1.0/[UIScreen mainScreen].scale;x.layer.borderColor = [LightDarkColor CGColor];}
+#define Layer_Border_View(x) {x.layer.cornerRadius = 5;x.layer.masksToBounds = YES;x.layer.borderWidth = 1.0/[UIScreen mainScreen].scale;x.layer.borderColor = [LightDarkColor CGColor];}
 
 #define Layer_View(x)  ((x.layer.cornerRadius = 5),(x.layer.masksToBounds = YES));
 

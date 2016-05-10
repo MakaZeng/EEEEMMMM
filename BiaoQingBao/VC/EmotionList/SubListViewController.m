@@ -41,12 +41,6 @@
     [self firstLoadData];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
-}
-
 -(void)firstLoadData
 {
     self.dataSource = [NSMutableArray array];

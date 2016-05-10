@@ -61,20 +61,24 @@
         {
             vc = [[CollectionViewController alloc]init];
             navi = [[UINavigationController alloc]initWithRootViewController:vc];
+             navi.tabBarItem = [[UITabBarItem alloc]initWithTitle:NSLocalizedString(@"Emoticon", @"Emoticon") image:ImageNamed(NSLocalizedString(@"tabbar_emotions", @"like_selected")) tag:1];
             [mArray addObject:navi];
         }
         {
             vc = [[IndexViewController alloc]init];
             navi = [[UINavigationController alloc]initWithRootViewController:vc];
+             navi.tabBarItem = [[UITabBarItem alloc]initWithTitle:NSLocalizedString(@"Emoticon", @"Emoticon") image:ImageNamed(NSLocalizedString(@"tabbar_emotions", @"like_selected")) tag:1];
             [mArray addObject:navi];
         }
         {
             vc = [[BrowserViewController alloc]init];
             navi = [[UINavigationController alloc]initWithRootViewController:vc];
+            navi.tabBarItem = [[UITabBarItem alloc]initWithTitle:NSLocalizedString(@"Emoticon", @"Emoticon") image:ImageNamed(NSLocalizedString(@"tabbar_emotions", @"like_selected")) tag:1];
             [mArray addObject:navi];
         }
         tabbar.viewControllers = mArray;
         self.window.rootViewController = tabbar;
+        [self.window makeKeyAndVisible];
     }
     
     

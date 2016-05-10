@@ -14,15 +14,16 @@
 -(instancetype)initWitImage:(UIImage*)image;
 
 -(instancetype)initWithImageArray:(NSArray*)array index:(NSInteger)index;
-@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
-@property (weak, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic)   UIView *topView;
+@property (strong, nonatomic)   UIView *bottomView;
+@property (nonatomic,strong) UILabel* titleLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
-@property (weak, nonatomic) IBOutlet UIButton *editButton;
-@property (weak, nonatomic) IBOutlet UIButton *saveButton;
-@property (weak, nonatomic) IBOutlet UIButton *fullscreen;
+@property (nonatomic,strong) UIButton* cancelButton;
+@property (strong, nonatomic)   UIButton *likeButton;
+@property (strong, nonatomic)   UIButton *editButton;
+@property (strong, nonatomic)   UIButton *saveButton;
+@property (strong, nonatomic)   UIButton *fullscreen;
+@property (strong, nonatomic)   UICollectionView *collectionView;
 
 @end

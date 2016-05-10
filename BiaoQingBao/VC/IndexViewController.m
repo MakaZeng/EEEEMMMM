@@ -32,6 +32,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"Emoticon", @"Emoticon");
     [self firstLoadData];
 }
 
@@ -90,7 +91,14 @@
             [titles addObject:NSDictionary_String_ForKey(dic, @"title")];
         }
     }
-    [titles addObjectsFromArray:[ShareInstance shareInstance].myRssArray];
+    
+    for (NSDictionary* dic in [ShareInstance shareInstance].myRssArray) {
+        if (MAKA_isDicionary(dic))
+        {
+            [titles addObject:NSDictionary_String_ForKey(dic, @"title")];
+        }
+    }
+    
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH*titles.count, 20);
 }
 
@@ -113,10 +121,10 @@
         self.scrollView.delegate = self;
         [self.view addSubview:self.scrollView];
         [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(30, 0, 0, 0));
+            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
         
-        self.title = NSLocalizedString(@"Emoticon", @"Emoticon");
+        
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"index_search") style:UIBarButtonItemStylePlain target:self action:@selector(rightItemAction)];
         self.viewControllers = [NSMutableArray arrayWithCapacity:5];
         
@@ -147,11 +155,6 @@
     }
     
     [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
-}
-
--(void)segmentedControlChangedValue:(id)sender
-{
-    
 }
 
 -(void)updateData
@@ -229,7 +232,6 @@
             }
             self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH*titles.count, 20);
             self.scrollView.contentInset = UIEdgeInsetsMake(self.segmentedControl.frame.size.height, 0, 0, 0);
-            [self.scrollView setContentOffset:CGPointMake(0, -self.segmentedControl.frame.size.height) animated:YES];
             self.scrollView.delegate = self;
             self.scrollView.pagingEnabled = YES;
             self.scrollView.showsHorizontalScrollIndicator= NO;

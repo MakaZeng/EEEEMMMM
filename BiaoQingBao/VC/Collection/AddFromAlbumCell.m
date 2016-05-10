@@ -14,9 +14,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    UILabel* label = self.subviews.firstObject;
-    label.backgroundColor = BASE_BACK_COLOR;
-    Layer_View(label);
+    self.label.text = NSLocalizedString(@"Add From Album", @"Add From Album");
+    Layer_Border_View(self.contentView);
 }
 
 @end

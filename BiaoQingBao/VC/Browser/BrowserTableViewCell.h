@@ -10,8 +10,11 @@
 
 @interface BrowserTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *backImageView;
+
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *htmlLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *rightImageView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *leftImageView;
 @end

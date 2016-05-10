@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import <Masonry.h>
 #import "ServiceManager.h"
-#import "DetailCollectionViewCell.h"
+#import "SubListCollectionViewCell.h"
 #import <UIImageView+WebCache.h>
 #import "AppDelegate.h"
 #import "WXApi.h"
@@ -54,18 +54,16 @@
 
 -(instancetype)initWithImageArray:(NSArray *)array index:(NSInteger)index
 {
-     ListDetailViewController* vc =  [[ListDetailViewController alloc]init];
+    ListDetailViewController* vc =  [[ListDetailViewController alloc]init];
     vc.index = index;
     vc.imageArray = array;
     return vc;
 }
-- (IBAction)nothing:(id)sender {
-}
 
-- (IBAction)tapAction:(id)sender {
+- (void)tapAction:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
-- (IBAction)saveAction:(id)sender {
+- (void)saveAction:(id)sender {
     id o = [self.dataSource objectAtIndex:self.currentIndex];
     UIImage* image = nil;
     if ([o isKindOfClass:[FLAnimatedImage class]]) {
@@ -114,20 +112,6 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    CGFloat r = 0;
-    CGFloat g = 0;
-    CGFloat b = 0;
-    CGFloat a = 0;
-    [BASE_BACK_COLOR getRed:&r green:&g blue:&b alpha:&a];
-    a = .7;
-    self.contentView.backgroundColor = [UIColor colorWithRed:r green:g blue:b alpha:a];
-    self.contentView.backgroundColor = [UIColor clearColor];
-
-    Layer_Border_View(self.contentView);
-    Layer_View(self.collectionView);
-    Layer_Border_View(self.editButton);
-    Layer_Border_View(self.saveButton);
-    [self.fullscreen addTarget:self action:@selector(fullscreenAction) forControlEvents:UIControlEventTouchUpInside];
     [self firstLoadData];
 }
 
@@ -144,8 +128,96 @@
     [self firstLoadUserInterface];
 }
 
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self.collectionView reloadData];
+}
+
 -(void)firstLoadUserInterface
 {
+    UICollectionViewFlowLayout* flow = [[UICollectionViewFlowLayout alloc]init];
+    flow.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flow];
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = self.view.backgroundColor;
+    self.collectionView.delegate = self;
+    self.collectionView.pagingEnabled = YES;
+    self.collectionView.allowsMultipleSelection = YES;
+    [self.view addSubview:self.collectionView];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(70, 10, 80, 10));
+    }];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"SubListCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"SubListCollectionViewCell"];
+    self.topView = [[UIView alloc]init];
+    self.topView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
+    [self.view addSubview:self.topView];
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(20);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(50);
+    }];
+    
+    self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.topView addSubview:self.cancelButton];
+    [self.cancelButton setImage:ImageNamed(@"imag_back") forState:UIControlStateNormal];
+    [self.cancelButton addTarget:self action:@selector(tapAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(10);
+        make.centerY.equalTo(self.topView);
+        make.width.height.mas_equalTo(40);
+    }];
+    
+    self.saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.topView addSubview:self.saveButton];
+    [self.saveButton setImage:ImageNamed(@"icon_save") forState:UIControlStateNormal];
+    [self.saveButton addTarget:self action:@selector(saveAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(65);
+        make.centerY.equalTo(self.topView);
+        make.width.height.mas_equalTo(40);
+    }];
+    
+    self.likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.topView addSubview:self.likeButton];
+    [self.likeButton setImage:ImageNamed(@"like_normal") forState:UIControlStateNormal];
+    [self.likeButton setImage:ImageNamed(@"like_selected") forState:UIControlStateSelected];
+    [self.likeButton addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.likeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-10);
+        make.centerY.equalTo(self.topView);
+        make.width.height.mas_equalTo(40);
+    }];
+    
+    self.editButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.topView addSubview:self.editButton];
+    [self.editButton setImage:ImageNamed(@"icon_pencil") forState:UIControlStateNormal];
+    [self.editButton addTarget:self action:@selector(selectAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.editButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-65);
+        make.centerY.equalTo(self.topView);
+        make.width.height.mas_equalTo(40);
+    }];
+    
+    self.titleLabel = [[UILabel alloc]init];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.font = [UIFont systemFontOfSize:17];
+    self.titleLabel.textColor = BASE_Tint_COLOR;
+    [self.topView addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.topView);
+        make.centerY.equalTo(self.topView);
+    }];
+    
+    
+    self.bottomView = [[UIView alloc]init];
+    self.bottomView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
+    [self.view addSubview:self.bottomView];
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.right.mas_equalTo(0);
+        make.height.mas_equalTo(80);
+    }];
+    
     NSString* l = CurrentLanguage;
     UIView* shareView = nil;
     
@@ -176,16 +248,62 @@
                                                           [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
     }
     
-    [self.contentView addSubview:shareView];
+    [self.bottomView addSubview:shareView];
     [shareView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.contentView);
+        make.centerX.equalTo(self.bottomView);
         make.top.equalTo(self.collectionView.mas_bottom).offset(5);
-        make.width.equalTo(self.contentView);
+        make.width.equalTo(self.bottomView).offset(-30);
         make.height.mas_equalTo(60);
     }];
     
     [self.collectionView reloadData];
 }
+
+- (void)selectAction:(id)sender {
+    self.likeButton.selected = !self.likeButton.isSelected;
+    
+    id o = [self.dataSource objectAtIndex:self.currentIndex];
+    
+    if ([o isKindOfClass:[FLAnimatedImage class]]) {
+        
+    }else if ([o isKindOfClass:[NSString class]]){
+        if ([o hasPrefix:@"http://"]) {
+            if (self.likeButton.selected) {
+                [[ShareInstance shareInstance].myLikeArray addObject:o];
+            }else {
+                [[ShareInstance shareInstance].myLikeArray removeObject:o];
+            }
+        }
+    }else if ([o isKindOfClass:[UIImage class]]) {
+        
+    }else if (MAKA_isDicionary(o)) {
+        if (self.likeButton.selected) {
+            [[ShareInstance shareInstance].myLikeArray addObject:NSDictionary_String_ForKey(o, @"url")];
+        }else {
+            [[ShareInstance shareInstance].myLikeArray removeObject:NSDictionary_String_ForKey(o, @"url")];
+        }
+    }
+}
+
+static dispatch_once_t onceToken;
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    dispatch_once(&onceToken, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.collectionView setContentOffset:CGPointMake(self.collectionView.bounds.size.width*self.index, 0)];
+            self.currentIndex = self.index;
+        });
+    });
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[ShareInstance shareInstance] save];
+    onceToken = 0;
+}
+
 
 -(void)buttonAction:(UIButton*)btn
 {
@@ -237,38 +355,6 @@
     }
 }
 
-- (IBAction)selectAction:(id)sender {
-    self.likeButton.selected = !self.likeButton.isSelected;
-    
-    id o = [self.dataSource objectAtIndex:self.currentIndex];
-    
-    if ([o isKindOfClass:[FLAnimatedImage class]]) {
-        
-    }else if ([o isKindOfClass:[NSString class]]){
-        if ([o hasPrefix:@"http://"]) {
-            if (self.likeButton.selected) {
-                [[ShareInstance shareInstance].myLikeArray addObject:o];
-            }else {
-                [[ShareInstance shareInstance].myLikeArray removeObject:o];
-            }
-        }
-    }else if ([o isKindOfClass:[UIImage class]]) {
-        
-    }else if (MAKA_isDicionary(o)) {
-        if (self.likeButton.selected) {
-            [[ShareInstance shareInstance].myLikeArray addObject:NSDictionary_String_ForKey(o, @"url")];
-        }else {
-            [[ShareInstance shareInstance].myLikeArray removeObject:NSDictionary_String_ForKey(o, @"url")];
-        }
-    }
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [[ShareInstance shareInstance] save];
-    onceToken = 0;
-}
 
 -(void)sendToQQ:(id)obj
 {
@@ -427,17 +513,7 @@
 }
 
 
-static dispatch_once_t onceToken;
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    dispatch_once(&onceToken, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView setContentOffset:CGPointMake(self.collectionView.bounds.size.width*self.index, 0)];
-            self.currentIndex = self.index;
-        });
-    });
-}
+
 #pragma mark <UICollectionViewDataSource>
 
 
@@ -446,11 +522,11 @@ static dispatch_once_t onceToken;
     return self.dataSource.count;
 }
 
-- (DetailCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (SubListCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[DetailCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+    SubListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[SubListCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     id obj = [self.dataSource objectAtIndex:indexPath.row];
-    
     if ([obj isKindOfClass:[FLAnimatedImage class]]) {
         cell.imageView.animatedImage = self.dataSource[indexPath.row];
     }else if ([obj isKindOfClass:[NSString class]]){
@@ -542,7 +618,7 @@ static dispatch_once_t onceToken;
             }
             
             
-            FactoryJotViewController* jot = [[FactoryJotViewController alloc]init]
+            FactoryJotViewController* jot = [[FactoryJotViewController alloc]init];
             
             FLAnimatedImage* animatedImage = [FLAnimatedImage animatedImageWithGIFData:data];
             if (animatedImage) {

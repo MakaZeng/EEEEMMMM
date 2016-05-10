@@ -8,7 +8,6 @@
 
 #import <ZFModalTransitionAnimator.h>
 #import "MyCollectionViewController.h"
-#import "SearchEmotionCollectionReusableView.h"
 #import "SubListCollectionViewCell.h"
 #import "ListDetailViewController.h"
 #import "CommonHeader.h"
@@ -45,8 +44,6 @@
     CGFloat padding,width,height;
 }
 
-@property (nonatomic,strong) ZFModalTransitionAnimator* animator;
-
 @property (nonatomic,strong) NSMutableArray* zipDataSource;//表情包
 
 @property (nonatomic,strong) NSMutableArray* dataSource;//表情
@@ -73,6 +70,7 @@
     flow.scrollDirection = UICollectionViewScrollDirectionVertical;
     self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flow];
     self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = self.view.backgroundColor;
     self.collectionView.delegate = self;
     self.collectionView.allowsMultipleSelection = YES;
     [self.view addSubview:self.collectionView];
@@ -80,15 +78,12 @@
         make.edges.mas_equalTo(UIEdgeInsetsZero);
     }];
     
-    [self.collectionView registerClass:[SearchEmotionCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SearchEmotionCollectionReusableView"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"AddFromAlbumCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"AddFromAlbumCell"];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"SubListCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"SubListCollectionViewCell"];
     self.dataSource = [NSMutableArray array];
     self.zipDataSource = [NSMutableArray array];
     self.myCollectionDataSource = [NSMutableArray array];
     self.myMobanDataSource = [NSMutableArray array];
-    self.collectionView.backgroundColor = self.view.backgroundColor;
 
     width = 95;
     height = width+30;
@@ -104,10 +99,6 @@
     if (lp.state == UIGestureRecognizerStateBegan) {
         self.collectionView.edit = !self.collectionView.edit;
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Table view data source
@@ -182,34 +173,20 @@
 -(void)emotionTapIndexPath:(NSIndexPath*)indexPath
 {
     ListDetailViewController *detailViewController = [[ListDetailViewController alloc]initWithImageArray:self.dataSource index:indexPath.row];
-    //    detailViewController.task = sender;
-    // create animator object with instance of modal view controller
-    // we need to keep it in property with strong reference so it will not get release
-//    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailViewController];
-//    self.animator.dragable = NO;
-//    self.animator.direction = ZFModalTransitonDirectionBottom;
-//    [self.animator setContentScrollView:detailViewController.collectionView];
-//    
-//    // set transition delegate of modal view controller to our object
-//    detailViewController.transitioningDelegate = self.animator;
-//    
-//    // if you modal cover all behind view controller, use UIModalPresentationFullScreen
-//    detailViewController.modalPresentationStyle = UIModalPresentationCustom;
-    
     [self presentViewController:detailViewController animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(nullable NSDictionary<NSString *,id> *)editingInfo NS_DEPRECATED_IOS(2_0, 3_0)
 {
     [ShareInstance saveToMubanFolder:UIImageJPEGRepresentation(image, 1)];
-     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     UIImage *image= [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     [ShareInstance saveToMubanFolder:UIImageJPEGRepresentation(image, 1)];
-     [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [picker.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -228,40 +205,12 @@
     }
     
     ListDetailViewController *detailViewController = [[ListDetailViewController alloc]initWithImageArray:self.myMobanDataSource index:indexPath.row];
-    //    detailViewController.task = sender;
-    // create animator object with instance of modal view controller
-    // we need to keep it in property with strong reference so it will not get release
-//    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailViewController];
-//    self.animator.dragable = NO;
-//    self.animator.direction = ZFModalTransitonDirectionBottom;
-//    [self.animator setContentScrollView:detailViewController.collectionView];
-//    
-//    // set transition delegate of modal view controller to our object
-//    detailViewController.transitioningDelegate = self.animator;
-//    
-//    // if you modal cover all behind view controller, use UIModalPresentationFullScreen
-//    detailViewController.modalPresentationStyle = UIModalPresentationCustom;
-    
     [self presentViewController:detailViewController animated:YES completion:nil];
 }
 
 -(void)collectionEmotionTapIndexPath:(NSIndexPath*)indexPath
 {
     ListDetailViewController *detailViewController = [[ListDetailViewController alloc]initWithImageArray:self.myCollectionDataSource index:indexPath.row];
-    //    detailViewController.task = sender;
-    // create animator object with instance of modal view controller
-    // we need to keep it in property with strong reference so it will not get release
-//    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailViewController];
-//    self.animator.dragable = NO;
-//    self.animator.direction = ZFModalTransitonDirectionBottom;
-//    [self.animator setContentScrollView:detailViewController.collectionView];
-//    
-//    // set transition delegate of modal view controller to our object
-//    detailViewController.transitioningDelegate = self.animator;
-//    
-//    // if you modal cover all behind view controller, use UIModalPresentationFullScreen
-//    detailViewController.modalPresentationStyle = UIModalPresentationCustom;
-    
     [self presentViewController:detailViewController animated:YES completion:nil];
 }
 
@@ -465,7 +414,7 @@
             
         case MyCollectionViewControllerTypeEmotionZip:
         {
-            NSDictionary* dic = @{@"urls":self.zipDataSource[indexPath.row],@"title":NSLocalizedString(@"收藏的表情包", @"收藏的表情包")};
+            NSDictionary* dic = @{@"urls":self.zipDataSource[indexPath.row],@"title":NSLocalizedString(@"Saved Package", @"收藏的表情包")};
             SubListViewController* subList = [[SubListViewController alloc]init];
             subList.hidesBottomBarWhenPushed = YES;
             subList.dic = dic;

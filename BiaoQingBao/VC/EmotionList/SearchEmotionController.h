@@ -11,8 +11,8 @@
 
 @interface SearchEmotionController : BaseViewController<UISearchBarDelegate>
 
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic)  UISearchBar *searchBar;
+@property (strong, nonatomic)  UIButton *cancelButton;
+@property (strong, nonatomic)  UICollectionView *collectionView;
 
 @end

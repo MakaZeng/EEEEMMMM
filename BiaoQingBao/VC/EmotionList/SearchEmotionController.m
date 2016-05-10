@@ -7,12 +7,11 @@
 //
 
 #import "ServiceManager.h"
-#import "ImageCollectionViewCell.h"
 #import "SearchEmotionController.h"
-#import "SubListCollectionViewCell.h"
 #import "SubListViewController.h"
 #import "ListDetailViewController.h"
 #import <ZFModalTransitionAnimator.h>
+#import "SubListCollectionViewCell.h"
 #import "ShareInstance.h"
 #import "SearchEmotionCollectionReusableView.h"
 
@@ -37,18 +36,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Search";
-    [self.collectionView registerClass:[SearchEmotionCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SearchEmotionCollectionReusableView"];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
-    [self.collectionView registerNib:[UINib nibWithNibName:@"SubListCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"SubListCollectionViewCell"];
+    self.title = NSLocalizedString(@"Search", @"Search");
     [self firstLoadUserInterface];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
-}
 
 #pragma mark - Table view data source
 
@@ -58,7 +49,7 @@
     [self.view endEditing:YES];
 }
 
-- (IBAction)cancelAction:(id)sender {
+- (void)cancelAction:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -101,7 +92,42 @@
 
 -(void)firstLoadUserInterface
 {
+    
+    self.searchBar = [[UISearchBar alloc]init];
+    self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    self.searchBar.delegate = self;
+    [self.view addSubview:self.searchBar];
+    [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(55);
+        make.right.mas_equalTo(-10);
+        make.top.mas_equalTo(2);
+        make.height.mas_equalTo(41);
+    }];
+    
+    self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:self.cancelButton];
+    [self.cancelButton setImage:ImageNamed(@"imag_back") forState:UIControlStateNormal];
+    [self.cancelButton addTarget:self action:@selector(cancelAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(10);
+        make.centerY.equalTo(self.searchBar);
+        make.width.height.mas_equalTo(40);
+    }];
+    
+    UICollectionViewFlowLayout* flow = [[UICollectionViewFlowLayout alloc]init];
+    flow.scrollDirection = UICollectionViewScrollDirectionVertical;
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flow];
+    self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = self.view.backgroundColor;
+    self.collectionView.delegate = self;
+    self.collectionView.allowsMultipleSelection = YES;
+    [self.view addSubview:self.collectionView];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(43, 0, 0, 0));
+    }];
+    [self.collectionView registerClass:[SearchEmotionCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SearchEmotionCollectionReusableView"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"SubListCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"SubListCollectionViewCell"];
     width = 95;
     height = width+30;
     padding = 5;
@@ -134,9 +160,9 @@
         NSString *title = nil;
         
         if (self.hasZip&&indexPath.section == 0) {
-            title=NSLocalizedString(@"下面这些是表情包:", @"下面这些是表情包:");
+            title=NSLocalizedString(@"Package Result:", @"下面这些是表情包:");
         }else {
-            title=NSLocalizedString(@"这些是搜索到的表情:", @"这些是搜索到的表情:");
+            title=NSLocalizedString(@"Emoticon Result:", @"这些是搜索到的表情:");
         }
         
         headerView.titleLabel.text = title;
@@ -168,27 +194,13 @@
     subList.hidesBottomBarWhenPushed = YES;
     subList.dic = dic;
     subList.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:subList animated:YES completion:nil];
+    [self.navigationController pushViewController:subList animated:YES];
 }
 
 
 -(void)emotionTapIndexPath:(NSIndexPath*)indexPath
 {
     ListDetailViewController *detailViewController = [[ListDetailViewController alloc]initWithImageArray:self.dataSource index:indexPath.row];
-    //    detailViewController.task = sender;
-    // create animator object with instance of modal view controller
-    // we need to keep it in property with strong reference so it will not get release
-//    self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailViewController];
-//    self.animator.dragable = NO;
-//    self.animator.direction = ZFModalTransitonDirectionBottom;
-//    [self.animator setContentScrollView:detailViewController.collectionView];
-//    
-//    // set transition delegate of modal view controller to our object
-//    detailViewController.transitioningDelegate = self.animator;
-//    
-//    // if you modal cover all behind view controller, use UIModalPresentationFullScreen
-//    detailViewController.modalPresentationStyle = UIModalPresentationCustom;
-    
     [self presentViewController:detailViewController animated:YES completion:nil];
 }
 
@@ -226,7 +238,7 @@
     }
 }
 
-- (ImageCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (SubListCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary* dic;
     
@@ -237,7 +249,7 @@
         }else {
             dic = self.dataSource[indexPath.row];
         }
-        ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[ImageCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+        SubListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[SubListCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
         
         NSString* headImageURL = NSDictionary_String_ForKey(dic, @"url");
         
@@ -251,22 +263,20 @@
         }
         
         [cell.imageView sd_setImageWithURL:[NSURL URLWithString:headImageURL] placeholderImage:ImageNamed(@"img_default")];
-        cell.titleLabel.text = NSDictionary_String_ForKey(dic, @"title");
         return cell;
     }else {
         dic = self.dataSource[indexPath.row];
-        ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[ImageCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+        SubListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[SubListCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
         
         NSString* headImageURL = NSDictionary_String_ForKey(dic, @"url");
         [cell.imageView sd_setImageWithURL:[NSURL URLWithString:headImageURL] placeholderImage:ImageNamed(@"img_default")];
-        cell.titleLabel.text = NSDictionary_String_ForKey(dic, @"title");
         return cell;
     }
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(SCREEN_WIDTH, 50);
+    return CGSizeMake(SCREEN_WIDTH, 30);
 }
 
 

@@ -11,9 +11,9 @@
 #import "ShareInstance.h"
 #import "BrowserViewController.h"
 #import <ReactiveCocoa.h>
-#import "BrowserSuggestTableViewCell.h"
 #import "MyWebViewController.h"
 #import "RateManager.h"
+#import "BrowserTableViewCell.h"
 #import "UserInfoManager.h"
 #import <Masonry.h>
 
@@ -32,9 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = NSLocalizedString(@"Browser", @"Browser");
-    UIBarButtonItem* addItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
-    self.navigationItem.rightBarButtonItem = addItem;
+    self.title = NSLocalizedString(@"Browser", @"Browser");
     [self firstLoadData];
 }
 
@@ -42,8 +40,8 @@
 {
     SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
     .style(Edit)
-    .title(NSLocalizedString(@"添加收藏", @"添加收藏"))
-    .subTitle(NSLocalizedString(@"请不要收集或传播非法网站的动态图", @"请不要收集或传播非法网站的动态图"))
+    .title(NSLocalizedString(@"Add Bookmark", @"添加收藏"))
+    .subTitle(NSLocalizedString(@"Donnot browse illegal websites", @"请不要收集或传播非法网站的动态图"))
     .duration(0);
     
     __block SCLTextView* textView;
@@ -53,16 +51,16 @@
     @weakify(self);
     
     SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
-    .addButtonWithActionBlock(NSLocalizedString(@"添加", @"添加"), ^{
+    .addButtonWithActionBlock(NSLocalizedString(@"Add", @"添加"), ^{
         @strongify(self);
         [self addKeyWithString:textView.text title:titleTextView.text];
     });
     
-    titleTextView = [builder.alertView addTextField:NSLocalizedString(@"标题", @"标题")];
+    titleTextView = [builder.alertView addTextField:NSLocalizedString(@"Title", @"标题")];
     
-    textView = [builder.alertView addTextField:NSLocalizedString(@"输入网址", @"输入网址")];
+    textView = [builder.alertView addTextField:NSLocalizedString(@"URL", @"输入网址")];
     
-    [builder.alertView addButton:NSLocalizedString(@"取消", @"取消") actionBlock:^{
+    [builder.alertView addButton:NSLocalizedString(@"Cancel", @"取消") actionBlock:^{
         
     }];
     
@@ -87,7 +85,7 @@
 {
     self.webSiteArray = [ShareInstance shareInstance].webSiteArray;
     if (self.webSiteArray.count == 0) {
-        [self.webSiteArray addObject:@{@"title":NSLocalizedString(@"百度", @"百度"),@"url":@"http://www.baidu.com"}];
+        [self.webSiteArray addObject:@{@"title":NSLocalizedString(@"Google", @"Google"),@"url":@"http://www.google.com"}];
     }
     @weakify(self);
     [ServiceManager querySettingWithDic:nil callBack:^(id result) {
@@ -110,11 +108,13 @@
 
 -(void)firstLoadUserInterface
 {
+    UIBarButtonItem* addItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
+    self.navigationItem.rightBarButtonItem = addItem;
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
-    [self.tableView registerNib:[UINib nibWithNibName:@"BrowserSuggestTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"BrowserSuggestTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BrowserTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"BrowserTableViewCell"];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsZero);
@@ -144,9 +144,9 @@
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return NSLocalizedString(@"今日推荐", @"今日推荐");
+        return NSLocalizedString(@"Tips", @"今日推荐");
     }else{
-        return NSLocalizedString(@"收藏的网址", @"收藏的网址");
+        return NSLocalizedString(@"Bookmark", @"收藏的网址");
     }
 }
 
@@ -179,16 +179,16 @@
     }
     
     {
-        BrowserSuggestTableViewCell* c = [tableView dequeueReusableCellWithIdentifier:@"BrowserSuggestTableViewCell" forIndexPath:indexPath];
-        c.headImageView.image = ImageNamed(NSDictionary_String_ForKey(dic, @"localImage"));
+        BrowserTableViewCell* c = [tableView dequeueReusableCellWithIdentifier:@"BrowserTableViewCell" forIndexPath:indexPath];
+        c.leftImageView.image = ImageNamed(NSDictionary_String_ForKey(dic, @"localImage"));
         if (indexPath.section == 1) {
-            c.headImageView.image = ImageNamed(@"icon_cloud");
+            c.leftImageView.image = ImageNamed(@"icon_cloud");
         }
-        if (!c.headImageView.image) {
-            [c.headImageView sd_setImageWithURL:[NSURL URLWithString:NSDictionary_String_ForKey(dic, @"headImage")]];
+        if (!c.leftImageView.image) {
+            [c.leftImageView sd_setImageWithURL:[NSURL URLWithString:NSDictionary_String_ForKey(dic, @"headImage")]];
             [c.backImageView sd_setImageWithURL:[NSURL URLWithString:NSDictionary_String_ForKey(dic, @"backImage")]];
         }
-        c.suggestLabel.text = NSDictionary_String_ForKey(dic, @"title");
+        c.contentLabel.text = NSDictionary_String_ForKey(dic, @"title");
         cell = c;
     }
     return cell;

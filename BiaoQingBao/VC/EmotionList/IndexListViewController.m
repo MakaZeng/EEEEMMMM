@@ -7,7 +7,7 @@
 //
 
 #import "IndexListViewController.h"
-#import "ImageCollectionViewCell.h"
+#import "SubListCollectionViewCell.h"
 #import <FLAnimatedImage.h>
 #import "CommonHeader.h"
 #import <Masonry.h>
@@ -49,7 +49,7 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.backgroundColor = self.view.backgroundColor;
-    [self.collectionView registerNib:[UINib nibWithNibName:@"ImageCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"ImageCollectionViewCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"SubListCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"SubListCollectionViewCell"];
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsZero);
@@ -120,11 +120,6 @@
 }
 
 
--(void)segmentedControlChangedValue:(HMSegmentedControl*)control
-{
-    
-}
-
 #pragma mark <UICollectionViewDataSource>
 
 
@@ -139,10 +134,10 @@
     return i;
 }
 
-- (ImageCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (SubListCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary* dic = self.dataSource[indexPath.row];
-    ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[ImageCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
+    SubListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[SubListCollectionViewCell reuseIdentifier] forIndexPath:indexPath];
     
     NSString* headImageURL = NSDictionary_String_ForKey(dic, @"url");
     
@@ -155,7 +150,6 @@
     }
     
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:headImageURL] placeholderImage:ImageNamed(@"img_default")];
-    cell.titleLabel.text = NSDictionary_String_ForKey(dic, @"title");
     return cell;
 }
 
