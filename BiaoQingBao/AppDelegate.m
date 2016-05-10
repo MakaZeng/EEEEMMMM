@@ -11,6 +11,9 @@
 #import "WXApi.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <COSTouchVisualizerWindow.h>
+#import "CollectionViewController.h"
+#import "IndexViewController.h"
+#import "BrowserViewController.h"
 
 @interface AppDelegate ()<COSTouchVisualizerWindowDelegate>
 
@@ -49,24 +52,49 @@
         [WXApi registerApp:WX_APP_ID];
     }
     
+    {
+        self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        UITabBarController* tabbar = [[UITabBarController alloc]init];
+        NSMutableArray* mArray = [NSMutableArray array];
+        UIViewController* vc = nil;
+        UINavigationController* navi = nil;
+        {
+            vc = [[CollectionViewController alloc]init];
+            navi = [[UINavigationController alloc]initWithRootViewController:vc];
+            [mArray addObject:navi];
+        }
+        {
+            vc = [[IndexViewController alloc]init];
+            navi = [[UINavigationController alloc]initWithRootViewController:vc];
+            [mArray addObject:navi];
+        }
+        {
+            vc = [[BrowserViewController alloc]init];
+            navi = [[UINavigationController alloc]initWithRootViewController:vc];
+            [mArray addObject:navi];
+        }
+        tabbar.viewControllers = mArray;
+        self.window.rootViewController = tabbar;
+    }
+    
     
     {
         [[UINavigationBar appearance] setTranslucent:NO];
         [[UITabBar appearance] setTranslucent:NO];
         [[UIToolbar appearance] setTranslucent:NO];
         [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
-        [[UINavigationBar appearance] setTintColor:BASE_BACK_COLOR];
-        [[UINavigationBar appearance] setBarTintColor:BASE_Tint_COLOR];
-        [[UITabBar appearance] setTintColor:BASE_BACK_COLOR];
-        [[UITabBar appearance] setBarTintColor:BASE_Tint_COLOR];
-        [[UIToolbar appearance] setTintColor:BASE_BACK_COLOR];
-        [[UIToolbar appearance] setBarTintColor:BASE_Tint_COLOR];
+        [[UINavigationBar appearance] setTintColor:BASE_Tint_COLOR];
+        [[UINavigationBar appearance] setBarTintColor:BASE_BACK_COLOR];
+        [[UITabBar appearance] setTintColor:BASE_Tint_COLOR];
+        [[UITabBar appearance] setBarTintColor:BASE_BACK_COLOR];
+        [[UIToolbar appearance] setTintColor:BASE_Tint_COLOR];
+        [[UIToolbar appearance] setBarTintColor:BASE_BACK_COLOR];
         
         [[UINavigationBar appearance] setTitleTextAttributes:
          [NSDictionary dictionaryWithObjectsAndKeys:
-          BASE_BACK_COLOR,
+          BASE_Tint_COLOR,
           NSForegroundColorAttributeName,
-          BASE_BACK_COLOR,
+          BASE_Tint_COLOR,
           NSForegroundColorAttributeName,
           [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
           NSForegroundColorAttributeName,

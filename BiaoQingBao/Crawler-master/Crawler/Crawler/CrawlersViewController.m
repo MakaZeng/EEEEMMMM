@@ -183,7 +183,7 @@
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     TFHppleElement* element = self.dataSource[indexPath.row];
     NSString* imgSrc = [[element attributes] objectForKey:@"src"];
-    FullImageViewController* full =[[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"FullImageViewController"];
+    FullImageViewController* full =[[FullImageViewController alloc]init];
     full.imgSrc = imgSrc;
     [self.navigationController pushViewController:full animated:YES];
 }

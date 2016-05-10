@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController storyboardIdentifier="SearchEmotionController" id="ZbW-ZY-Ikj" customClass="SearchEmotionController">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="7fx-di-pbI"/>
+                <viewControllerLayoutGuide type="bottom" id="pfz-5S-Ypg"/>
+            </layoutGuides>
+            <view key="view" contentMode="scaleToFill" id="vAr-uF-Ve8">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="154-AT-V1I">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="spT-kH-ecy">
+                                <rect key="frame" x="0.0" y="20" width="600" height="49"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="sAh-QZ-xI3">
+                                        <rect key="frame" x="55" y="8" width="545" height="41"/>
+                                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="ZbW-ZY-Ikj" id="HBK-ZX-33M"/>
+                                        </connections>
+                                    </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7KV-ZI-euo">
+                                        <rect key="frame" x="20" y="19" width="24" height="22"/>
+                                        <state key="normal" image="imag_back"/>
+                                        <connections>
+                                            <action selector="cancelAction:" destination="ZbW-ZY-Ikj" eventType="touchUpInside" id="Ke9-Gz-gBF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="sAh-QZ-xI3" firstAttribute="top" secondItem="spT-kH-ecy" secondAttribute="top" constant="8" id="24n-69-Zq8"/>
+                                    <constraint firstAttribute="bottom" secondItem="sAh-QZ-xI3" secondAttribute="bottom" id="FcO-z7-W0W"/>
+                                    <constraint firstAttribute="trailing" secondItem="sAh-QZ-xI3" secondAttribute="trailing" id="Oal-0Q-vnU"/>
+                                    <constraint firstAttribute="bottom" secondItem="7KV-ZI-euo" secondAttribute="bottom" constant="8" id="afl-48-82M"/>
+                                    <constraint firstItem="7KV-ZI-euo" firstAttribute="leading" secondItem="spT-kH-ecy" secondAttribute="leading" constant="20" id="bqz-XA-LKk"/>
+                                    <constraint firstItem="sAh-QZ-xI3" firstAttribute="leading" secondItem="spT-kH-ecy" secondAttribute="leading" constant="55" id="oLi-HO-yD4"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="spT-kH-ecy" secondAttribute="bottom" id="4dI-SB-IUC"/>
+                            <constraint firstAttribute="height" constant="69" id="E7f-MG-T7a"/>
+                            <constraint firstItem="spT-kH-ecy" firstAttribute="top" secondItem="154-AT-V1I" secondAttribute="top" constant="20" id="YVO-iB-EPG"/>
+                            <constraint firstItem="spT-kH-ecy" firstAttribute="leading" secondItem="154-AT-V1I" secondAttribute="leading" id="gSs-NV-9d3"/>
+                            <constraint firstAttribute="trailing" secondItem="spT-kH-ecy" secondAttribute="trailing" id="k61-h4-ff8"/>
+                        </constraints>
+                    </view>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TL1-z0-Eyo">
+                        <rect key="frame" x="0.0" y="69" width="600" height="531"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lng-8U-jbP">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="ZbW-ZY-Ikj" id="wg2-Yk-uXW"/>
+                            <outlet property="delegate" destination="ZbW-ZY-Ikj" id="aF3-a0-3zb"/>
+                        </connections>
+                    </collectionView>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="pfz-5S-Ypg" firstAttribute="top" secondItem="TL1-z0-Eyo" secondAttribute="bottom" id="62e-e4-KVt"/>
+                    <constraint firstItem="TL1-z0-Eyo" firstAttribute="leading" secondItem="vAr-uF-Ve8" secondAttribute="leading" id="EDe-co-WfO"/>
+                    <constraint firstAttribute="trailing" secondItem="154-AT-V1I" secondAttribute="trailing" id="EuJ-Nf-KLR"/>
+                    <constraint firstItem="TL1-z0-Eyo" firstAttribute="top" secondItem="154-AT-V1I" secondAttribute="bottom" id="hed-dH-ot8"/>
+                    <constraint firstAttribute="trailing" secondItem="TL1-z0-Eyo" secondAttribute="trailing" id="jeV-1M-3UG"/>
+                    <constraint firstItem="154-AT-V1I" firstAttribute="leading" secondItem="vAr-uF-Ve8" secondAttribute="leading" id="oUt-ch-cQx"/>
+                    <constraint firstItem="154-AT-V1I" firstAttribute="top" secondItem="vAr-uF-Ve8" secondAttribute="top" id="ta9-sN-vxp"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="cancelButton" destination="7KV-ZI-euo" id="gil-YO-HEM"/>
+                <outlet property="collectionView" destination="TL1-z0-Eyo" id="DdK-2Q-u4k"/>
+                <outlet property="searchBar" destination="sAh-QZ-xI3" id="fyp-9L-Ngd"/>
+            </connections>
+            <point key="canvasLocation" x="-1823" y="-939"/>
+        </viewController>
+    </objects>
+    <resources>
+        <image name="imag_back" width="24" height="19"/>
+    </resources>
+</document>
