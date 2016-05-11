@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  BiaoQingBao
-
-  Created by maka.zeng on 16/5/7.
-  Copyright © 2016年 maka. All rights reserved.
-*/
+/*
+ Localizable.strings
+ BiaoQingBao
+ 
+ Created by maka.zeng on 16/5/7.
+ Copyright © 2016年 maka. All rights reserved.
+ */
 
 "Emoticon" = "Emoticon";
 "Templet" = "Templet";
@@ -13,6 +13,15 @@
 "Browser" = "Browser";
 "Google" = "Google";
 "Tips" = "Tips";
+
+"Long Press To Save Image. BootomBar ❤ To Make a Bookmark" = "Long Press To Save Image. BootomBar ❤ To Make a Bookmark";
+
+"OK" = "OK";
+
+"like_selected" = "like_selected";
+"tabbar_emotions" = "tabbar_emotions";
+"tabbar_browser" = "tabbar_browser";
+
 "Bookmark" = "Bookmark";
 "Add Bookmark" = "Add Bookmark";
 "Donnot browse illegal websites" = "Donnot browse illegal websites";
@@ -23,7 +32,32 @@
 "Saved Package" = "Saved Package";
 "Add From Album" = "Add From Album";
 "Collection" = "Collection";
+"Empty" = "Empty";
 
+"Nice Name For This Website" = "Nice Name For This Website";
+
+"Collect Success" = "Collect Success";
+
+"Save To Album Success" = "Save To Album Success";
+"Save To Album Fail" = "Save To Album Fail";
+
+"Save As Templet Success" = "Save As Templet Success";
+
+"Tap To Choose Target Color" = "Tap To Choose Target Color";
+
+"Save As Templet" = "Save As Templet";
+
+"Snapshot Current" = "Snapshot Current";
+"Snapshot Success" = "Snapshot Success";
+
+"Save Success" = "Save Success";
+"Save Fail" = "Save Fail";
+
+"Input Title" = "Input Title";
+
+"continue" = "continue";
+"Notice(Last Time)" = "Notice(Last Time)";
+"Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static" = "Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static";
 
 "QQ" = "QQ";
 "Wechat" = "Wechat";
@@ -31,6 +65,20 @@
 "WechatSession" = "Wechat(Se)";
 "WhatsApp" = "WhatsApp";
 
+"Rss" = "Rss";
+"My Rss:" = "My Rss:";
+"Suggest Rss:" = "Suggest Rss:";
+"Add KeyWord" = "Add KeyWord";
+"Keyword Should be accurate" = "Keyword Should be accurate";
+
+"Input KeyWord" = "Input KeyWord";
+
+"Long Press To Delete Image" = "Long Press To Delete Image";
+
+"Five Stars Unlock All Modules" = "Five Stars Unlock All Modules";
+
+"Five Stars" = "Five Stars";
+"Next Time" = "Next Time";
 
 "Package Result:" = "Package Result:";
 "Emoticon Result:" = "Emoticon Result:";

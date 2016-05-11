@@ -103,9 +103,9 @@
 - (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
 {
     if (!error) {
-        [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"保存成功", @"保存成功")];
+        [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"Save Success", @"保存成功")];
     }else {
-        [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"保存失败", @"保存失败")];
+        [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"Save Fail", @"保存失败")];
     }
 }
 
@@ -207,7 +207,7 @@
     [self.editButton addTarget:self action:@selector(editImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.editButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-15);
-        make.bottom.equalTo(self.collectionView);
+        make.bottom.equalTo(self.collectionView).offset(-5);
         make.width.height.mas_equalTo(50);
     }];
     
@@ -505,22 +505,22 @@ static dispatch_once_t onceToken;
     }
     
     SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
-    .addButtonWithActionBlock(NSLocalizedString(@"继续发送", @"继续发送"), ^{
+    .addButtonWithActionBlock(NSLocalizedString(@"continue", @"继续发送"), ^{
         block(YES);
     });
     SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
     .style(Warning)
-    .title(NSLocalizedString(@"注意(只会显示一次)", @"注意(只会显示一次)"))
-    .subTitle(NSLocalizedString(@"由于微信限制,动态图发送到朋友圈和收藏时,会自动变成静态图,是否继续发送?", @"由于微信限制,动态图发送到朋友圈和收藏时,会自动变成静态图,是否继续发送?"))
+    .title(NSLocalizedString(@"Notice(Last Time)", @"注意(只会显示一次)"))
+    .subTitle(NSLocalizedString(@"Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static", @"由于微信限制,动态图发送到朋友圈和收藏时,会自动变成静态图,是否继续发送?"))
     .duration(0);
     
-    [builder.alertView addButton:NSLocalizedString(@"取消发送", @"取消发送") actionBlock:^{
+    [builder.alertView addButton:NSLocalizedString(@"Cancel", @"取消发送") actionBlock:^{
         block(NO);
     }];
     
     [showBuilder showAlertView:builder.alertView onViewController:self];
     // or even
-    showBuilder.show(builder.alertView, self);
+    showBuilder.show(builder.alertView, [UIApplication sharedApplication].keyWindow.rootViewController);
     
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:FirstShowGifSendToTimeLine];
 }
@@ -622,31 +622,20 @@ static dispatch_once_t onceToken;
     NSInteger index = self.collectionView.contentOffset.x / self.collectionView.frame.size.width;
     id o = [self.dataSource objectAtIndex:index];
     
+    
+    NSData* data = nil;
+    
     if ([o isKindOfClass:[FLAnimatedImage class]]) {
         {
-            NSData* data = [o data];
-            
+            data = [o data];
             if (!data) {
                 return;
             }
-            
-            
-            FactoryJotViewController* jot = [[FactoryJotViewController alloc]init];
-            
-            FLAnimatedImage* animatedImage = [FLAnimatedImage animatedImageWithGIFData:data];
-            if (animatedImage) {
-                jot.image = [[UIImage alloc]initWithData:data];
-            }else {
-                jot.image = [[UIImage alloc]initWithData:data];
-            }
-            
-            [self presentViewController:jot animated:YES completion:nil];
         }
         
     }else if ([o isKindOfClass:[NSString class]]){
         
         {
-            NSData* data = nil;
             if ([o hasPrefix:@"http://"]) {
                 NSString* path = [[SDImageCache sharedImageCache] defaultCachePathForKey:o];
                 data = [[NSData alloc]initWithContentsOfFile:path];
@@ -658,42 +647,19 @@ static dispatch_once_t onceToken;
                 return;
             }
             
-            
-            FactoryJotViewController* jot = [[FactoryJotViewController alloc]init];
-            
-            FLAnimatedImage* animatedImage = [FLAnimatedImage animatedImageWithGIFData:data];
-            if (animatedImage) {
-                jot.image = [[UIImage alloc]initWithData:data];
-            }else {
-                jot.image = [[UIImage alloc]initWithData:data];
-            }
-            
-            [self presentViewController:jot animated:YES completion:nil];
         }
         
     }else if ([o isKindOfClass:[UIImage class]]) {
         {
-            NSData* data = UIImageJPEGRepresentation(o, 1);
+            data = UIImageJPEGRepresentation(o, 1);
             if (!data) {
                 return;
             }
-            
-            FactoryJotViewController* jot = [[FactoryJotViewController alloc]init];
-            
-            FLAnimatedImage* animatedImage = [FLAnimatedImage animatedImageWithGIFData:data];
-            if (animatedImage) {
-                jot.image = [[UIImage alloc]initWithData:data];
-            }else {
-                jot.image = [[UIImage alloc]initWithData:data];
-            }
-            
-            [self presentViewController:jot animated:YES completion:nil];
         }
         
     }else if (MAKA_isDicionary(o)) {
         {
             o = NSDictionary_String_ForKey(o, @"url");
-            NSData* data = nil;
             if ([o hasPrefix:@"http://"]) {
                 NSString* path = [[SDImageCache sharedImageCache] defaultCachePathForKey:o];
                 data = [[NSData alloc]initWithContentsOfFile:path];
@@ -704,20 +670,18 @@ static dispatch_once_t onceToken;
             if (!data) {
                 return;
             }
-            
-            
-            FactoryJotViewController* jot = [[FactoryJotViewController alloc]init];
-            
-            FLAnimatedImage* animatedImage = [FLAnimatedImage animatedImageWithGIFData:data];
-            if (animatedImage) {
-                jot.image = [[UIImage alloc]initWithData:data];
-            }else {
-                jot.image = [[UIImage alloc]initWithData:data];
-            }
-            
-            [self presentViewController:jot animated:YES completion:nil];
         }
     }
+    FactoryJotViewController* jot = [[FactoryJotViewController alloc]init];
+    
+    FLAnimatedImage* animatedImage = [FLAnimatedImage animatedImageWithGIFData:data];
+    if (animatedImage) {
+        jot.image = [[UIImage alloc]initWithData:data];
+    }else {
+        jot.image = [[UIImage alloc]initWithData:data];
+    }
+    jot.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:jot animated:YES completion:nil];
 
 }
 

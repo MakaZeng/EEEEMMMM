@@ -146,6 +146,11 @@
     }
     
     [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"Long Press To Delete Image", @"")];
+    });
 }
 
 -(void)updateData

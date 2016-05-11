@@ -20,7 +20,7 @@
     if (self  =[super initWithFrame:frame]) {
         self.titleLabel = [[UILabel alloc]init];
         self.titleLabel.backgroundColor = [UIColor clearColor];
-        self.titleLabel.textColor  = BASE_BACK_COLOR;
+        self.titleLabel.textColor  = BASE_Tint_COLOR;
         self.titleLabel.font = [UIFont systemFontOfSize:15];
         [self addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

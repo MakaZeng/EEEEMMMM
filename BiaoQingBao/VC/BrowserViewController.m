@@ -66,7 +66,7 @@
     
     [showBuilder showAlertView:builder.alertView onViewController:self];
     // or even
-    showBuilder.show(builder.alertView, self);
+    showBuilder.show(builder.alertView, [UIApplication sharedApplication].keyWindow.rootViewController);
 }
 
 -(void)addKeyWithString:(NSString*)text title:(NSString*)title

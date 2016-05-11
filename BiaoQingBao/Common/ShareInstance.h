@@ -21,7 +21,13 @@
 
 -(BOOL)shouldShowAds;
 
++(void)showTips:(NSString*)tips onView:(UIView*)view;
+
++(void)whiteScreen;
+
 -(UIView*)adsView;
+
++(UIImage*)scaleImageWithScale:(CGFloat)scale image:(UIImage*)image;
 
 +(instancetype)shareInstance;
 

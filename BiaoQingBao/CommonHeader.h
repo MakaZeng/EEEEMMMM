@@ -72,9 +72,6 @@
 
 #define ImageNamed(name) [UIImage imageNamed:name]
 
-//拉伸图片
-#define ImageResizeImage(image) ([image resizableImageWithCapInsets:UIEdgeInsetsMake(image.size.height/2, image.size.width/2, image.size.height/2, image.size.width/2) resizingMode:UIImageResizingModeStretch])
-
 
 
 

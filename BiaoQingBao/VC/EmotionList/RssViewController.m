@@ -128,11 +128,11 @@
         NSString *title = nil;
         
         if (indexPath.section == 0) {
-            title=NSLocalizedString(@"我的订阅:", @"我的订阅:");
+            title=NSLocalizedString(@"My Rss:", @"我的订阅:");
             headerView.addButton.hidden = NO;
             [headerView.addButton addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
         }else {
-            title=NSLocalizedString(@"推荐订阅:", @"推荐订阅:");
+            title=NSLocalizedString(@"Suggest Rss:", @"推荐订阅:");
             headerView.addButton.hidden = YES;
         }
         
@@ -149,8 +149,8 @@
     
     SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
     .style(Edit)
-    .title(NSLocalizedString(@"添加关键词", @"添加关键词"))
-    .subTitle(NSLocalizedString(@"注意:关键词为动物,是搜索不到猫的。", @"注意:关键词为动物,是搜索不到猫的。"))
+    .title(NSLocalizedString(@"Add KeyWord", @"添加关键词"))
+    .subTitle(NSLocalizedString(@"Keyword Should be accurate", @"注意:关键词为动物,是搜索不到猫的。"))
     .duration(0);
     
     __block SCLTextView* textView;
@@ -158,20 +158,20 @@
     @weakify(self);
     
     SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
-    .addButtonWithActionBlock(NSLocalizedString(@"添加", @"添加"), ^{
+    .addButtonWithActionBlock(NSLocalizedString(@"Add", @"添加"), ^{
         @strongify(self);
         [self addKeyWithString:textView.text];
     });
     
-    textView = [builder.alertView addTextField:NSLocalizedString(@"输入关键词", @"输入关键词")];
+    textView = [builder.alertView addTextField:NSLocalizedString(@"Input KeyWord", @"输入关键词")];
     
-    [builder.alertView addButton:NSLocalizedString(@"取消", @"取消") actionBlock:^{
+    [builder.alertView addButton:NSLocalizedString(@"Cancel", @"取消") actionBlock:^{
         
     }];
     
     [showBuilder showAlertView:builder.alertView onViewController:self];
     // or even
-    showBuilder.show(builder.alertView, self);
+    showBuilder.show(builder.alertView, [UIApplication sharedApplication].keyWindow.rootViewController);
 }
 
 -(void)addKeyWithString:(NSString*)string

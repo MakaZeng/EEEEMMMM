@@ -81,7 +81,6 @@
 		88D1D6881CE1B2940003A64C /* FullImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D1D6821CE1B2940003A64C /* FullImageViewController.m */; };
 		88D1D6891CE1B2940003A64C /* FullScreenImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D1D6841CE1B2940003A64C /* FullScreenImageView.m */; };
 		88D1D6901CE1B2CC0003A64C /* BrowserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D1D68E1CE1B2CC0003A64C /* BrowserTableViewCell.m */; };
-		88D1D69B1CE1B7520003A64C /* FactoryJotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D1D69A1CE1B7520003A64C /* FactoryJotViewController.xib */; };
 		88D1D69D1CE1B77C0003A64C /* RssCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D1D69C1CE1B77C0003A64C /* RssCollectionViewCell.xib */; };
 		88D1D69F1CE1B7BF0003A64C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D1D69E1CE1B7BF0003A64C /* Main.storyboard */; };
 		88D1D6AC1CE1D8760003A64C /* MyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D1D6AB1CE1D8760003A64C /* MyCollectionViewController.m */; };
@@ -232,7 +231,6 @@
 		88D1D6841CE1B2940003A64C /* FullScreenImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenImageView.m; sourceTree = "<group>"; };
 		88D1D68D1CE1B2CC0003A64C /* BrowserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserTableViewCell.h; sourceTree = "<group>"; };
 		88D1D68E1CE1B2CC0003A64C /* BrowserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserTableViewCell.m; sourceTree = "<group>"; };
-		88D1D69A1CE1B7520003A64C /* FactoryJotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FactoryJotViewController.xib; sourceTree = "<group>"; };
 		88D1D69C1CE1B77C0003A64C /* RssCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RssCollectionViewCell.xib; sourceTree = "<group>"; };
 		88D1D69E1CE1B7BF0003A64C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		88D1D6AA1CE1D8760003A64C /* MyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewController.h; sourceTree = "<group>"; };
@@ -321,7 +319,6 @@
 				6021B2611CB80558003D2353 /* Assets.xcassets */,
 				88499F2D1CBBB3AB008E8487 /* FactoryJotViewController.h */,
 				88499F2E1CBBB3AB008E8487 /* FactoryJotViewController.m */,
-				88D1D69A1CE1B7520003A64C /* FactoryJotViewController.xib */,
 				886E1A3E1CBD17FF002FB168 /* Resources */,
 				6021B2521CB80558003D2353 /* Supporting Files */,
 			);
@@ -718,7 +715,6 @@
 				607CC54B1CBE9D420002ABD8 /* QRCodeBottomLeft@2x.png in Resources */,
 				88C2774D1CDE156A00388B03 /* InfoPlist.strings in Resources */,
 				88AC448F1CDE039F00154298 /* Launch Screen.storyboard in Resources */,
-				88D1D69B1CE1B7520003A64C /* FactoryJotViewController.xib in Resources */,
 				88D1D69D1CE1B77C0003A64C /* RssCollectionViewCell.xib in Resources */,
 				88E7E18E1CBE447400650890 /* backItemImage_hl@2x.png in Resources */,
 				607CC54E1CBE9D420002ABD8 /* QRCodeBottomRight@3x.png in Resources */,

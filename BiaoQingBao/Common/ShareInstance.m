@@ -7,9 +7,77 @@
 //
 
 #import "ShareInstance.h"
+#import <Masonry.h>
 #import <JDStatusBarNotification.h>
 
 @implementation ShareInstance
+
++(void)showTips:(NSString*)tips onView:(UIView*)view
+{
+    UILabel* label = [[UILabel alloc]init];
+    label.font = [UIFont systemFontOfSize:9];
+    label.text = tips;
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    [label sizeToFit];
+    CGRect bounds = label.bounds;
+    label.bounds = CGRectInset(bounds, -5, -5);
+    label.layer.cornerRadius = label.bounds.size.height/2;
+    label.backgroundColor = [UIColor redColor];
+    label.clipsToBounds = YES;
+    UIImageView* im = [[UIImageView alloc]init];
+    [view.superview addSubview:im];
+    [view.superview addSubview:label];
+    view.superview.clipsToBounds = NO;
+    label.center = CGPointMake(view.center.x, view.frame.origin.y - label.bounds.size.height/2 - 2);
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(label.bounds.size.width);
+        make.height.mas_equalTo(label.bounds.size.height);
+        make.centerX.equalTo(view.mas_centerX).offset(0);
+        make.bottom.equalTo(view.mas_top).offset(10);
+    }];
+    
+    [im mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(label);
+    }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (label) {
+            [label removeFromSuperview];
+        }
+        if (im) {
+            [im removeFromSuperview];
+        }
+    });
+}
+
++(UIImage*)scaleImageWithScale:(CGFloat)scale image:(UIImage*)image
+{
+    CGSize size = image.size;
+    size.width = size.width*scale;
+    size.height = size.height*scale;
+    UIGraphicsBeginImageContext(size);  //size 为CGSize类型，即你所需要的图片尺寸
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;   //返回的就是已经改变的图片
+}
+
++(void)whiteScreen
+{
+    UIView* v = [[UIView alloc]init];
+    v.backgroundColor = [UIColor whiteColor];
+    [[UIApplication sharedApplication].keyWindow addSubview:v];
+    [v mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsZero);
+    }];
+    
+    [UIView animateWithDuration:1 animations:^{
+        v.alpha = 0;
+    } completion:^(BOOL finished) {
+        [v removeFromSuperview];
+    }];
+}
 
 -(UIView*)adsView
 {

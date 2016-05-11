@@ -51,6 +51,25 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
+        .style(Edit)
+        .title(NSLocalizedString(@"Tips", @"添加收藏"))
+        .subTitle(NSLocalizedString(@"Long Press To Save Image. BootomBar ❤ To Make a Bookmark", @"请不要收集或传播非法网站的动态图"))
+        .duration(0);
+        
+        SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
+        .addButtonWithActionBlock(NSLocalizedString(@"OK", @"添加"), ^{
+
+
+        });
+        
+        [showBuilder showAlertView:builder.alertView onViewController:self];
+        // or even
+        showBuilder.show(builder.alertView, [UIApplication sharedApplication].keyWindow.rootViewController);
+    });
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -64,8 +83,8 @@
     
     SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
     .style(Edit)
-    .title(@"标题")
-    .subTitle(@"给这个网址取个名字吧")
+    .title(NSLocalizedString(@"Title", @"标题"))
+    .subTitle(NSLocalizedString(@"Nice Name For This Website", @"Na"))
     .duration(0);
     
     __block SCLTextView* textView;
@@ -73,27 +92,27 @@
     @weakify(self);
     
     SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
-    .addButtonWithActionBlock(@"添加", ^{
+    .addButtonWithActionBlock(NSLocalizedString(@"Add", @"Add"), ^{
         @strongify(self);
         [self addKeyWithString:textView.text];
     });
     
-    textView = [builder.alertView addTextField:@"输入标题"];
+    textView = [builder.alertView addTextField:NSLocalizedString(@"Input Title", @"Input Title")];
     
-    [builder.alertView addButton:@"取消" actionBlock:^{
+    [builder.alertView addButton:NSLocalizedString(@"Cancel", @"Cancel") actionBlock:^{
         
     }];
     
     [showBuilder showAlertView:builder.alertView onViewController:self];
     // or even
-    showBuilder.show(builder.alertView, self);
+    showBuilder.show(builder.alertView, [UIApplication sharedApplication].keyWindow.rootViewController);
 }
 
 -(void)addKeyWithString:(NSString*)title
 {
     [[ShareInstance shareInstance].webSiteArray addObject:@{@"title":title,@"url":self.webView.request.URL.absoluteString}];
     
-    [ShareInstance statusBarToastWithMessage:@"网址收藏成功"];
+    [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"Collect Success", @"Collect Success")];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:MyWebViewControllerRefreshNotification object:nil];
 }
