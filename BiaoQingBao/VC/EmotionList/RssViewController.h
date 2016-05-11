@@ -8,8 +8,6 @@
 
 #import "BaseViewController.h"
 
-#define RssViewControllerWillDisAppear @"RssViewControllerWillDisAppear"
-
 @interface RssViewController : BaseViewController
 
 @property (strong, nonatomic) UICollectionView *collectionView;

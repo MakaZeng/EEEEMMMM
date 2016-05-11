@@ -96,6 +96,9 @@
         if (MAKA_isDicionary(dic))
         {
             [titles addObject:NSDictionary_String_ForKey(dic, @"title")];
+        }else if (MAKA_isString(dic))
+        {
+            [titles addObject:dic];
         }
     }
     
