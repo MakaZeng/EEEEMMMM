@@ -13,6 +13,9 @@
 
 #import <UIImageView+WebCache.h>
 
+#define CollectionCellWidth 90
+#define CollectionCellPadding 5
+
 
 #define MAKA_isType(x,y) [x isKindOfClass:[y class]]
 

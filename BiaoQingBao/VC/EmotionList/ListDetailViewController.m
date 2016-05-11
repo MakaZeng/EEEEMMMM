@@ -557,6 +557,12 @@ static dispatch_once_t onceToken;
         }
     }else if ([obj isKindOfClass:[UIImage class]]) {
         cell.imageView.image = obj;
+        CGSize size = [ShareInstance suitSizeForMaxWidth:self.collectionView.bounds.size.width MaxHeight:self.collectionView.bounds.size.height WithImage:cell.imageView.image];
+        if (size.width < self.collectionView.bounds.size.width-10 && size.height < self.collectionView.bounds.size.height-10) {
+            cell.imageView.contentMode = UIViewContentModeCenter;
+        }else {
+            cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        }
     }else if (MAKA_isDicionary(obj)) {
         [cell.imageView sd_setImageWithURL:[NSURL URLWithString:NSDictionary_String_ForKey(obj, @"url")] placeholderImage:ImageNamed(@"img_default")];
     }

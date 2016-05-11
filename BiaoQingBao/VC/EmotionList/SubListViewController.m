@@ -53,9 +53,9 @@
 
 -(void)firstLoadUserInterface
 {
-    width = 95;
+    width = CollectionCellWidth;
     height = width;
-    padding = 5;
+    padding = CollectionCellPadding;
     [self.collectionView registerNib:[UINib nibWithNibName:@"SubListCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"SubListCollectionViewCell"];
     if ([[ShareInstance shareInstance].myLikeArray containsObject:NSDictionary_String_ForKey(self.dic, @"urls")]) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:ImageNamed(@"like_selected") style:UIBarButtonItemStylePlain target:self action:@selector(deselectLike)];

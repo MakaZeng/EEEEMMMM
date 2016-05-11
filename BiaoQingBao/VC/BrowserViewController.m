@@ -115,6 +115,7 @@
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
     [self.tableView registerNib:[UINib nibWithNibName:@"BrowserTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"BrowserTableViewCell"];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsZero);

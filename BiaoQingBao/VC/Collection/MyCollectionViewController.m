@@ -85,9 +85,9 @@
     self.myCollectionDataSource = [NSMutableArray array];
     self.myMobanDataSource = [NSMutableArray array];
 
-    width = 95;
+    width = CollectionCellWidth;
     height = width+30;
-    padding = 5;
+    padding = CollectionCellPadding;
     [self updateData];
     
     UILongPressGestureRecognizer* lp =[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(editAction:)];
@@ -402,6 +402,9 @@
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
     if (self.collectionView.edit) {
+        if (self.dataSource.count == 0) {
+            self.collectionView.edit = !self.collectionView.edit;
+        }
         return;
     }
     

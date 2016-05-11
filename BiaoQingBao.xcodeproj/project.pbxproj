@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		19408E486495AC3205DAFC6C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C260A894172C25BFD633A2A9 /* libPods.a */; };
+		24EAA0071CE38DAB0098755D /* ADRuntimeClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EA9FFC1CE38DAB0098755D /* ADRuntimeClass.m */; };
+		24EAA0081CE38DAB0098755D /* ADWebviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EA9FFE1CE38DAB0098755D /* ADWebviewController.m */; };
+		24EAA0091CE38DAB0098755D /* NSString+Sha1.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EAA0001CE38DAB0098755D /* NSString+Sha1.m */; };
+		24EAA00A1CE38DAB0098755D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EAA0021CE38DAB0098755D /* Reachability.m */; };
+		24EAA00B1CE38DAB0098755D /* RNCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EAA0041CE38DAB0098755D /* RNCachingURLProtocol.m */; };
+		24EAA00C1CE38DAB0098755D /* TOWebViewController+QRCodeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EAA0061CE38DAB0098755D /* TOWebViewController+QRCodeHelper.m */; };
 		6021B2541CB80558003D2353 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6021B2531CB80558003D2353 /* main.m */; };
 		6021B2571CB80558003D2353 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6021B2561CB80558003D2353 /* AppDelegate.m */; };
 		6021B2601CB80558003D2353 /* BiaoQingBao.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6021B25E1CB80558003D2353 /* BiaoQingBao.xcdatamodeld */; };
@@ -99,6 +105,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24EA9FFB1CE38DAB0098755D /* ADRuntimeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADRuntimeClass.h; sourceTree = "<group>"; };
+		24EA9FFC1CE38DAB0098755D /* ADRuntimeClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADRuntimeClass.m; sourceTree = "<group>"; };
+		24EA9FFD1CE38DAB0098755D /* ADWebviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADWebviewController.h; sourceTree = "<group>"; };
+		24EA9FFE1CE38DAB0098755D /* ADWebviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADWebviewController.m; sourceTree = "<group>"; };
+		24EA9FFF1CE38DAB0098755D /* NSString+Sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Sha1.h"; sourceTree = "<group>"; };
+		24EAA0001CE38DAB0098755D /* NSString+Sha1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Sha1.m"; sourceTree = "<group>"; };
+		24EAA0011CE38DAB0098755D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		24EAA0021CE38DAB0098755D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		24EAA0031CE38DAB0098755D /* RNCachingURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCachingURLProtocol.h; sourceTree = "<group>"; };
+		24EAA0041CE38DAB0098755D /* RNCachingURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCachingURLProtocol.m; sourceTree = "<group>"; };
+		24EAA0051CE38DAB0098755D /* TOWebViewController+QRCodeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TOWebViewController+QRCodeHelper.h"; sourceTree = "<group>"; };
+		24EAA0061CE38DAB0098755D /* TOWebViewController+QRCodeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TOWebViewController+QRCodeHelper.m"; sourceTree = "<group>"; };
 		6021B24F1CB80558003D2353 /* BiaoQingBao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiaoQingBao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6021B2531CB80558003D2353 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6021B2551CB80558003D2353 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -348,6 +366,18 @@
 		607CC50A1CBE9D420002ABD8 /* ADWebviewController */ = {
 			isa = PBXGroup;
 			children = (
+				24EA9FFB1CE38DAB0098755D /* ADRuntimeClass.h */,
+				24EA9FFC1CE38DAB0098755D /* ADRuntimeClass.m */,
+				24EA9FFD1CE38DAB0098755D /* ADWebviewController.h */,
+				24EA9FFE1CE38DAB0098755D /* ADWebviewController.m */,
+				24EA9FFF1CE38DAB0098755D /* NSString+Sha1.h */,
+				24EAA0001CE38DAB0098755D /* NSString+Sha1.m */,
+				24EAA0011CE38DAB0098755D /* Reachability.h */,
+				24EAA0021CE38DAB0098755D /* Reachability.m */,
+				24EAA0031CE38DAB0098755D /* RNCachingURLProtocol.h */,
+				24EAA0041CE38DAB0098755D /* RNCachingURLProtocol.m */,
+				24EAA0051CE38DAB0098755D /* TOWebViewController+QRCodeHelper.h */,
+				24EAA0061CE38DAB0098755D /* TOWebViewController+QRCodeHelper.m */,
 				88FB2D8B1CD0AAEA00661689 /* ADRuntimeClass.h */,
 				88FB2D8C1CD0AAEA00661689 /* ADRuntimeClass.m */,
 				88FB2D8D1CD0AAEA00661689 /* ADWebviewController.h */,
@@ -800,13 +830,18 @@
 				88FB2D991CD0AAEA00661689 /* RNCachingURLProtocol.m in Sources */,
 				607CC5471CBE9D420002ABD8 /* QRCodeReaderMaskView.m in Sources */,
 				88D1D6881CE1B2940003A64C /* FullImageViewController.m in Sources */,
+				24EAA00C1CE38DAB0098755D /* TOWebViewController+QRCodeHelper.m in Sources */,
+				24EAA0071CE38DAB0098755D /* ADRuntimeClass.m in Sources */,
 				6021B26E1CB8072C003D2353 /* BaseViewController.m in Sources */,
 				88D1D6871CE1B2940003A64C /* AddFromAlbumCell.m in Sources */,
+				24EAA00B1CE38DAB0098755D /* RNCachingURLProtocol.m in Sources */,
 				607CC5441CBE9D420002ABD8 /* QRCameraSwitchButton.m in Sources */,
 				6021B2571CB80558003D2353 /* AppDelegate.m in Sources */,
+				24EAA0091CE38DAB0098755D /* NSString+Sha1.m in Sources */,
 				607CC5461CBE9D420002ABD8 /* QRCodeReaderAanimationLineView.m in Sources */,
 				607CC5451CBE9D420002ABD8 /* QRCodeReader.m in Sources */,
 				88E7E1911CBE447400650890 /* RxWebViewController.m in Sources */,
+				24EAA0081CE38DAB0098755D /* ADWebviewController.m in Sources */,
 				607CC5481CBE9D420002ABD8 /* QRCodeReaderView.m in Sources */,
 				88D1D6901CE1B2CC0003A64C /* BrowserTableViewCell.m in Sources */,
 				88D1D6AC1CE1D8760003A64C /* MyCollectionViewController.m in Sources */,
@@ -835,6 +870,7 @@
 				88D1D67E1CE1B24D0003A64C /* RssViewController.m in Sources */,
 				607CC54A1CBE9D420002ABD8 /* QRScanView.m in Sources */,
 				88D1D65A1CE1A7840003A64C /* MakaShareItemView.m in Sources */,
+				24EAA00A1CE38DAB0098755D /* Reachability.m in Sources */,
 				88D1D6511CE1A60E0003A64C /* CollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1036,7 +1072,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = maka.gifBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "03831eaf-e0e8-4dc6-a2df-83f2cf691ac3";
+				PROVISIONING_PROFILE = "ee4314c3-87b2-49c9-a61f-c923ea729c55";
 			};
 			name = Debug;
 		};
@@ -1115,7 +1151,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = maka.gifBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "03831eaf-e0e8-4dc6-a2df-83f2cf691ac3";
+				PROVISIONING_PROFILE = "ee4314c3-87b2-49c9-a61f-c923ea729c55";
 			};
 			name = Release;
 		};

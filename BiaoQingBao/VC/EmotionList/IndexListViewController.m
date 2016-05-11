@@ -103,9 +103,9 @@
 
 -(void)firstLoadUserInterface
 {
-    width = 90;
+    width = CollectionCellWidth;
     height = width+30;
-    padding = 5;
+    padding = CollectionCellPadding;
     [self.collectionView reloadData];
 }
 

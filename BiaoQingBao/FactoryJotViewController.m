@@ -496,6 +496,7 @@
     rect.origin = CGPointMake(rect.origin.x*[UIScreen mainScreen].scale, rect.origin.y*[UIScreen mainScreen].scale);
     rect.size = CGSizeMake(rect.size.width*[UIScreen mainScreen].scale, rect.size.height*[UIScreen mainScreen].scale);
     viewImage = [self getPartOfImage:viewImage rect:rect];
+    viewImage = [ShareInstance scaleImageWithScale:1.0/[UIScreen mainScreen].scale image:viewImage];
     return viewImage;
 }
 
