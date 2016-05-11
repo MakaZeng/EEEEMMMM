@@ -221,7 +221,7 @@
     self.jotViewController.delegate = self;
     self.jotViewController.font = [UIFont systemFontOfSize:17];
     self.jotViewController.fontSize = 17;
-    self.jotViewController.drawingStrokeWidth = 12.f;
+    self.jotViewController.drawingStrokeWidth = 17.f;
     self.jotViewController.textEditingInsets = UIEdgeInsetsMake(30, 10, 10, 30);
     self.jotViewController.drawingColor = [UIColor whiteColor];
     [self addChildViewController:self.jotViewController];

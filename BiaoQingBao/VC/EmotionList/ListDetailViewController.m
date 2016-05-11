@@ -41,6 +41,8 @@
 
 @property (nonatomic,assign) NSInteger currentIndex;
 
+@property (nonatomic,assign) BOOL isLoadComplete;
+
 @end
 
 @implementation ListDetailViewController
@@ -132,6 +134,7 @@
 {
     [super viewDidLayoutSubviews];
     [self.collectionView reloadData];
+    [self.collectionView setContentOffset:CGPointMake(self.collectionView.bounds.size.width*self.currentIndex, 0)];
 }
 
 -(void)firstLoadUserInterface
@@ -298,23 +301,16 @@
     }
 }
 
-static dispatch_once_t onceToken;
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    dispatch_once(&onceToken, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView setContentOffset:CGPointMake(self.collectionView.bounds.size.width*self.index, 0)];
-            self.currentIndex = self.index;
-        });
-    });
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [[ShareInstance shareInstance] save];
-    onceToken = 0;
 }
 
 
@@ -532,6 +528,13 @@ static dispatch_once_t onceToken;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (self.dataSource.count > 0) {
+        if (!self.isLoadComplete) {
+            [self.collectionView setContentOffset:CGPointMake(self.collectionView.bounds.size.width*self.index, 0)];
+            self.currentIndex = self.index;
+            self.isLoadComplete = YES;
+        }
+    }
     return self.dataSource.count;
 }
 
@@ -579,14 +582,16 @@ static dispatch_once_t onceToken;
 
 -(void)setCurrentIndex:(NSInteger)currentIndex
 {
+    if (currentIndex < 0 || currentIndex >self.dataSource.count) {
+        return;
+    }
     _currentIndex = currentIndex;
     
     self.titleLabel.text = [NSString stringWithFormat:@"%ld/%lu",self.currentIndex+1,(unsigned long)self.dataSource.count];
     
     self.likeButton.hidden = YES;
     
-    id o = [self.dataSource objectAtIndex:currentIndex];
-    
+    id o = NSArray_ObjectAt_Index(self.dataSource, currentIndex);
     if ([o isKindOfClass:[FLAnimatedImage class]]) {
         
     }else if ([o isKindOfClass:[NSString class]]){

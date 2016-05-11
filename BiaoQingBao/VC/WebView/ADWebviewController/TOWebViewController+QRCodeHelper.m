@@ -35,9 +35,9 @@ static NSString *const kImageUrl         = @"keyForImageUrl";
 static NSString *const kLongGestureTimer = @"keyForLongGestureTimer";
 static NSString *const kData             = @"keyForData";
 
-static NSString *const ActionSheetSave = @"保存到相册";
-static NSString *const ActionSheetCollect = @"收藏图片";
-static NSString *const ActionSheetShare = @"分享图片";
+#define  DefineActionSheetSave  NSLocalizedString(@"Save To Album", @"Input Title")
+#define  DefineActionSheetCollect  NSLocalizedString(@"Save To Collection", @"Input Title")
+#define  DefineActionSheetShare  NSLocalizedString(@"Share Image", @"Input Title")
 
 static const NSTimeInterval longGestureInterval = 1.0f;
 
@@ -149,7 +149,7 @@ static const void* TOWebViewControllerAnimator = &TOWebViewControllerAnimator;
         self.gesState = GESTURE_STATE_END;
         UIActionSheet* sheet ;
         {
-            sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:ActionSheetShare,ActionSheetCollect,ActionSheetSave, nil];
+            sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"Input Title") destructiveButtonTitle:nil otherButtonTitles:DefineActionSheetShare,DefineActionSheetCollect,DefineActionSheetSave, nil];
         }
         sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
         [sheet showInView:[UIApplication sharedApplication].keyWindow];
@@ -164,7 +164,7 @@ static const void* TOWebViewControllerAnimator = &TOWebViewControllerAnimator;
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     [self.webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='text';"];
-    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:ActionSheetShare]) {
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DefineActionSheetShare]) {
         
         ListDetailViewController *detailViewController;
         //    detailViewController.task = sender;
@@ -177,25 +177,12 @@ static const void* TOWebViewControllerAnimator = &TOWebViewControllerAnimator;
             detailViewController = [[ListDetailViewController alloc]initWitImage:(id)animatedImage];
         }
         
-        // create animator object with instance of modal view controller
-//        // we need to keep it in property with strong reference so it will not get release
-//        self.animator = [[ZFModalTransitionAnimator alloc] initWithModalViewController:detailViewController];
-//        self.animator.dragable = NO;
-//        self.animator.direction = ZFModalTransitonDirectionBottom;
-//        [self.animator setContentScrollView:detailViewController.collectionView];
-//        
-//        // set transition delegate of modal view controller to our object
-//        detailViewController.transitioningDelegate = self.animator;
-        
-        // if you modal cover all behind view controller, use UIModalPresentationFullScreen
-        detailViewController.modalPresentationStyle = UIModalPresentationCustom;
-        
         [self presentViewController:detailViewController animated:YES completion:nil];
     }
-    else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:ActionSheetSave]){
+    else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DefineActionSheetSave]){
         UIImage* image = [[UIImage alloc]initWithData:self.data];
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-    }else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:ActionSheetCollect]){
+    }else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DefineActionSheetCollect]){
         [ShareInstance saveToCollectionFolder:self.data];
     }
 }
@@ -203,9 +190,9 @@ static const void* TOWebViewControllerAnimator = &TOWebViewControllerAnimator;
 - (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
 {
     if (!error) {
-        [ShareInstance statusBarToastWithMessage:@"保存成功"];
+        [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"Save Success", @"Input Title")];
     }else {
-        [ShareInstance statusBarToastWithMessage:@"保存失败"];
+        [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"Save Fail", @"Input Title")];
     }
 }
 
