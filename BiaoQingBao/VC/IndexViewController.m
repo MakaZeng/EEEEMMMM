@@ -146,11 +146,6 @@
     }
     
     [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [ShareInstance statusBarToastWithMessage:NSLocalizedString(@"Long Press To Delete Image", @"")];
-    });
 }
 
 -(void)updateData
@@ -175,6 +170,9 @@
             if (MAKA_isDicionary(dic))
             {
                 [titles addObject:NSDictionary_String_ForKey(dic, @"title")];
+            }else if (MAKA_isString(dic))
+            {
+                [titles addObject:dic];
             }
         }
         

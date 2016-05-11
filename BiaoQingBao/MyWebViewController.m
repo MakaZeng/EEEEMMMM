@@ -57,7 +57,7 @@
         SCLAlertViewShowBuilder *showBuilder = [SCLAlertViewShowBuilder new]
         .style(Edit)
         .title(NSLocalizedString(@"Tips", @"添加收藏"))
-        .subTitle(NSLocalizedString(@"Long Press To Save Image. BootomBar ❤ To Make a Bookmark", @"请不要收集或传播非法网站的动态图"))
+        .subTitle(NSLocalizedString(@"Long Press To Save Image ; ❤ To Make a Bookmark", @"请不要收集或传播非法网站的动态图"))
         .duration(0);
         
         SCLAlertViewBuilder *builder = [SCLAlertViewBuilder new]
