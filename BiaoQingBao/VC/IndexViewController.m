@@ -227,6 +227,9 @@
                 }];
                 lastVC = vc;
             }
+            CGPoint offset = self.scrollView.contentOffset;
+            offset.x = 0;
+            self.scrollView.contentOffset = offset;
             self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH*titles.count, 20);
             self.scrollView.contentInset = UIEdgeInsetsMake(self.segmentedControl.frame.size.height, 0, 0, 0);
             self.scrollView.delegate = self;
