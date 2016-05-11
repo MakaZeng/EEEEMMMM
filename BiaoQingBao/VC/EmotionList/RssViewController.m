@@ -18,6 +18,7 @@
 #import "RssViewController.h"
 #import "RssCollectionViewCell.h"
 #import <ReactiveCocoa.h>
+#import "IndexViewController.h"
 #import "ServiceManager.h"
 #import <Masonry.h>
 
@@ -39,7 +40,7 @@
 {
     [super viewWillDisappear:animated];
     [[ShareInstance shareInstance] save];
-    [[NSNotificationCenter defaultCenter] postNotificationName:RssViewControllerWillDisAppear object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"IndexViewController" object:nil];
 }
 
 - (void)viewDidLoad {
