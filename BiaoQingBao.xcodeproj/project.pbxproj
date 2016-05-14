@@ -1006,6 +1006,7 @@
 			baseConfigurationReference = CDC65A7F80B5D69DACC72F86 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1061,7 +1062,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = BiaoQingBao/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1079,7 +1080,7 @@
 					"$(PROJECT_DIR)/BiaoQingBao/umeng_ios_social_sdk_5.0.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/YiXin",
 					"$(PROJECT_DIR)/SDK1.6.2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maka.biaoQingBao;
+				PRODUCT_BUNDLE_IDENTIFIER = maka.BiaoQingBao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ee4314c3-87b2-49c9-a61f-c923ea729c55";
 			};
@@ -1090,6 +1091,7 @@
 			baseConfigurationReference = EC11DE4A1762CFDB331ACB00 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1145,7 +1147,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = BiaoQingBao/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1163,7 +1165,7 @@
 					"$(PROJECT_DIR)/BiaoQingBao/umeng_ios_social_sdk_5.0.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/YiXin",
 					"$(PROJECT_DIR)/SDK1.6.2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maka.biaoQingBao;
+				PRODUCT_BUNDLE_IDENTIFIER = maka.BiaoQingBao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ee4314c3-87b2-49c9-a61f-c923ea729c55";
 			};
