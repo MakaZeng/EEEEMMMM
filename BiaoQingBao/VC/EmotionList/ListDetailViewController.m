@@ -23,6 +23,7 @@
 #import "ShareInstance.h"
 #import <ReactiveCocoa.h>
 #import "FullScreenImageView.h"
+#import <TencentOpenAPI/QQApiInterface.h>
 #import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
 
 #define FirstShowGifSendToTimeLine @"FirstShowGifSendToTimeLine"
@@ -242,35 +243,64 @@
     
     if (items.count == 0) {
         if ([l hasPrefix:@"zh-Han"]) {
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeQQ]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatSession]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            if ([WXApi isWXAppInstalled]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatSession]];
+            }
+            
+            if ([QQApiInterface isQQInstalled]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeQQ]];
+            }
+            
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"line://"]]) {
+                 [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            }
+            
         }else if ([l hasPrefix:@"ja"]) {
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"line://"]]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            }
             [items addObject:[NSNumber numberWithInteger:ShareUtilTypeFacebook]];
             [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWhatsApp]];
             [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
             [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
         }else if ([l hasPrefix:@"ko"]) {
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"line://"]]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            }
             [items addObject:[NSNumber numberWithInteger:ShareUtilTypeFacebook]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWhatsApp]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+            if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]]){
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWhatsApp]];
+            }
+            if ([WXApi isWXAppInstalled]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+            }
         }else if ([l hasPrefix:@"id"]) {
             [items addObject:[NSNumber numberWithInteger:ShareUtilTypeFacebook]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWhatsApp]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+            if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]]){
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWhatsApp]];
+            }
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"line://"]]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            }
+            if ([WXApi isWXAppInstalled]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+            }
         }else{
             [items addObject:[NSNumber numberWithInteger:ShareUtilTypeFacebook]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWhatsApp]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
-            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+            if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]]){
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWhatsApp]];
+            }
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"line://"]]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            }
+            if ([WXApi isWXAppInstalled]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+            }
         }
         
         [[ShareInstance shareInstance] save];
@@ -348,8 +378,7 @@
     switch (type) {
         case ShareUtilTypeQQ:
         {
-            [self sendToWhatsApp:o];
-//            [self sendToQQ:o];
+            [self sendToQQ:o];
             return;
         }
         case ShareUtilTypeWechat:
@@ -371,6 +400,16 @@
         {
             [self sendToWhatsApp:o];
             return;
+        }
+            case ShareUtilTypeLine:
+        {
+            [self sendToLine:o];
+            break;
+        }
+            case ShareUtilTypeFacebook:
+        {
+            [self sendToFacebook:o];
+            break;
         }
         default:
             break;
