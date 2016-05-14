@@ -99,6 +99,21 @@
     return i;
 }
 
+-(NSMutableArray*)shareItems
+{
+    if (_shareItems) {
+        return _shareItems;
+    }
+    NSString *Document = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];//获取根目录
+    NSString *homePath  = [Document stringByAppendingPathComponent:@"shareItems.archiver"];
+    
+    _shareItems = [NSKeyedUnarchiver unarchiveObjectWithFile:homePath];
+    if (!_shareItems) {
+        _shareItems = [NSMutableArray array];
+    }
+    return _shareItems;
+}
+
 -(NSMutableArray*)myLikeArray
 {
     if (_myLikeArray) {
@@ -153,6 +168,8 @@
     [NSKeyedArchiver archiveRootObject:_myRssArray toFile:homePath];
     homePath  = [Document stringByAppendingPathComponent:@"webSiteArray.archiver"];
     [NSKeyedArchiver archiveRootObject:_webSiteArray toFile:homePath];
+    homePath  = [Document stringByAppendingPathComponent:@"shareItems.archiver"];
+    [NSKeyedArchiver archiveRootObject:_shareItems toFile:homePath];
 }
 
 +(CGSize)suitSizeForMaxWidth:(CGFloat)maxWidth MaxHeight:(CGFloat)maxHeight WithImage:(UIImage *)image

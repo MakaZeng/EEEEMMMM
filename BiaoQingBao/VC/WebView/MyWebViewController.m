@@ -76,6 +76,7 @@
 {
     [super viewWillDisappear:animated];
     [[ShareInstance shareInstance] save];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BrowserViewController" object:nil];
 }
 
 -(void)rightAction

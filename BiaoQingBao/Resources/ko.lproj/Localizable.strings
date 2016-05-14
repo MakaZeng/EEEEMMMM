@@ -6,15 +6,19 @@
  Copyright © 2016年 maka. All rights reserved.
  */
 
-"Emoticon" = "Emoticon";
-"Templet" = "Templet";
-"Package" = "Package";
-"WebAsset" = "WebAsset";
-"Browser" = "Browser";
+"Emoticon" = "이모티콘";
+"Templet" = "사원";
+"Package" = "묶음";
+"WebAsset" = "웹콘텐츠";
+"Browser" = "브라우저";
 "Google" = "Google";
-"Tips" = "Tips";
+"Tips" = "팁";
 
-"Long Press To Save Image ; ❤ To Make a Bookmark" = "Long Press To Save Image ; ❤ To Make a Bookmark";
+"Save To Album" = "저장하려면 앨범";
+"Save To Collection"  = "컬렉션에 저장";
+"Share Image" = "공유 이미지";
+
+"Long Press To Save Image ; ❤ To Make a Bookmark" = "이미지를 저장하려면 길게 누름 \n ❤ 은 책갈피를 만드는 방법";
 
 "OK" = "OK";
 
@@ -22,65 +26,67 @@
 "tabbar_emotions" = "tabbar_emotions";
 "tabbar_browser" = "tabbar_browser";
 
-"Bookmark" = "Bookmark";
-"Add Bookmark" = "Add Bookmark";
-"Donnot browse illegal websites" = "Donnot browse illegal websites";
-"Add" = "Add";
-"Title" = "Title";
+"Bookmark" = "서표";
+"Add Bookmark" = "북마크에 추가하다";
+"Donnot browse illegal websites" = "불법 웹 사이트를 탐색하지 않음";
+"Add" = "더하다";
+"Title" = "표제";
 "URL" = "URL";
-"Cancel" = "Cancel";
-"Saved Package" = "Saved Package";
-"Add From Album" = "Add From Album";
-"Collection" = "Collection";
-"Empty" = "Empty";
+"Cancel" = "취소하다";
+"Saved Package" = "저장된 패키지";
+"Add From Album" = "앨범에서 추가";
+"Collection" = "수집";
+"Empty" = "빈";
 
-"Nice Name For This Website" = "Nice Name For This Website";
+"Nice Name For This Website" = "이 웹 사이트에 대한 닉네임";
 
-"Collect Success" = "Collect Success";
+"Collect Success" = "성공을 수집";
 
-"Save To Album Success" = "Save To Album Success";
-"Save To Album Fail" = "Save To Album Fail";
+"Save To Album Success" = "앨범 성공에 저장";
+"Save To Album Fail" = "앨범 실패에 저장";
 
-"Save As Templet Success" = "Save As Templet Success";
+"Save As Templet Success" = "템플릿 성공으로 저장";
 
-"Tap To Choose Target Color" = "Tap To Choose Target Color";
+"Tap To Choose Target Color" = "대상 색상을 선택하려면 탭";
 
-"Save As Templet" = "Save As Templet";
+"Save As Templet" = "템플릿으로 저장";
 
-"Snapshot Current" = "Snapshot Current";
-"Snapshot Success" = "Snapshot Success";
+"Snapshot Current" = "스냅 샷 현재";
+"Snapshot Success" = "스냅 샷 성공";
 
-"Save Success" = "Save Success";
-"Save Fail" = "Save Fail";
+"Save Success" = "저장 성공";
+"Save Fail" = "저장 실패";
 
-"Input Title" = "Input Title";
+"Input Title" = "입력 제목";
 
-"continue" = "continue";
-"Notice(Last Time)" = "Notice(Last Time)";
-"Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static" = "Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static";
+"continue" = "잇다";
+"Notice(Last Time)" = "공지 사항 (마지막 시간)";
+"Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static" = "타임 라인과 위챗 컬렉션 위챗하기 위해 애니메이션 이미지를 보낼 수 없다,이 이미지는 정적로 변환 것인가";
 
 "QQ" = "QQ";
 "Wechat" = "Wechat";
-"WechatCollection" = "Wechat(Co)";
-"WechatSession" = "Wechat(Se)";
+"WechatCollection" = "Wechat수집";
+"WechatSession" = "Wechat타임 라인";
 "WhatsApp" = "WhatsApp";
+"Line" = "Line";
+"Facebook" = "Messenger";
 
 "Rss" = "Rss";
 "My Rss:" = "My Rss:";
 "Suggest Rss:" = "Suggest Rss:";
-"Add KeyWord" = "Add KeyWord";
-"Keyword Should be accurate" = "Keyword Should be accurate";
+"Add KeyWord" = "키워드를 추가";
+"Keyword Should be accurate" = "키워드는 정확해야";
 
-"Input KeyWord" = "Input KeyWord";
+"Input KeyWord" = "입력 키워드";
 
-"Long Press To Delete Image" = "Long Press To Delete Image";
+"Long Press To Delete Image" = "이미지를 삭제하려면 길게 누름";
 
-"Five Stars Unlock All Modules" = "Five Stars Unlock All Modules";
+"Five Stars Unlock All Modules" = "다섯 별 모든 모듈의 잠금을 해제";
 
-"Five Stars" = "Five Stars";
-"Next Time" = "Next Time";
+"Five Stars" = "다섯 별";
+"Next Time" = "다음 시간";
 
-"Package Result:" = "Package Result:";
-"Emoticon Result:" = "Emoticon Result:";
+"Package Result:" = "패키지 결과:";
+"Emoticon Result:" = "이모티콘 결과:";
 
-"Search" = "Search";
+"Search" = "수색";

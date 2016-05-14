@@ -19,6 +19,8 @@
 
 @property (nonatomic,strong) NSMutableArray* webSiteArray;
 
+@property (nonatomic,strong) NSMutableArray* shareItems;
+
 -(BOOL)shouldShowAds;
 
 +(void)showTips:(NSString*)tips onView:(UIView*)view;

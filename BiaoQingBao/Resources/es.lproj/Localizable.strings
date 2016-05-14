@@ -14,7 +14,11 @@
 "Google" = "Google";
 "Tips" = "Tips";
 
-"Long Press To Save Image ; ❤ To Make a Bookmark" = "Long Press To Save Image ; ❤ To Make a Bookmark";
+"Save To Album" = "Save To Album";
+"Save To Collection"  = "Save To Collection";
+"Share Image" = "Share Image";
+
+"Long Press To Save Image ; ❤ To Make a Bookmark" = "Long Press To Save Image \n ❤ To Make a Bookmark";
 
 "OK" = "OK";
 
@@ -64,6 +68,8 @@
 "WechatCollection" = "Wechat(Co)";
 "WechatSession" = "Wechat(Se)";
 "WhatsApp" = "WhatsApp";
+"Line" = "Line";
+"Facebook" = "Messenger";
 
 "Rss" = "Rss";
 "My Rss:" = "My Rss:";
