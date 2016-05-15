@@ -84,8 +84,16 @@
     MakaShareItemView* ttt =nil;
     MakaShareItemView* latTtt = nil;
     
+    CGFloat itemWidth = 70;
+    
+    NSInteger limit = items.count;
+    
+    if (itemWidth*items.count >= SCREEN_WIDTH - 20) {
+        limit = 4;
+    }
+    
     @weakify(self);
-    for (NSInteger i = 0 ; i < items.count;  i ++) {
+    for (NSInteger i = 0 ; i < limit;  i ++) {
         @strongify(self);
         NSInteger item = [items[i] integerValue];
         ttt = [MakaShareItemView instance];
@@ -94,10 +102,10 @@
             if (latTtt) {
                 make.left.equalTo(latTtt.mas_right);
             }else {
-                make.left.mas_equalTo(0);
+                make.left.mas_equalTo((SCREEN_WIDTH - itemWidth*limit)/2);
             }
             make.top.bottom.mas_equalTo(0);
-            make.width.equalTo(v.mas_width).multipliedBy(1.0/items.count);
+            make.width.mas_equalTo(itemWidth);
         }];
         
         ttt.btn.tag = BEGIN_TAG+i;
@@ -148,6 +156,18 @@
         {
             title = NSLocalizedString(@"WhatsApp", @"WhatsApp");
             imageName=@"ShareUtilTypeWhatsApp";
+            break;
+        }
+        case ShareUtilTypeLine:
+        {
+            title = NSLocalizedString(@"Line", @"Line");
+            imageName=@"ShareUtilTypeLine";
+            break;
+        }
+        case ShareUtilTypeFacebook:
+        {
+            title = NSLocalizedString(@"Facebook", @"Facebook");
+            imageName=@"ShareUtilTypeFacebook";
             break;
         }
         default:

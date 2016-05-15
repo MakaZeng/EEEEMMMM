@@ -64,6 +64,15 @@
 		60BB92A31CBA853B00872C3A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BB92A21CBA853B00872C3A /* libz.tbd */; };
 		60BB92A51CBA854500872C3A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BB92A41CBA854500872C3A /* libsqlite3.tbd */; };
 		60BB92A71CBA855100872C3A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BB92A61CBA855100872C3A /* SystemConfiguration.framework */; };
+		880B133E1CE5983800D6A090 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 880B133D1CE5983800D6A090 /* libicucore.tbd */; };
+		880B13401CE5984800D6A090 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880B133F1CE5984800D6A090 /* JavaScriptCore.framework */; };
+		880B13421CE5985A00D6A090 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880B13411CE5985A00D6A090 /* MessageUI.framework */; };
+		880B13441CE5986300D6A090 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880B13431CE5986300D6A090 /* CoreMotion.framework */; };
+		880B13461CE5987000D6A090 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880B13451CE5987000D6A090 /* CoreLocation.framework */; };
+		880B13481CE5987900D6A090 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880B13471CE5987900D6A090 /* MediaPlayer.framework */; };
+		880B134A1CE5988100D6A090 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880B13491CE5988100D6A090 /* AssetsLibrary.framework */; };
+		880B134C1CE5988800D6A090 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880B134B1CE5988800D6A090 /* AddressBook.framework */; };
+		880B134E1CE5A83400D6A090 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 880B134D1CE5A83400D6A090 /* FBSDKMessengerShareKit.framework */; };
 		8816F3351CC8B9810010DBFB /* UserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8816F3341CC8B9810010DBFB /* UserInfoManager.m */; };
 		88186D0B1CDDD717009DFC99 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 88186D071CDDD717009DFC99 /* ServiceManager.m */; };
 		88186D0C1CDDD717009DFC99 /* ShareInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 88186D091CDDD717009DFC99 /* ShareInstance.m */; };
@@ -186,6 +195,15 @@
 		60BB92A21CBA853B00872C3A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		60BB92A41CBA854500872C3A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		60BB92A61CBA855100872C3A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		880B133D1CE5983800D6A090 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		880B133F1CE5984800D6A090 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		880B13411CE5985A00D6A090 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		880B13431CE5986300D6A090 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		880B13451CE5987000D6A090 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		880B13471CE5987900D6A090 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		880B13491CE5988100D6A090 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		880B134B1CE5988800D6A090 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		880B134D1CE5A83400D6A090 /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
 		8816F3331CC8B9810010DBFB /* UserInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoManager.h; sourceTree = "<group>"; };
 		8816F3341CC8B9810010DBFB /* UserInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoManager.m; sourceTree = "<group>"; };
 		88186D071CDDD717009DFC99 /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
@@ -266,6 +284,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880B134C1CE5988800D6A090 /* AddressBook.framework in Frameworks */,
+				880B134A1CE5988100D6A090 /* AssetsLibrary.framework in Frameworks */,
+				880B13481CE5987900D6A090 /* MediaPlayer.framework in Frameworks */,
+				880B13461CE5987000D6A090 /* CoreLocation.framework in Frameworks */,
+				880B134E1CE5A83400D6A090 /* FBSDKMessengerShareKit.framework in Frameworks */,
+				880B13441CE5986300D6A090 /* CoreMotion.framework in Frameworks */,
+				880B13421CE5985A00D6A090 /* MessageUI.framework in Frameworks */,
+				880B13401CE5984800D6A090 /* JavaScriptCore.framework in Frameworks */,
+				880B133E1CE5983800D6A090 /* libicucore.tbd in Frameworks */,
 				60756D471CC354FC00CE8EC1 /* libstdc++.tbd in Frameworks */,
 				60756D451CC354E800CE8EC1 /* CoreGraphics.framework in Frameworks */,
 				60756D431CC354DA00CE8EC1 /* libiconv.tbd in Frameworks */,
@@ -394,6 +421,7 @@
 		6021B2461CB80557003D2353 = {
 			isa = PBXGroup;
 			children = (
+				880B134D1CE5A83400D6A090 /* FBSDKMessengerShareKit.framework */,
 				60756D4A1CC36B5500CE8EC1 /* SDK1.6.2 */,
 				60756D3E1CC353F200CE8EC1 /* TencentOpenAPI.framework */,
 				6021B2511CB80558003D2353 /* BiaoQingBao */,
@@ -495,6 +523,14 @@
 		73DECF72CB944DEF10215D65 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				880B134B1CE5988800D6A090 /* AddressBook.framework */,
+				880B13491CE5988100D6A090 /* AssetsLibrary.framework */,
+				880B13471CE5987900D6A090 /* MediaPlayer.framework */,
+				880B13451CE5987000D6A090 /* CoreLocation.framework */,
+				880B13431CE5986300D6A090 /* CoreMotion.framework */,
+				880B13411CE5985A00D6A090 /* MessageUI.framework */,
+				880B133F1CE5984800D6A090 /* JavaScriptCore.framework */,
+				880B133D1CE5983800D6A090 /* libicucore.tbd */,
 				60756D461CC354FC00CE8EC1 /* libstdc++.tbd */,
 				60756D441CC354E800CE8EC1 /* CoreGraphics.framework */,
 				60756D421CC354DA00CE8EC1 /* libiconv.tbd */,
@@ -970,6 +1006,7 @@
 			baseConfigurationReference = CDC65A7F80B5D69DACC72F86 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -980,6 +1017,11 @@
 					"$(PROJECT_DIR)/BiaoQingBao/umeng_ios_social_sdk_5.0.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/BiaoQingBao",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ShareSDK",
+					"$(PROJECT_DIR)/ShareSDK/Support/Optional",
+					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/FacebookMessengerSDK",
+					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/KaKaoSDK",
+					"$(PROJECT_DIR)/ShareSDK/Support/Required",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1020,7 +1062,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = BiaoQingBao/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1038,7 +1080,7 @@
 					"$(PROJECT_DIR)/BiaoQingBao/umeng_ios_social_sdk_5.0.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/YiXin",
 					"$(PROJECT_DIR)/SDK1.6.2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maka.gifBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = maka.BiaoQingBao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ee4314c3-87b2-49c9-a61f-c923ea729c55";
 			};
@@ -1049,6 +1091,7 @@
 			baseConfigurationReference = EC11DE4A1762CFDB331ACB00 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1059,6 +1102,11 @@
 					"$(PROJECT_DIR)/BiaoQingBao/umeng_ios_social_sdk_5.0.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/BiaoQingBao",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ShareSDK",
+					"$(PROJECT_DIR)/ShareSDK/Support/Optional",
+					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/FacebookMessengerSDK",
+					"$(PROJECT_DIR)/ShareSDK/Support/PlatformSDK/KaKaoSDK",
+					"$(PROJECT_DIR)/ShareSDK/Support/Required",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1099,7 +1147,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = BiaoQingBao/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1117,7 +1165,7 @@
 					"$(PROJECT_DIR)/BiaoQingBao/umeng_ios_social_sdk_5.0.1_arm64_custom/UMSocial_Sdk_Extra_Frameworks/YiXin",
 					"$(PROJECT_DIR)/SDK1.6.2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maka.gifBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = maka.BiaoQingBao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ee4314c3-87b2-49c9-a61f-c923ea729c55";
 			};

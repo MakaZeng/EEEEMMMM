@@ -6,15 +6,19 @@
  Copyright © 2016年 maka. All rights reserved.
  */
 
-"Emoticon" = "Emoticon";
-"Templet" = "Templet";
-"Package" = "Package";
-"WebAsset" = "WebAsset";
-"Browser" = "Browser";
-"Google" = "Google";
-"Tips" = "Tips";
+"Emoticon" = "表情";
+"Templet" = "模板";
+"Package" = "表情包";
+"WebAsset" = "网页内容";
+"Browser" = "浏览器";
+"Google" = "谷歌";
+"Tips" = "推荐";
 
-"Long Press To Save Image ; ❤ To Make a Bookmark" = "Long Press To Save Image ; ❤ To Make a Bookmark";
+"Save To Album" = "保存到相册";
+"Save To Collection"  = "保存到我的收藏";
+"Share Image" = "分享图片";
+
+"Long Press To Save Image ; ❤ To Make a Bookmark" = "长按保存图片(可能会卡住数秒)\n 点击下面的爱心可以收藏当前网址";
 
 "OK" = "OK";
 
@@ -22,65 +26,67 @@
 "tabbar_emotions" = "tabbar_emotions";
 "tabbar_browser" = "tabbar_browser";
 
-"Bookmark" = "Bookmark";
-"Add Bookmark" = "Add Bookmark";
-"Donnot browse illegal websites" = "Donnot browse illegal websites";
-"Add" = "Add";
-"Title" = "Title";
+"Bookmark" = "书签";
+"Add Bookmark" = "添加书签";
+"Donnot browse illegal websites" = "请不要浏览非法网站";
+"Add" = "添加";
+"Title" = "标题";
 "URL" = "URL";
-"Cancel" = "Cancel";
-"Saved Package" = "Saved Package";
-"Add From Album" = "Add From Album";
-"Collection" = "Collection";
-"Empty" = "Empty";
+"Cancel" = "取消";
+"Saved Package" = "保存的表情包";
+"Add From Album" = "从相册选择图片";
+"Collection" = "我的收藏";
+"Empty" = "空";
 
-"Nice Name For This Website" = "Nice Name For This Website";
+"Nice Name For This Website" = "给这个网址取个名字";
 
-"Collect Success" = "Collect Success";
+"Collect Success" = "收藏成功";
 
-"Save To Album Success" = "Save To Album Success";
-"Save To Album Fail" = "Save To Album Fail";
+"Save To Album Success" = "保存到系统相册成功";
+"Save To Album Fail" = "保存到系统相册失败";
 
-"Save As Templet Success" = "Save As Templet Success";
+"Save As Templet Success" = "保存为模板成功";
 
-"Tap To Choose Target Color" = "Tap To Choose Target Color";
+"Tap To Choose Target Color" = "点击想要吸取的颜色";
 
-"Save As Templet" = "Save As Templet";
+"Save As Templet" = "保存为模板";
 
-"Snapshot Current" = "Snapshot Current";
-"Snapshot Success" = "Snapshot Success";
+"Snapshot Current" = "对当前进行快照";
+"Snapshot Success" = "快照成功";
 
-"Save Success" = "Save Success";
-"Save Fail" = "Save Fail";
+"Save Success" = "保存成功";
+"Save Fail" = "保存失败";
 
-"Input Title" = "Input Title";
+"Input Title" = "输入标题";
 
-"continue" = "continue";
-"Notice(Last Time)" = "Notice(Last Time)";
-"Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static" = "Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static";
+"continue" = "继续";
+"Notice(Last Time)" = "注意(最后一次)";
+"Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static" = "由于微信的原因，动态图发送到朋友圈和微信收藏会变成静态图";
 
 "QQ" = "QQ";
-"Wechat" = "Wechat";
-"WechatCollection" = "Wechat(Co)";
-"WechatSession" = "Wechat(Se)";
+"Wechat" = "微信";
+"WechatCollection" = "微信收藏";
+"WechatSession" = "朋友圈";
 "WhatsApp" = "WhatsApp";
+"Line" = "Line";
+"Facebook" = "Messenger";
 
-"Rss" = "Rss";
-"My Rss:" = "My Rss:";
-"Suggest Rss:" = "Suggest Rss:";
-"Add KeyWord" = "Add KeyWord";
-"Keyword Should be accurate" = "Keyword Should be accurate";
+"Rss" = "订阅";
+"My Rss:" = "我的订阅:";
+"Suggest Rss:" = "建议订阅:";
+"Add KeyWord" = "添加关键词";
+"Keyword Should be accurate" = "你添加的关键词应该是确定的，不支持模糊搜索.";
 
-"Input KeyWord" = "Input KeyWord";
+"Input KeyWord" = "输入关键词";
 
-"Long Press To Delete Image" = "Long Press To Delete Image";
+"Long Press To Delete Image" = "长按屏幕来进行管理";
 
-"Five Stars Unlock All Modules" = "Five Stars Unlock All Modules";
+"Five Stars Unlock All Modules" = "五星好评，解锁所有功能。";
 
-"Five Stars" = "Five Stars";
-"Next Time" = "Next Time";
+"Five Stars" = "去五星";
+"Next Time" = "下次";
 
-"Package Result:" = "Package Result:";
-"Emoticon Result:" = "Emoticon Result:";
+"Package Result:" = "表情包:";
+"Emoticon Result:" = "表情:";
 
-"Search" = "Search";
+"Search" = "搜索";

@@ -6,15 +6,19 @@
  Copyright © 2016年 maka. All rights reserved.
  */
 
-"Emoticon" = "Emoticon";
-"Templet" = "Templet";
-"Package" = "Package";
-"WebAsset" = "WebAsset";
-"Browser" = "Browser";
+"Emoticon" = "顔文字";
+"Templet" = "テンプレート";
+"Package" = "パッケージ";
+"WebAsset" = "ウェブプロパティ";
+"Browser" = "ブラウザ";
 "Google" = "Google";
-"Tips" = "Tips";
+"Tips" = "ヒント";
 
-"Long Press To Save Image ; ❤ To Make a Bookmark" = "Long Press To Save Image ; ❤ To Make a Bookmark";
+"Save To Album" = "保存するには、アルバム";
+"Save To Collection"  = "コレクションに保存します";
+"Share Image" = "共有画像";
+
+"Long Press To Save Image ; ❤ To Make a Bookmark" = "ロングを押して、イメージを保存します\n ❤ブックマークを確認するには";
 
 "OK" = "OK";
 
@@ -22,65 +26,67 @@
 "tabbar_emotions" = "tabbar_emotions";
 "tabbar_browser" = "tabbar_browser";
 
-"Bookmark" = "Bookmark";
-"Add Bookmark" = "Add Bookmark";
-"Donnot browse illegal websites" = "Donnot browse illegal websites";
-"Add" = "Add";
-"Title" = "Title";
+"Bookmark" = "ブックマーク";
+"Add Bookmark" = "ブックマークに追加";
+"Donnot browse illegal websites" = "不正なウェブサイトを閲覧しません";
+"Add" = "加えます";
+"Title" = "タイトル";
 "URL" = "URL";
-"Cancel" = "Cancel";
-"Saved Package" = "Saved Package";
-"Add From Album" = "Add From Album";
-"Collection" = "Collection";
-"Empty" = "Empty";
+"Cancel" = "キャンセル";
+"Saved Package" = "保存されたパッケージ";
+"Add From Album" = "アルバムから追加";
+"Collection" = "コレクション";
+"Empty" = "空の";
 
-"Nice Name For This Website" = "Nice Name For This Website";
+"Nice Name For This Website" = "このウェブサイトのニックネーム";
 
-"Collect Success" = "Collect Success";
+"Collect Success" = "成功を収集";
 
-"Save To Album Success" = "Save To Album Success";
-"Save To Album Fail" = "Save To Album Fail";
+"Save To Album Success" = "アルバムの成功に保存します";
+"Save To Album Fail" = "アルバム失敗に保存します";
 
-"Save As Templet Success" = "Save As Templet Success";
+"Save As Templet Success" = "テンプレートの成功として保存";
 
-"Tap To Choose Target Color" = "Tap To Choose Target Color";
+"Tap To Choose Target Color" = "ターゲットの色を選択するにはタップします";
 
-"Save As Templet" = "Save As Templet";
+"Save As Templet" = "テンプレートとして保存";
 
-"Snapshot Current" = "Snapshot Current";
-"Snapshot Success" = "Snapshot Success";
+"Snapshot Current" = "スナップショット現在";
+"Snapshot Success" = "スナップショットの成功";
 
-"Save Success" = "Save Success";
-"Save Fail" = "Save Fail";
+"Save Success" = "保存成功";
+"Save Fail" = "保存失敗";
 
-"Input Title" = "Input Title";
+"Input Title" = "入力タイトル";
 
-"continue" = "continue";
-"Notice(Last Time)" = "Notice(Last Time)";
-"Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static" = "Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static";
+"continue" = "持続する";
+"Notice(Last Time)" = "お知らせ（ラスト・タイム）";
+"Cannot Send Animated Image To Wechat TimeLine And Wechat Collection , This Image Will Convert To Static" = "タイムラインと微信コレクションを微信するアニメーション画像を送信できない、このイメージは静的に変換されます";
 
 "QQ" = "QQ";
 "Wechat" = "Wechat";
-"WechatCollection" = "Wechat(Co)";
-"WechatSession" = "Wechat(Se)";
+"WechatCollection" = "Wechat集めます";
+"WechatSession" = "Wechatタイムライン";
 "WhatsApp" = "WhatsApp";
+"Line" = "Line";
+"Facebook" = "Messenger";
 
 "Rss" = "Rss";
-"My Rss:" = "My Rss:";
-"Suggest Rss:" = "Suggest Rss:";
-"Add KeyWord" = "Add KeyWord";
-"Keyword Should be accurate" = "Keyword Should be accurate";
+"My Rss:" = "私のRss：";
+"Suggest Rss:" = "Rssを提案します：";
+"Add KeyWord" = "キーワードを追加";
+"Keyword Should be accurate" = "キーワードは正確である必要があります";
 
-"Input KeyWord" = "Input KeyWord";
+"Input KeyWord" = "入力されたキーワード";
 
-"Long Press To Delete Image" = "Long Press To Delete Image";
+"Long Press To Delete Image" = "画像を削除するには、ロングプレス";
 
-"Five Stars Unlock All Modules" = "Five Stars Unlock All Modules";
+"Five Stars Unlock All Modules" = "ファイブスターは、すべてのモジュールのロックを解除します";
 
-"Five Stars" = "Five Stars";
-"Next Time" = "Next Time";
+"Five Stars" = "五つ星";
+"Next Time" = "次回";
 
-"Package Result:" = "Package Result:";
-"Emoticon Result:" = "Emoticon Result:";
+"Package Result:" = "パッケージの結果：";
+"Emoticon Result:" = "絵文字結果：";
 
-"Search" = "Search";
+"Search" = "サーチ";

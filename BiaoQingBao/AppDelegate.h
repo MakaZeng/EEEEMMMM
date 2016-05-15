@@ -11,6 +11,7 @@
 #import "ShareInstance.h"
 
 #define UMENG_KEY @"571dd6c167e58e9798000f8a"
+
 #define BUGLY_ID @"900027818"
 #define BUGLY_KEY @"Q5qWo72iQSJP0BVx"
 
@@ -19,6 +20,8 @@
 
 #define WX_APP_ID @"wx3259b2aab2fcdaba"
 #define WX_APP_Sec @"1f728f1147a33ca7010a518a6ad70a65"
+
+#define FaceBook_ID @"613668032118825"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

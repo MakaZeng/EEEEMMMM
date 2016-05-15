@@ -23,6 +23,8 @@
 #import "ShareInstance.h"
 #import <ReactiveCocoa.h>
 #import "FullScreenImageView.h"
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <FBSDKMessengerShareKit/FBSDKMessengerShareKit.h>
 
 #define FirstShowGifSendToTimeLine @"FirstShowGifSendToTimeLine"
 
@@ -237,38 +239,81 @@
     NSString* l = CurrentLanguage;
     UIView* shareView = nil;
     
-    if ([l hasPrefix:@"zh-Han"]) {
-        shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeQQ],
-                                              [NSNumber numberWithInteger:ShareUtilTypeWechat],
-                                              [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
-                                              [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
-    }else if ([l hasPrefix:@"ja"]) {
-        shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeWhatsApp],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechat],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
-    }else if ([l hasPrefix:@"ko"]) {
-        shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeWhatsApp],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechat],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
-    }else if ([l hasPrefix:@"id"]) {
-        shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeWhatsApp],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechat],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
-    }else{
-        shareView = [MakaShareUtil instanceViewForItems:@[[NSNumber numberWithInteger:ShareUtilTypeWhatsApp],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechat],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
-                                                          [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]] delegate:self];
+    NSMutableArray* items = [ShareInstance shareInstance].shareItems;
+    
+    if (items.count == 0) {
+        if ([l hasPrefix:@"zh-Han"]) {
+            if ([WXApi isWXAppInstalled]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatSession]];
+            }
+            
+            if ([QQApiInterface isQQInstalled]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeQQ]];
+            }
+            
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"line://"]]) {
+                 [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            }
+            
+        }else if ([l hasPrefix:@"ja"]) {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"line://"]]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            }
+            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeFacebook]];
+            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWhatsApp]];
+            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
+            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+        }else if ([l hasPrefix:@"ko"]) {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"line://"]]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            }
+            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeFacebook]];
+            if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]]){
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWhatsApp]];
+            }
+            if ([WXApi isWXAppInstalled]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+            }
+        }else if ([l hasPrefix:@"id"]) {
+            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeFacebook]];
+            if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]]){
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWhatsApp]];
+            }
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"line://"]]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            }
+            if ([WXApi isWXAppInstalled]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+            }
+        }else{
+            [items addObject:[NSNumber numberWithInteger:ShareUtilTypeFacebook]];
+            if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]]){
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWhatsApp]];
+            }
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"line://"]]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeLine]];
+            }
+            if ([WXApi isWXAppInstalled]) {
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechat]];
+                [items addObject:[NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
+            }
+        }
+        
+        [[ShareInstance shareInstance] save];
     }
+    
+    shareView = [MakaShareUtil instanceViewForItems:items delegate:self];
+    
     
     [self.bottomView addSubview:shareView];
     [shareView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.bottomView);
         make.top.equalTo(self.collectionView.mas_bottom).offset(5);
-        make.width.equalTo(self.bottomView).offset(-30);
+        make.width.equalTo(self.bottomView);
         make.height.mas_equalTo(60);
     }];
     
@@ -317,11 +362,8 @@
 -(void)buttonAction:(UIButton*)btn
 {
     NSInteger i = btn.tag - BEGIN_TAG;
-    NSArray* arr = @[[NSNumber numberWithInteger:ShareUtilTypeQQ],
-      [NSNumber numberWithInteger:ShareUtilTypeWechat],
-      [NSNumber numberWithInteger:ShareUtilTypeWechatSession],
-                     [NSNumber numberWithInteger:ShareUtilTypeWechatCollection]];
-    ShareUtilType type = [arr[i] integerValue];
+    NSArray* arr = [ShareInstance shareInstance].shareItems;
+    ShareUtilType type = [NSArray_ObjectAt_Index(arr, i) integerValue];
     [self ShareUtil:nil selectedType:type];
 }
 
@@ -359,11 +401,48 @@
             [self sendToWhatsApp:o];
             return;
         }
+            case ShareUtilTypeLine:
+        {
+            [self sendToLine:o];
+            break;
+        }
+            case ShareUtilTypeFacebook:
+        {
+            [self sendToFacebook:o];
+            break;
+        }
         default:
             break;
     }
 }
 
+
+-(void)sendToFacebook:(id)obj
+{
+    {
+        NSData* data = nil;
+        if ([obj isKindOfClass:[NSString class]]) {
+            if ([obj hasPrefix:@"http://"]) {
+                NSString* path = [[SDImageCache sharedImageCache] defaultCachePathForKey:obj];
+                data = [[NSData alloc]initWithContentsOfFile:path];
+            }else {
+                data = [[NSData alloc]initWithContentsOfFile:obj];
+            }
+        }else if ([obj isKindOfClass:[FLAnimatedImage class]]) {
+            data = ((FLAnimatedImage*)obj).data;
+        }else if ([obj isKindOfClass:[UIImage class]]) {
+            data = UIImageJPEGRepresentation(obj, 1);
+        }
+        
+        FLAnimatedImage* gif = [[FLAnimatedImage alloc]initWithAnimatedGIFData:data];
+        if (gif) {
+            [FBSDKMessengerSharer shareAnimatedGIF:data withOptions:nil];
+        }else {
+            UIImage *image = [[UIImage alloc] initWithData:data];
+            [FBSDKMessengerSharer shareImage:image withOptions:nil];
+        }
+    }
+}
 
 -(void)sendToQQ:(id)obj
 {
@@ -392,33 +471,67 @@
 
 }
 
--(void)sendToWhatsApp:(id)obj
+-(void)sendToLine:(id)obj
 {
-    UIImage* image = nil;
-    if ([obj isKindOfClass:[UIImage class]]) {
-        image = obj;
-    }else if([obj isKindOfClass:[NSString class]]) {
-        NSData* data = nil;
+    NSData* data = nil;
+    if ([obj isKindOfClass:[NSString class]]) {
         if ([obj hasPrefix:@"http://"]) {
             NSString* path = [[SDImageCache sharedImageCache] defaultCachePathForKey:obj];
             data = [[NSData alloc]initWithContentsOfFile:path];
         }else {
             data = [[NSData alloc]initWithContentsOfFile:obj];
         }
-        image = [[UIImage alloc]initWithData:data];
-    }else if ([obj isKindOfClass:[FLAnimatedImage class]]){
-        image = [[UIImage alloc]initWithData:[obj data]];
-    }else if ([obj isKindOfClass:[NSData class]]) {
-        image = [[UIImage alloc]initWithData:obj];
-    }else {
-        return;
+    }else if ([obj isKindOfClass:[FLAnimatedImage class]]) {
+        data = ((FLAnimatedImage*)obj).data;
+    }else if ([obj isKindOfClass:[UIImage class]]) {
+        data = UIImageJPEGRepresentation(obj, 1);
     }
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"line://"]]) {
+        UIPasteboard *pasteboard = [UIPasteboard pasteboardWithUniqueName];
+        NSString *pasteboardName = pasteboard.name;
+        
+        FLAnimatedImage* gif =  [FLAnimatedImage animatedImageWithGIFData:data];
+        if (gif) {
+            [pasteboard setData:data forPasteboardType:@"public.gif"];
+        }else {
+            [pasteboard setData:data forPasteboardType:@"public.png"];
+        }
+        
+        NSString *contentType = @"image";
+        NSString *contentKey = (__bridge_transfer NSString*)CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                                    (CFStringRef)pasteboardName,
+                                                                                                    NULL,
+                                                                                                    CFSTR(":/?=,!$&'()*+;[]@#"),
+                                                                                                    CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+        
+        NSString *urlString = [NSString stringWithFormat:@"line://msg/%@/%@",
+                               contentType, contentKey];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    }
+}
+
+
+-(void)sendToWhatsApp:(id)obj
+{
+    NSData* data = nil;
+    if ([obj isKindOfClass:[NSString class]]) {
+        if ([obj hasPrefix:@"http://"]) {
+            NSString* path = [[SDImageCache sharedImageCache] defaultCachePathForKey:obj];
+            data = [[NSData alloc]initWithContentsOfFile:path];
+        }else {
+            data = [[NSData alloc]initWithContentsOfFile:obj];
+        }
+    }else if ([obj isKindOfClass:[FLAnimatedImage class]]) {
+        data = ((FLAnimatedImage*)obj).data;
+    }else if ([obj isKindOfClass:[UIImage class]]) {
+        data = UIImageJPEGRepresentation(obj, 1);
+    }
+    
     if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]]){
         
-        UIImage     * iconImage = image;
         NSString    * savePath  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/whatsAppTmp.wai"];
         
-        [UIImageJPEGRepresentation(iconImage, 1.0) writeToFile:savePath atomically:YES];
+        [data writeToFile:savePath atomically:YES];
         
         _documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:savePath]];
         _documentInteractionController.UTI = @"net.whatsapp.image";
