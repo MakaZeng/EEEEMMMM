@@ -8,6 +8,7 @@
 
 #import "ADWebviewController.h"
 #import "ListDetailViewController.h"
+#import <LCActionSheet.h>
 #import <ZFModalTransitionAnimator.h>
 
 static NSString* const kTouchJavaScriptString=
@@ -69,11 +70,6 @@ enum
 // 功能：如果点击的是图片，并且按住的时间超过1s，执行handleLongTouch函数，处理图片的保存操作。
 - (void)handleLongTouch {
     NSLog(@"%@", _imgURL);
-    if (_imgURL && _gesState == GESTURE_STATE_START) {
-        UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存到手机", nil];
-        sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
-        [sheet showInView:[UIApplication sharedApplication].keyWindow];
-    }
 }
 // 功能：保存图片到手机
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

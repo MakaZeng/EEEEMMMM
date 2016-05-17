@@ -14,6 +14,7 @@
 #import <ZFModalTransitionAnimator.h>
 #import <FLAnimatedImage.h>
 #import "ShareInstance.h"
+#import <LCActionSheet.h>
 
 //要注入的 js 代码
 static NSString* const kTouchJavaScriptString=
@@ -147,12 +148,34 @@ static const void* TOWebViewControllerAnimator = &TOWebViewControllerAnimator;
         
         //用获取的图片 去识别二维码
         self.gesState = GESTURE_STATE_END;
-        UIActionSheet* sheet ;
+        LCActionSheet * sheet ;
         {
-            sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", @"Input Title") destructiveButtonTitle:nil otherButtonTitles:DefineActionSheetShare,DefineActionSheetCollect,DefineActionSheetSave, nil];
+            sheet = [LCActionSheet sheetWithTitle:nil buttonTitles:@[DefineActionSheetShare,DefineActionSheetCollect,DefineActionSheetSave] redButtonIndex:1 clicked:^(NSInteger buttonIndex) {
+                [self.webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='text';"];
+                if (buttonIndex == 0) {
+                    
+                    ListDetailViewController *detailViewController;
+                    //    detailViewController.task = sender;
+                    
+                    FLAnimatedImage* animatedImage = [[FLAnimatedImage alloc]initWithAnimatedGIFData:self.data];
+                    if (!animatedImage) {
+                        UIImage* image = [[UIImage alloc]initWithData:self.data];
+                        detailViewController = [[ListDetailViewController alloc]initWitImage:image];
+                    }else {
+                        detailViewController = [[ListDetailViewController alloc]initWitImage:(id)animatedImage];
+                    }
+                    
+                    [self presentViewController:detailViewController animated:YES completion:nil];
+                }
+                else if(buttonIndex == 2){
+                    UIImage* image = [[UIImage alloc]initWithData:self.data];
+                    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+                }else if(buttonIndex == 1){
+                    [ShareInstance saveToCollectionFolder:self.data];
+                }
+            }];
+            [sheet show];
         }
-        sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
-        [sheet showInView:[UIApplication sharedApplication].keyWindow];
     }
 }
 
@@ -161,31 +184,6 @@ static const void* TOWebViewControllerAnimator = &TOWebViewControllerAnimator;
 }
 
 #pragma mark -
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='text';"];
-    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DefineActionSheetShare]) {
-        
-        ListDetailViewController *detailViewController;
-        //    detailViewController.task = sender;
-        
-        FLAnimatedImage* animatedImage = [[FLAnimatedImage alloc]initWithAnimatedGIFData:self.data];
-        if (!animatedImage) {
-            UIImage* image = [[UIImage alloc]initWithData:self.data];
-            detailViewController = [[ListDetailViewController alloc]initWitImage:image];
-        }else {
-            detailViewController = [[ListDetailViewController alloc]initWitImage:(id)animatedImage];
-        }
-        
-        [self presentViewController:detailViewController animated:YES completion:nil];
-    }
-    else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DefineActionSheetSave]){
-        UIImage* image = [[UIImage alloc]initWithData:self.data];
-        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-    }else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DefineActionSheetCollect]){
-        [ShareInstance saveToCollectionFolder:self.data];
-    }
-}
 
 - (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
 {

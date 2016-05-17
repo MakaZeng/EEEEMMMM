@@ -9,7 +9,7 @@
 #import <TOWebViewController/TOWebViewController.h>
 #import "ADRuntimeClass.h"
 
-@interface TOWebViewController (QRCodeHelper)<UIWebViewDelegate,UIActionSheetDelegate>
+@interface TOWebViewController (QRCodeHelper)<UIWebViewDelegate>
 
 @property (nonatomic, strong)NSTimer *timer;
 

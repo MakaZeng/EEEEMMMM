@@ -45,7 +45,7 @@
 - (NSString *)cancelText
 {
     if (!_cancelText) {
-        _cancelText = @"取消";
+        _cancelText = NSLocalizedString(@"Cancel", @"取消");
     }
     
     return _cancelText;

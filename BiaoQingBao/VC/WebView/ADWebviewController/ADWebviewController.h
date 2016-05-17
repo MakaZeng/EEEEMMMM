@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ADWebviewController : UIViewController<UIWebViewDelegate,UIActionSheetDelegate>
+@interface ADWebviewController : UIViewController<UIWebViewDelegate>
 
 @property (nonatomic,readonly)  UIWebView *webView;
 
